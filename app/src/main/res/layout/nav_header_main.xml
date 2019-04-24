@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/nav_header_height"
+    android:background="@color/colorPrimary"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/spacing_small_16dp"
+    android:paddingLeft="@dimen/spacing_small_16dp"
+    android:paddingRight="@dimen/spacing_small_16dp"
+    android:paddingTop="@dimen/spacing_small_16dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <ImageView
+        android:id="@+id/nav_header_image_iv"
+        android:layout_width="@dimen/size_60dp"
+        android:layout_height="@dimen/size_60dp"
+        android:src="@drawable/ico_circle_white"
+        android:contentDescription="@string/nav_header_desc"
+        android:layout_marginTop="@dimen/spacing_smaller_8dp"/>
+
+    <TextView
+        android:id="@+id/nav_header_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/spacing_smaller_8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/nav_header_subtitle_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/white_two"/>
+
+</LinearLayout>

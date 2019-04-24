@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchWrapHorizontalLayout"
+    android:id="@+id/item_parent_layout"
+    android:background="@color/colorPrimary">
+
+    <LinearLayout
+        style="@style/MatchWrapHorizontalLayout"
+        android:layout_marginLeft="@dimen/spacing_smaller_6dp"
+        android:layout_marginStart="@dimen/spacing_smaller_6dp"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/spacing_smaller_10dp"
+        android:paddingStart="@dimen/spacing_smaller_10dp"
+        tools:ignore="RtlSymmetry"
+        android:gravity="center_vertical"
+        android:baselineAligned="false">
+        
+        <LinearLayout
+            style="@style/MatchWrapVerticalLayout"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:paddingTop="@dimen/small_size_24dp">
+
+            <LinearLayout
+                style="@style/MatchWrapHorizontalLayout"
+                android:gravity="center_vertical"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    style="@style/ImageView_24"
+                    android:id="@+id/item_title_ico"
+                    android:src="@drawable/ic_none_category"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    style="@style/WrapTextView_14"
+                    android:id="@+id/item_title_text"
+                    android:textColor="@color/colorPrimary"
+                    android:singleLine="true"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="@dimen/spacing_smallest_2dp"
+                    android:layout_marginStart="@dimen/spacing_smallest_2dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/item_count_text"
+                style="@style/MatchWrapTextView_12"
+                android:layout_marginBottom="@dimen/spacing_smaller_8dp"
+                android:textColor="@color/grey"
+                android:layout_marginLeft="@dimen/spacing_normal_26dp"
+                android:layout_marginStart="@dimen/spacing_normal_26dp"/>
+
+        </LinearLayout>
+
+        <ImageView
+            style="@style/ImageView_36"
+            android:id="@+id/item_delete_image"
+            android:src="@drawable/ic_delete_grey"
+            android:layout_marginRight="@dimen/spacing_smaller_10dp"
+            android:layout_marginEnd="@dimen/spacing_smaller_10dp"
+            android:layout_marginLeft="@dimen/spacing_smaller_10dp"
+            android:layout_marginStart="@dimen/spacing_smaller_10dp"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

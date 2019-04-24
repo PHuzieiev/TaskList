@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.activities.TaskActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:layout_collapseMode="pin"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="@string/app_name" />
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/appbar"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/task_header"
+            style="@style/FragmentHeaderRelativeLayout">
+
+            <LinearLayout
+                android:id="@+id/task_header_layout"
+                style="@style/HorizontalWrapLayout"
+                android:layout_centerInParent="true"
+                tools:ignore="UseCompoundDrawables">
+
+                <TextView
+                    android:id="@+id/task_header_text"
+                    android:layout_width="wrap_content"
+                    style="@style/WrapTextView_14"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/MatchWrapVerticalLayout"
+                android:layout_alignParentBottom="true">
+
+                <LinearLayout style="@style/MatchWrapHorizontalLayout">
+
+                    <View
+                        style="@style/HorizontalHeaderLine"
+                        android:layout_weight="3" />
+
+                    <TextView
+                        android:id="@+id/task_nav_active_text"
+                        style="@style/HeaderNavigationTextView" />
+
+                    <TextView
+                        android:id="@+id/task_nav_done_text"
+                        style="@style/HeaderNavigationTextView"
+                        android:textColor="@color/grey" />
+
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/MatchWrapHorizontalLayout">
+
+                    <View
+                        style="@style/HorizontalHeaderLine"
+                        android:layout_weight="3"
+                        android:background="@color/grey_two" />
+
+                    <View
+                        android:id="@+id/task_nav_active_line"
+                        style="@style/HorizontalHeaderLine"
+                        android:background="@color/colorPrimary" />
+
+                    <View
+                        android:id="@+id/task_nav_done_line"
+                        style="@style/HorizontalHeaderLine"
+                        android:background="@color/grey_two" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <LinearLayout style="@style/MatchWrapVerticalLayout">
+
+                <LinearLayout
+                    android:id="@+id/parameter_title_main_layout"
+                    style="@style/MatchWrapHorizontalLayout"
+                    android:background="@color/colorPrimary">
+
+                    <LinearLayout style="@style/HorizontalLayoutForTaskParameter">
+
+                        <LinearLayout
+                            style="@style/MatchWrapVerticalLayout"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:paddingTop="@dimen/small_size_24dp">
+
+                            <LinearLayout
+                                style="@style/MatchWrapHorizontalLayout"
+                                android:gravity="center_vertical"
+                                tools:ignore="UseCompoundDrawables">
+
+                                <ImageView
+                                    style="@style/ImageView_24"
+                                    android:src="@drawable/ic_text"
+                                    tools:ignore="ContentDescription" />
+
+                                <LinearLayout
+                                    style="@style/MatchWrapVerticalLayout"
+                                    android:paddingTop="@dimen/spacing_start_1dp">
+
+                                    <EditText
+                                        android:id="@+id/parameter_title_main_text"
+                                        style="@style/WrapTextView_14"
+                                        android:background="@color/white"
+                                        android:enabled="false"
+                                        android:focusable="true"
+                                        android:inputType="textVisiblePassword"
+                                        android:textColor="@color/colorPrimary"
+                                        android:textStyle="bold"
+                                        android:layout_marginLeft="@dimen/spacing_smallest_2dp"
+                                        android:layout_marginStart="@dimen/spacing_smallest_2dp" />
+
+                                    <View
+                                        android:id="@+id/parameter_title_line"
+                                        style="@style/HorizontalLine"
+                                        android:background="@color/white" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/parameter_title_about_text"
+                                style="@style/TextViewForTaskParameter_12"/>
+
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/parameter_title_action_image"
+                            style="@style/ImageViewForTaskParameter_36"
+                            android:src="@drawable/ic_edit"
+                            tools:ignore="ContentDescription" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/parameter_category_main_layout"
+                    style="@style/MatchWrapHorizontalLayout"
+                    android:background="@color/colorPrimary">
+
+                    <LinearLayout style="@style/VerticalLayoutForTaskParameter">
+
+                        <LinearLayout
+                            style="@style/MatchWrapHorizontalLayout"
+                            android:gravity="center_vertical"
+                            tools:ignore="UseCompoundDrawables">
+
+                            <ImageView
+                                android:id="@+id/parameter_category_image"
+                                style="@style/ImageView_24"
+                                android:src="@drawable/ic_none_category"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:id="@+id/parameter_category_main_text"
+                                style="@style/WrapTextView_14"
+                                android:layout_marginTop="@dimen/spacing_start_1dp"
+                                android:layout_marginBottom="1dp"
+                                android:textColor="@color/colorPrimary"
+                                android:layout_marginLeft="@dimen/spacing_smallest_2dp"
+                                android:layout_marginStart="@dimen/spacing_smallest_2dp"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/parameter_category_about_text"
+                            style="@style/TextViewForTaskParameter_12" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/parameter_date_main_layout"
+                    style="@style/MatchWrapHorizontalLayout"
+                    android:background="@color/colorPrimary">
+
+                    <LinearLayout style="@style/VerticalLayoutForTaskParameter">
+
+                        <LinearLayout
+                            style="@style/MatchWrapHorizontalLayout"
+                            android:gravity="center_vertical"
+                            tools:ignore="UseCompoundDrawables">
+
+                            <ImageView
+                                style="@style/ImageView_24"
+                                android:src="@drawable/ic_events"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:id="@+id/parameter_date_main_text"
+                                style="@style/WrapTextView_14"
+                                android:layout_marginTop="@dimen/spacing_start_1dp"
+                                android:layout_marginBottom="1dp"
+                                android:textColor="@color/colorPrimary"
+                                android:layout_marginLeft="@dimen/spacing_smallest_2dp"
+                                android:layout_marginStart="@dimen/spacing_smallest_2dp"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/parameter_date_about_text"
+                            style="@style/TextViewForTaskParameter_12" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/parameter_beginning_main_layout"
+                    style="@style/MatchWrapHorizontalLayout"
+                    android:background="@color/grey_two">
+
+                    <LinearLayout style="@style/HorizontalLayoutForTaskParameter">
+
+                        <LinearLayout
+                            style="@style/MatchWrapVerticalLayout"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:paddingTop="@dimen/small_size_24dp">
+
+                            <LinearLayout
+                                style="@style/MatchWrapHorizontalLayout"
+                                android:gravity="center_vertical"
+                                tools:ignore="UseCompoundDrawables">
+
+                                <ImageView
+                                    android:id="@+id/parameter_beginning_image"
+                                    style="@style/ImageView_24"
+                                    android:src="@drawable/ic_time_grey"
+                                    tools:ignore="ContentDescription" />
+
+                                <TextView
+                                    android:id="@+id/parameter_beginning_main_text"
+                                    style="@style/WrapTextView_14"
+                                    android:layout_marginTop="@dimen/spacing_start_1dp"
+                                    android:layout_marginBottom="1dp"
+                                    android:textColor="@color/grey"
+                                    android:layout_marginLeft="@dimen/spacing_smallest_2dp"
+                                    android:layout_marginStart="@dimen/spacing_smallest_2dp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/parameter_beginning_about_text"
+                                style="@style/TextViewForTaskParameter_12" />
+
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/parameter_beginning_action_image"
+                            style="@style/ImageViewForTaskParameter_36"
+                            android:src="@drawable/ic_add_circle"
+                            tools:ignore="ContentDescription" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/parameter_end_main_layout"
+                    style="@style/MatchWrapHorizontalLayout"
+                    android:background="@color/grey_two">
+
+                    <LinearLayout style="@style/HorizontalLayoutForTaskParameter">
+
+                        <LinearLayout
+                            style="@style/MatchWrapVerticalLayout"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:paddingTop="@dimen/small_size_24dp">
+
+                            <LinearLayout
+                                style="@style/MatchWrapHorizontalLayout"
+                                android:gravity="center_vertical"
+                                tools:ignore="UseCompoundDrawables">
+
+                                <ImageView
+                                    android:id="@+id/parameter_end_image"
+                                    style="@style/ImageView_24"
+                                    android:src="@drawable/ic_time_grey"
+                                    tools:ignore="ContentDescription" />
+
+                                <TextView
+                                    android:id="@+id/parameter_end_main_text"
+                                    style="@style/WrapTextView_14"
+                                    android:layout_marginTop="@dimen/spacing_start_1dp"
+                                    android:layout_marginBottom="1dp"
+                                    android:textColor="@color/grey"
+                                    android:layout_marginLeft="@dimen/spacing_smallest_2dp"
+                                    android:layout_marginStart="@dimen/spacing_smallest_2dp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/parameter_end_about_text"
+                                style="@style/TextViewForTaskParameter_12" />
+
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/parameter_end_action_image"
+                            style="@style/ImageViewForTaskParameter_36"
+                            android:src="@drawable/ic_add_circle"
+                            tools:ignore="ContentDescription" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/parameter_alarm_main_layout"
+                    style="@style/MatchWrapHorizontalLayout"
+                    android:background="@color/colorPrimary"
+                    android:layout_marginBottom="@dimen/spacing_big_88dp">
+
+                    <LinearLayout style="@style/HorizontalLayoutForTaskParameter">
+
+                        <LinearLayout
+                            style="@style/MatchWrapVerticalLayout"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:paddingTop="@dimen/small_size_24dp">
+
+                            <LinearLayout
+                                style="@style/MatchWrapHorizontalLayout"
+                                android:gravity="center_vertical"
+                                tools:ignore="UseCompoundDrawables">
+
+                                <ImageView
+                                    android:id="@+id/parameter_alarm_image"
+                                    style="@style/ImageView_24"
+                                    android:src="@drawable/ic_alarm_state"
+                                    tools:ignore="ContentDescription" />
+
+                                <TextView
+                                    android:id="@+id/parameter_alarm_main_text"
+                                    style="@style/WrapTextView_14"
+                                    android:layout_marginTop="@dimen/spacing_start_1dp"
+                                    android:layout_marginBottom="1dp"
+                                    android:textColor="@color/colorPrimary"
+                                    android:layout_marginLeft="@dimen/spacing_smallest_2dp"
+                                    android:layout_marginStart="@dimen/spacing_smallest_2dp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/parameter_alarm_about_text"
+                                style="@style/TextViewForTaskParameter_12"/>
+
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/parameter_alarm_action_image"
+                            style="@style/ImageViewForTaskParameter_36"
+                            android:src="@drawable/ic_add_circle"
+                            tools:ignore="ContentDescription" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+        </ScrollView>
+
+
+    </LinearLayout>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/task_fab"
+        style="@style/Fab"
+        android:src="@drawable/ic_done"
+        app:backgroundTint="@color/colorPrimary" />
+
+
+</RelativeLayout>

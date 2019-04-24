@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrapHorizontalLayout"
+    android:id="@+id/item_parent_layout"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/item_list"
+        style="@style/RecyclerViewStyle"/>
+</LinearLayout>

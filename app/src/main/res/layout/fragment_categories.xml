@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchWrapVerticalLayout"
+    tools:context=".ui.fragments.CategoriesFragment">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_list"
+        style="@style/RecyclerViewStyle"
+        android:background="@color/white"/>
+
+
+</LinearLayout>

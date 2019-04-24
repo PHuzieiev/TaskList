@@ -1,0 +1,502 @@
+<resources>
+    <string name="app_name">Task List</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="language_eng">Language</string>
+    <string name="language_rus">Язык</string>
+    <string name="language_ukr">Мова</string>
+
+    <string-array name="language_options">
+        <item>English</item>
+        <item>Українська</item>
+        <item>Русский</item>
+    </string-array>
+
+    <string name="nav_header_title_two_eng">"Tasks for today: "</string>
+    <string name="nav_header_title_two_rus">"Заданий на сегодня: "</string>
+    <string name="nav_header_title_two_ukr">"Завдань на сьогодні: "</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="delimiter">:</string>
+    <string name="am">AM</string>
+    <string name="pm">PM</string>
+
+    <array name="yesterday_today_tomorrow_eng">
+        <item>Yesterday</item>
+        <item>Today</item>
+        <item>Tomorrow</item>
+    </array>
+
+    <array name="yesterday_today_tomorrow_rus">
+        <item>Вчера</item>
+        <item>Сегодня</item>
+        <item>Завтра</item>
+    </array>
+
+    <array name="yesterday_today_tomorrow_ukr">
+        <item>Вчора</item>
+        <item>Сьогодні</item>
+        <item>Завтра</item>
+    </array>
+
+    <string-array name="day_titles_eng">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+
+    <string-array name="day_titles_ukr">
+        <item>Неділя</item>
+        <item>Понеділок</item>
+        <item>Вівторок</item>
+        <item>Середа</item>
+        <item>Четвер</item>
+        <item>П\'ятниця</item>
+        <item>Субота</item>
+    </string-array>
+
+    <string-array name="day_titles_rus">
+        <item>Воскресенье</item>
+        <item>Понедельник</item>
+        <item>Вторник</item>
+        <item>Среда</item>
+        <item>Четверг</item>
+        <item>Пятница</item>
+        <item>Суббота</item>
+    </string-array>
+
+    <string-array name="month_titles_eng">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+
+    <string-array name="month_titles_ukr">
+        <item>Січня</item>
+        <item>Лютого</item>
+        <item>Березня</item>
+        <item>Квітня</item>
+        <item>Травня</item>
+        <item>Червня</item>
+        <item>Липня</item>
+        <item>Серпня</item>
+        <item>Вересня</item>
+        <item>Жовтня</item>
+        <item>Листопада</item>
+        <item>Грудня</item>
+    </string-array>
+
+    <string-array name="month_titles_rus">
+        <item>Января</item>
+        <item>Февраля</item>
+        <item>Марта</item>
+        <item>Апреля</item>
+        <item>Мая</item>
+        <item>Июня</item>
+        <item>Июля</item>
+        <item>Августа</item>
+        <item>Сентября</item>
+        <item>Октября</item>
+        <item>Ноября</item>
+        <item>Декабря</item>
+    </string-array>
+
+
+    <string-array name="month_titles_two_ukr">
+        <item>Січень</item>
+        <item>Лютий</item>
+        <item>Березень</item>
+        <item>Квітень</item>
+        <item>Травень</item>
+        <item>Червень</item>
+        <item>Липень</item>
+        <item>Серпень</item>
+        <item>Вересень</item>
+        <item>Жовтень</item>
+        <item>Листопад</item>
+        <item>Грудень</item>
+    </string-array>
+
+    <string-array name="month_titles_two_rus">
+        <item>Январь</item>
+        <item>Февраль</item>
+        <item>Март</item>
+        <item>Апрель</item>
+        <item>Май</item>
+        <item>Июнь</item>
+        <item>Июль</item>
+        <item>Август</item>
+        <item>Сентябрь</item>
+        <item>Октябрь</item>
+        <item>Ноябрь</item>
+        <item>Декабрь</item>
+    </string-array>
+
+    <string-array name="monday_weekdays_titles_eng">
+        <item>M</item>
+        <item>T</item>
+        <item>W</item>
+        <item>T</item>
+        <item>F</item>
+        <item>S</item>
+        <item>S</item>
+    </string-array>
+
+    <string-array name="monday_weekdays_titles_rus">
+        <item>П</item>
+        <item>В</item>
+        <item>С</item>
+        <item>Ч</item>
+        <item>П</item>
+        <item>С</item>
+        <item>В</item>
+    </string-array>
+
+    <string-array name="monday_weekdays_titles_ukr">
+        <item>П</item>
+        <item>В</item>
+        <item>С</item>
+        <item>Ч</item>
+        <item>П</item>
+        <item>С</item>
+        <item>Н</item>
+    </string-array>
+
+    <string-array name="sunday_weekdays_titles_eng">
+        <item>S</item>
+        <item>M</item>
+        <item>T</item>
+        <item>W</item>
+        <item>T</item>
+        <item>F</item>
+        <item>S</item>
+    </string-array>
+
+    <string-array name="sunday_weekdays_titles_rus">
+        <item>В</item>
+        <item>П</item>
+        <item>В</item>
+        <item>С</item>
+        <item>Ч</item>
+        <item>П</item>
+        <item>С</item>
+    </string-array>
+
+    <string-array name="sunday_weekdays_titles_ukr">
+        <item>Н</item>
+        <item>П</item>
+        <item>В</item>
+        <item>С</item>
+        <item>Ч</item>
+        <item>П</item>
+        <item>С</item>
+    </string-array>
+
+    <string-array name="task_list_header_navigation_titles_eng">
+        <item>Active</item>
+        <item>Done</item>
+    </string-array>
+
+    <string-array name="task_list_header_navigation_titles_rus">
+        <item>Активные</item>
+        <item>Выполненные</item>
+    </string-array>
+
+    <string-array name="task_list_header_navigation_titles_ukr">
+        <item>Активні</item>
+        <item>Виконані</item>
+    </string-array>
+
+    <string-array name="delete_done_back_eng">
+        <item>Task was deleted</item>
+        <item>Task was done</item>
+        <item>Task was returned in main list</item>
+    </string-array>
+
+    <string-array name="delete_done_back_rus">
+        <item>Задание удалено</item>
+        <item>Задание выполнено</item>
+        <item>Задание возвращено в список</item>
+    </string-array>
+
+    <string-array name="delete_done_back_ukr">
+        <item>Завдання видалено</item>
+        <item>Завдання виконано</item>
+        <item>Завдання повернуто в список</item>
+    </string-array>
+
+    <string-array name="drawer_menu_items_eng">
+        <item>Tasks</item>
+        <item>Categories</item>
+        <item>Statistic</item>
+        <item>Others</item>
+        <item>Settings</item>
+        <item>Help</item>
+        <item>About app</item>
+    </string-array>
+
+    <string-array name="drawer_menu_items_rus">
+        <item>Задания</item>
+        <item>Категории</item>
+        <item>Статистика</item>
+        <item>Другое</item>
+        <item>Настройки</item>
+        <item>Помощь</item>
+        <item>О приложении</item>
+    </string-array>
+
+    <string-array name="drawer_menu_items_ukr">
+        <item>Завдання</item>
+        <item>Категорії</item>
+        <item>Статистика</item>
+        <item>Інше</item>
+        <item>Налаштування</item>
+        <item>Допомога</item>
+        <item>Про додаток</item>
+    </string-array>
+
+    <string-array name="edit_create_task_title_eng">
+        <item>New task</item>
+        <item>Edit task</item>
+        <item>My task</item>
+    </string-array>
+
+    <string-array name="edit_create_task_title_rus">
+        <item>Новое задание</item>
+        <item>Редактировать</item>
+        <item>Мое задание</item>
+    </string-array>
+
+    <string-array name="edit_create_task_title_ukr">
+        <item>Нове завдання</item>
+        <item>Редагувати</item>
+        <item>Моє завдання</item>
+    </string-array>
+
+    <string-array name="state_task_titles_eng">
+        <item>This task is active</item>
+        <item>This task was done</item>
+    </string-array>
+
+    <string-array name="state_task_titles_rus">
+        <item>Активное задание</item>
+        <item>Выполненое задание</item>
+    </string-array>
+
+    <string-array name="state_task_titles_ukr">
+        <item>Активне завдання</item>
+        <item>Виконане завдання</item>
+    </string-array>
+
+    <string-array name="task_parameters_eng">
+        <item>Title</item>
+        <item>Category</item>
+        <item>Date</item>
+        <item>Time (Beginning)</item>
+        <item>Time (End)</item>
+        <item>Alarm clock</item>
+    </string-array>
+
+    <string-array name="task_parameters_rus">
+        <item>Название</item>
+        <item>Категория</item>
+        <item>Дата</item>
+        <item>Время (Начало)</item>
+        <item>Время (Завершение)</item>
+        <item>Будильник</item>
+    </string-array>
+
+    <string-array name="task_parameters_ukr">
+        <item>Назва</item>
+        <item>Категорія</item>
+        <item>Дата</item>
+        <item>Час (Початок)</item>
+        <item>Час (Завершення)</item>
+        <item>Будильник</item>
+    </string-array>
+
+    <string-array name="categories_eng">
+        <item>Main tasks</item>
+        <item>Family</item>
+        <item>Meetings</item>
+        <item>Home</item>
+        <item>Shopping</item>
+        <item>Celebrations</item>
+        <item>Business</item>
+        <item>Calls</item>
+        <item>Entertainments</item>
+        <item>Education</item>
+        <item>Pets</item>
+        <item>Private life</item>
+        <item>Repair</item>
+        <item>Work</item>
+        <item>Sport</item>
+        <item>Travellings</item>
+    </string-array>
+
+    <string-array name="categories_rus">
+        <item>Основные задания</item>
+        <item>Семья</item>
+        <item>Встречи</item>
+        <item>Дом</item>
+        <item>Покупки</item>
+        <item>Праздники</item>
+        <item>Бизнес</item>
+        <item>Звонки</item>
+        <item>Развлечения</item>
+        <item>Образование</item>
+        <item>Домашние любимцы</item>
+        <item>Личная жизнь</item>
+        <item>Ремонт</item>
+        <item>Работа</item>
+        <item>Спорт</item>
+        <item>Путешествия</item>
+    </string-array>
+
+    <string-array name="categories_ukr">
+        <item>Основні завдання</item>
+        <item>Родина</item>
+        <item>Зустрічі</item>
+        <item>Дім</item>
+        <item>Покупки</item>
+        <item>Свята</item>
+        <item>Бізнес</item>
+        <item>Дзвінки</item>
+        <item>Розваги</item>
+        <item>Освіта</item>
+        <item>Дамашні улюбленці</item>
+        <item>Особисте життя</item>
+        <item>Ремонт</item>
+        <item>Робота</item>
+        <item>Спорт</item>
+        <item>Подорожі</item>
+    </string-array>
+
+    <string-array name="cancel_done_eng">
+        <item>Cancel</item>
+        <item>Done</item>
+    </string-array>
+
+    <string-array name="cancel_done_rus">
+        <item>Отмена</item>
+        <item>Готово</item>
+    </string-array>
+
+    <string-array name="cancel_done_ukr">
+        <item>Відміна</item>
+        <item>Готово</item>
+    </string-array>
+
+
+    <string-array name="toast_add_beginning_eng">
+        <item>First of all, you should add time of task beginning</item>
+        <item>Please add a correct time.\nTime of end must have a value\nwhich is longer than time of beginning</item>
+    </string-array>
+
+    <string-array name="toast_add_beginning_rus">
+        <item>Сначала укажите время начала выполения задания</item>
+        <item>Пожалуйста, укажите коректное время.\nЗначение времени окончания должно быть\nбольше значения времени начала</item>
+    </string-array>
+
+    <string-array name="toast_add_beginning_ukr">
+        <item>Спочатку вкажіть час початку виконання завдання</item>
+        <item>Будь ласкаб вкажіть коректний час.\nЗначення часу завершення повинне бути\nбільшим значення часу початку</item>
+    </string-array>
+
+    <string-array name="no_yes_eng">
+        <item>No</item>
+        <item>Yes</item>
+    </string-array>
+
+    <string-array name="no_yes_rus">
+        <item>Нет</item>
+        <item>Да</item>
+    </string-array>
+
+    <string-array name="no_yes_ukr">
+        <item>Ні</item>
+        <item>Так</item>
+    </string-array>
+
+    <string-array name="save_question_eng">
+        <item>Do you want to add this task in your list.?</item>
+        <item>Do you want to edit this task.?</item>
+    </string-array>
+
+    <string-array name="save_question_rus">
+        <item>Добавить это задание в ваш список заданий.?</item>
+        <item>Внести изменения в это задание.?</item>
+    </string-array>
+
+    <string-array name="save_question_ukr">
+        <item>Додати це завдання у ваш список завдань.?</item>
+        <item>Внести зміни в це завдання.?</item>
+    </string-array>
+
+    <string-array name="list_empty_eng">
+        <item>Lets rest.!\n\nYou do not have active tasks for chosen day.
+            You can add new task using button Add. </item>
+        <item>This list is empty.\n\nPlease, check your list of active tasks.!</item>
+    </string-array>
+
+    <string-array name="list_empty_rus">
+        <item>Время отдохнуть.!\n\nСписок активных заданий на выбранный день пуст.
+            Вы можете добавить новое задание используя кнопку Добавить.</item>
+        <item>Этот список пуск.\n\nПожалуйста, проверьте список активных заданий.!</item>
+    </string-array>
+
+    <string-array name="list_empty_ukr">
+        <item>Час відпочити.!\n\nСписок активних завдань на вибраний день порожній.
+        Ви можете додати нове завдання скориставшись кнопкою Додати.</item>
+        <item>Цей список порожній.\n\nБудь ласка, перевірте список активних завдань.!</item>
+    </string-array>
+
+    <string-array name="list_empty_two_eng">
+        <item>Lets rest.!\n\nYou do not have active tasks of this category.
+            You can add new task using button Add. </item>
+        <item>This list is empty.\n\nPlease, check your list of active tasks.!</item>
+    </string-array>
+
+    <string-array name="list_empty_two_rus">
+        <item>Время отдохнуть.!\n\nСписок активных заданий этой категории пуст.
+            Вы можете добавить новое задание используя кнопку Добавить.</item>
+        <item>Этот список пуск.\n\nПожалуйста, проверьте список активных заданий.!</item>
+    </string-array>
+
+    <string-array name="list_empty_two_ukr">
+        <item>Час відпочити.!\n\nСписок активних завдань цієї категорії порожній.
+        Ви можете додати нове завдання скориставшись кнопкою Додати.</item>
+        <item>Цей список порожній.\n\nБудь ласка, перевірте список активних завдань.!</item>
+    </string-array>
+
+    <string name="count_of_active_tasks_eng">"Count of tasks: "</string>
+    <string name="count_of_active_tasks_rus">"Количество заданий: "</string>
+    <string name="count_of_active_tasks_ukr">"Кількість завдань: "</string>
+
+    <string name="toast_clear_task_eng">All tasks from this category were deleted</string>
+    <string name="toast_clear_task_rus">Все задания этой категории были удалены</string>
+    <string name="toast_clear_task_ukr">Всі завдання цієї категорії були видалені</string>
+    
+    <string name="choose_other_category_eng">Choose other category</string>
+    <string name="choose_other_category_rus">Выбрать другую категорию</string>
+    <string name="choose_other_category_ukr">Обрати іншу категорію</string>
+
+</resources>

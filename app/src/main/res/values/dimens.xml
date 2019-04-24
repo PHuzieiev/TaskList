@@ -1,0 +1,51 @@
+<resources>
+    <dimen name="text_size_smallest_12sp">12sp</dimen>
+    <dimen name="text_size_small_14sp">14sp</dimen>
+    <dimen name="text_size_normal_18sp">18sp</dimen>
+    <dimen name="text_size_normal_24sp">24sp</dimen>
+    <dimen name="text_size_normal_32sp">32sp</dimen>
+    <dimen name="text_size_big_36sp">36sp</dimen>
+    <dimen name="text_size_big_42sp">42sp</dimen>
+    <dimen name="text_size_big_46sp">46sp</dimen>
+    <dimen name="text_size_big_48sp">48sp</dimen>
+
+
+    <dimen name="spacing_start_1dp">1dp</dimen>
+    <dimen name="spacing_smallest_2dp">2dp</dimen>
+    <dimen name="spacing_smaller_4dp">4dp</dimen>
+    <dimen name="spacing_smaller_6dp">6dp</dimen>
+    <dimen name="spacing_smaller_8dp">8dp</dimen>
+    <dimen name="spacing_smaller_10dp">10dp</dimen>
+    <dimen name="spacing_small_12dp">12dp</dimen>
+    <dimen name="spacing_small_14dp">14dp</dimen>
+    <dimen name="spacing_small_16dp">16dp</dimen>
+    <dimen name="spacing_small_18dp">18dp</dimen>
+    <dimen name="spacing_normal_24dp">24dp</dimen>
+    <dimen name="spacing_normal_26dp">26dp</dimen>
+    <dimen name="spacing_normal_20dp">20dp</dimen>
+    <dimen name="spacing_medium_30dp">30dp</dimen>
+    <dimen name="spacing_medium_32dp">32dp</dimen>
+    <dimen name="spacing_medium_36dp">36dp</dimen>
+    <dimen name="spacing_medium_40dp">40dp</dimen>
+    <dimen name="spacing_big_64dp">64dp</dimen>
+    <dimen name="spacing_big_72dp">72dp</dimen>
+    <dimen name="spacing_big_86dp">86dp</dimen>
+    <dimen name="spacing_big_88dp">88dp</dimen>
+
+
+    <dimen name="small_size_24dp">24dp</dimen>
+    <dimen name="small_size_36dp">36dp</dimen>
+    <dimen name="middle_size_48dp">48dp</dimen>
+    <dimen name="middle_size_72dp">72dp</dimen>
+    <dimen name="size_60dp">60dp</dimen>
+    <dimen name="size_100dp">100dp</dimen>
+    <dimen name="big_size_240dp">240dp</dimen>
+
+
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">8dp</dimen>
+    <dimen name="fab_margin_bottom">0dp</dimen>
+    <dimen name="huge_size_300dp">300dp</dimen>
+    <dimen name="huge_size_400dp">400dp</dimen>
+
+</resources>

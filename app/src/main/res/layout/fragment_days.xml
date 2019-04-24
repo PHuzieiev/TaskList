@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="horizontal"
+    tools:context=".ui.fragments.DaysFragment">
+
+    <RelativeLayout
+        android:id="@+id/fragment_header"
+        style="@style/FragmentHeaderRelativeLayout">
+
+        <LinearLayout
+            android:id="@+id/fragment_header_layout"
+            style="@style/HorizontalWrapLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="UseCompoundDrawables">
+
+
+            <TextView
+                android:id="@+id/fragment_header_text"
+                style="@style/WrapTextView_14"
+                android:layout_height="match_parent"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/MatchWrapVerticalLayout"
+            android:layout_alignParentBottom="true">
+
+            <LinearLayout style="@style/MatchWrapHorizontalLayout">
+
+                <View
+                    style="@style/HorizontalHeaderLine"
+                    android:layout_weight="3" />
+
+                <TextView
+                    android:id="@+id/fragment_nav_active_text"
+                    style="@style/HeaderNavigationTextView" />
+
+                <TextView
+                    android:id="@+id/fragment_nav_done_text"
+                    style="@style/HeaderNavigationTextView"
+                    android:textColor="@color/grey" />
+
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/MatchWrapHorizontalLayout">
+
+                <View
+                    android:id="@+id/fragment_nav_other_line"
+                    style="@style/HorizontalHeaderLine"
+                    android:layout_weight="3"
+                    android:background="@color/grey_two" />
+
+                <View
+                    android:id="@+id/fragment_nav_active_line"
+                    style="@style/HorizontalHeaderLine"
+                    android:background="@color/colorPrimary" />
+
+                <View
+                    android:id="@+id/fragment_nav_done_line"
+                    style="@style/HorizontalHeaderLine"
+                    android:background="@color/grey_two" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_list"
+        style="@style/RecyclerViewStyle"
+        android:layout_below="@+id/fragment_header" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/fragment_header"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/fragment_empty_iv"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:src="@drawable/ico_empty_main"
+            tools:ignore="ContentDescription"
+            android:layout_marginTop="@dimen/spacing_big_88dp"/>
+
+        <TextView
+            android:id="@+id/fragment_empty_tv"
+            android:layout_width="@dimen/big_size_240dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_small_14sp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_fab_layout"
+        android:orientation="horizontal"
+        style="@style/Fab"/>
+</RelativeLayout>

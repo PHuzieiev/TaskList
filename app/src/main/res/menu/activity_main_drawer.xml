@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/item_tasks"
+            android:icon="@drawable/ic_events"
+            tools:ignore="MenuTitle" />
+        <item
+            android:id="@+id/item_categories"
+            android:icon="@drawable/ic_categories"
+            tools:ignore="MenuTitle" />
+
+        <item
+            android:id="@+id/item_statistic"
+            android:icon="@drawable/ic_statistic"
+            tools:ignore="MenuTitle" />
+    </group>
+
+
+    <item
+        android:id="@+id/item_others"
+        tools:ignore="MenuTitle">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/item_settings"
+                    android:icon="@drawable/ic_settings"
+                    tools:ignore="MenuTitle" />
+
+                <item
+                    android:id="@+id/item_help"
+                    android:icon="@drawable/ic_help"
+                    tools:ignore="MenuTitle" />
+
+                <item
+                    android:id="@+id/item_about"
+                    android:icon="@drawable/ic_info"
+                    tools:ignore="MenuTitle" />
+
+            </group>
+        </menu>
+
+    </item>
+
+
+</menu>
