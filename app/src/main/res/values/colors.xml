@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#BF4141</color>
+    <color name="colorPrimaryLight">#96bf4141</color>
     <color name="colorPrimaryTwo">#c8bf4141</color>
     <color name="colorPrimaryDark">#BF4141</color>
     <color name="colorAccent">#E5792B</color>
@@ -11,6 +12,8 @@
     <color name="tr">#00FFFFFF</color>
     <color name="grey">#979797</color>
     <color name="grey_two">#BDBDBD</color>
+    <color name="grey_three">#64bdbdbd</color>
+
     <color name="black">#000000</color>
     <color name="green">#236827</color>
 </resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.fragments.StatisticFragment">
+
+    <LinearLayout style="@style/MatchWrapHorizontalLayout">
+
+        <LinearLayout
+            style="@style/MatchWrapVerticalLayout"
+            android:layout_margin="@dimen/spacing_smaller_8dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <com.apps.newstudio.tasklist.ui.views.CustomCircleDiagram
+                android:id="@+id/fragment_circle_diagram"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:dia_first_color="@color/colorPrimary"
+                app:dia_first_value="20"
+                app:dia_max_value="30"
+                app:dia_second_color="@color/colorPrimaryLight"
+                app:dia_second_value="10"
+                app:dia_stroke_width="@dimen/spacing_small_16dp"
+                app:dia_zero_color="@color/grey_three" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/MatchWrapVerticalLayout"
+            android:layout_weight="1"
+            android:gravity="center" />
+    </LinearLayout>
+
+</FrameLayout>

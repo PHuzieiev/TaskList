@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomCircleDiagram">
+        <attr name="dia_max_value" format="integer"/>
+        <attr name="dia_first_value" format="integer"/>
+        <attr name="dia_second_value" format="integer"/>
+        <attr name="dia_stroke_width" format="dimension"/>
+        <attr name="dia_zero_color" format="color"/>
+        <attr name="dia_first_color" format="color"/>
+        <attr name="dia_second_color" format="color"/>
+
+
+    </declare-styleable>
+</resources>

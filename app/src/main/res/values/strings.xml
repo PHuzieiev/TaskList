@@ -494,7 +494,7 @@
     <string name="toast_clear_task_eng">All tasks from this category were deleted</string>
     <string name="toast_clear_task_rus">Все задания этой категории были удалены</string>
     <string name="toast_clear_task_ukr">Всі завдання цієї категорії були видалені</string>
-    
+
     <string name="choose_other_category_eng">Choose other category</string>
     <string name="choose_other_category_rus">Выбрать другую категорию</string>
     <string name="choose_other_category_ukr">Обрати іншу категорію</string>

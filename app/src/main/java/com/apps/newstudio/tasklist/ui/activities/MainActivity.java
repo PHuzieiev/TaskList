@@ -24,6 +24,7 @@ import com.apps.newstudio.tasklist.data.managers.LanguageManager;
 import com.apps.newstudio.tasklist.data.managers.PreferenceManager;
 import com.apps.newstudio.tasklist.ui.fragments.CategoriesFragment;
 import com.apps.newstudio.tasklist.ui.fragments.DaysFragment;
+import com.apps.newstudio.tasklist.ui.fragments.StatisticFragment;
 import com.apps.newstudio.tasklist.utils.ConstantsManager;
 
 import java.util.Calendar;
@@ -126,6 +127,7 @@ public class MainActivity extends BaseActivity
                     mFragment = new CategoriesFragment();
                     break;
                 case R.id.item_statistic:
+                    mFragment = new StatisticFragment();
                     break;
                 case R.id.item_settings:
                     break;
