@@ -21,6 +21,16 @@ public class DialogTwoButtons {
 
     private Dialog mDialog;
 
+    /**
+     * Constructor for DialogTwoButtons object
+     *
+     * @param context          Context object
+     * @param title            title for Dialog object
+     * @param text             text for Dialog object
+     * @param buttonsTitles    titles for Buttons object
+     * @param onButtonClickOne action for first Button object
+     * @param onButtonClickTwo action for second Button object
+     */
     public DialogTwoButtons(Context context, String title, String text, String[] buttonsTitles,
                             OnButtonClick onButtonClickOne, OnButtonClick onButtonClickTwo) {
         mContext = context;
@@ -32,6 +42,9 @@ public class DialogTwoButtons {
         createDialog();
     }
 
+    /**
+     * Creates Dialog object and sets main components for this object
+     */
     private void createDialog() {
         mDialog = new Dialog(mContext);
         mDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
@@ -62,8 +75,9 @@ public class DialogTwoButtons {
 
     }
 
-
-
+    /**
+     * Interface to perform action for Buttons objects
+     */
     public interface OnButtonClick {
         void function();
     }

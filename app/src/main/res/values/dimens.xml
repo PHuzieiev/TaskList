@@ -12,6 +12,7 @@
 
     <dimen name="spacing_start_1dp">1dp</dimen>
     <dimen name="spacing_smallest_2dp">2dp</dimen>
+    <dimen name="spacing_smallest_3dp">3dp</dimen>
     <dimen name="spacing_smaller_4dp">4dp</dimen>
     <dimen name="spacing_smaller_6dp">6dp</dimen>
     <dimen name="spacing_smaller_8dp">8dp</dimen>
@@ -40,6 +41,7 @@
     <dimen name="size_60dp">60dp</dimen>
     <dimen name="size_100dp">100dp</dimen>
     <dimen name="big_size_240dp">240dp</dimen>
+    <dimen name="big_size_270dp">270dp</dimen>
 
 
     <dimen name="nav_header_height">176dp</dimen>

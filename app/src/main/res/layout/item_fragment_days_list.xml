@@ -37,7 +37,6 @@
                     style="@style/WrapTextView_14"
                     android:id="@+id/item_title_text"
                     android:textColor="@color/colorPrimary"
-                    android:singleLine="true"
                     android:textStyle="bold"
                     android:layout_marginLeft="@dimen/spacing_smallest_2dp"
                     android:layout_marginStart="@dimen/spacing_smallest_2dp" />

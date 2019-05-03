@@ -42,12 +42,20 @@ public class CategoriesFragment extends Fragment {
     private AdapterOfFragmentCategoriesList mAdapter;
 
 
+    /**
+     * Creates View object of fragment
+     *
+     * @param inflater           LayoutInflater object
+     * @param container          ViewGroup object
+     * @param savedInstanceState Bundle object
+     * @return inflated View object
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_categories, container, false);
         mUnbinder = ButterKnife.bind(this, view);
-        getLang();
+        setLang();
         createList();
         return view;
     }
@@ -62,22 +70,30 @@ public class CategoriesFragment extends Fragment {
     }
 
 
+    /**
+     * Performs DataForCategoriesListItem list object for main data
+     *
+     * @return DataForCategoriesListItem list object
+     */
     private List<DataForCategoriesListItem> prepareDataForList() {
         List<DataForCategoriesListItem> data = new ArrayList<>();
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < mCategoriesTitle.length; i++) {
             data.add(new DataForCategoriesListItem(i, mCategoriesTitle[i],
                     DataManager.getInstance().getDatabaseManager().getCountByCategoryId(i).size()));
         }
         return data;
     }
 
+    /**
+     * Create main RecyclerView object to perform main list
+     */
     private void createList() {
         mAdapter = new AdapterOfFragmentCategoriesList(prepareDataForList(),
                 new AdapterOfFragmentCategoriesList.OnItemClickListener() {
                     @Override
                     public void onClick(int position) {
                         Intent intent = new Intent(getActivity(), CategoryActivity.class);
-                        intent.putExtra(ConstantsManager.TASK_CATEGORY_FLAG,mAdapter.getData().get(position).getId());
+                        intent.putExtra(ConstantsManager.TASK_CATEGORY_FLAG, mAdapter.getData().get(position).getId());
                         startActivityForResult(intent, ConstantsManager.TASK_REQUEST_CODE);
                     }
                 }, new AdapterOfFragmentCategoriesList.OnItemClickListener() {
@@ -96,12 +112,22 @@ public class CategoriesFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
     }
 
+    /**
+     * Updates data for main list
+     */
     private void updateList() {
         mAdapter.setData(prepareDataForList());
         mAdapter.notifyDataSetChanged();
         ((MainActivity) getActivity()).updateNavigationView();
     }
 
+    /**
+     * Receive the result from a previous activity object call
+     *
+     * @param requestCode request code of previous call
+     * @param resultCode  result code of previous call
+     * @param data        Intent object from previous activity object call
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -109,7 +135,10 @@ public class CategoriesFragment extends Fragment {
 
     }
 
-    private void getLang() {
+    /**
+     * Performs text objects using language parameter
+     */
+    private void setLang() {
         new LanguageManager() {
             @Override
             public void engLanguage() {

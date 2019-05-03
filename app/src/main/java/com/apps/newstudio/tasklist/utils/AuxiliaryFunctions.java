@@ -7,6 +7,15 @@ import java.util.Locale;
 
 public class AuxiliaryFunctions {
 
+    /**
+     * Converts time to needed time format
+     *
+     * @param itemData                     DataForTasksListItem object
+     * @param yesterdayTodayTomorrowTitles titles of previous today and next day
+     * @param yesterdayTodayTomorrowMask   masks of previous today and next day
+     * @param isShortFormOfTime            form of time
+     * @return converted String object of time
+     */
     public static String convertToTimePeriod(DataForTasksListItem itemData,
                                              String[] yesterdayTodayTomorrowTitles, String[] yesterdayTodayTomorrowMask,
                                              boolean isShortFormOfTime) {
@@ -81,6 +90,13 @@ public class AuxiliaryFunctions {
         return result;
     }
 
+    /**
+     * Checks if time period of task is actual now
+     *
+     * @param data DataForTasksListItem object
+     * @param time Long object which contains date and time of this moment
+     * @return boolean result of checking
+     */
     public static boolean isActualTask(DataForTasksListItem data, Long time) {
         int beginningYear = data.getYear(), beginningMonth = data.getMonth(), beginningDay = data.getDay();
         int beginningHours = data.getBeginningHours(), beginningMinutes = data.getBeginningMinutes();
@@ -110,6 +126,13 @@ public class AuxiliaryFunctions {
         return false;
     }
 
+    /**
+     * Converts input time using specific time format
+     *
+     * @param hours   number of hour in day
+     * @param minutes number of minute in hour
+     * @return converted String object of time
+     */
     public static String convertToTimeFormat(int hours, int minutes) {
         String suffix = "";
 
@@ -132,12 +155,21 @@ public class AuxiliaryFunctions {
         }
     }
 
+    /**
+     * Checking if time of beginning and end is correct
+     *
+     * @param beginningHours   number of beginning hour
+     * @param beginningMinutes number of beginning minute
+     * @param endHours         number of end hour
+     * @param endMinutes       number of end minute
+     * @return boolean result of checking
+     */
     public static boolean isCorrectTime(int beginningHours, int beginningMinutes, int endHours, int endMinutes) {
-        if(beginningHours!=-1&&endHours!=-1) {
+        if (beginningHours != -1 && endHours != -1) {
             Long beginning = Long.parseLong(String.format(Locale.ENGLISH, "%02d%02d", beginningHours, beginningMinutes));
             Long end = Long.parseLong(String.format(Locale.ENGLISH, "%02d%02d", endHours, endMinutes));
             return end > beginning;
-        }else{
+        } else {
             return true;
         }
     }

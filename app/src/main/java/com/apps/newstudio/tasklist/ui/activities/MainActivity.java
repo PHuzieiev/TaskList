@@ -2,7 +2,6 @@ package com.apps.newstudio.tasklist.ui.activities;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,9 +20,9 @@ import android.widget.TextView;
 import com.apps.newstudio.tasklist.R;
 import com.apps.newstudio.tasklist.data.managers.DataManager;
 import com.apps.newstudio.tasklist.data.managers.LanguageManager;
-import com.apps.newstudio.tasklist.data.managers.PreferenceManager;
 import com.apps.newstudio.tasklist.ui.fragments.CategoriesFragment;
 import com.apps.newstudio.tasklist.ui.fragments.DaysFragment;
+import com.apps.newstudio.tasklist.ui.fragments.SettingsFragment;
 import com.apps.newstudio.tasklist.ui.fragments.StatisticFragment;
 import com.apps.newstudio.tasklist.utils.ConstantsManager;
 
@@ -45,8 +44,6 @@ public class MainActivity extends BaseActivity
     @BindView(R.id.nav_view)
     public NavigationView mNavigationView;
 
-    private DataManager mDataManager;
-    private PreferenceManager mPreferenceManager;
     private int checkedItemId = 0;
     private Fragment mFragment;
     private FragmentManager mFragmentManager;
@@ -54,6 +51,11 @@ public class MainActivity extends BaseActivity
     private String[] mTitlesOfMonths;
 
 
+    /**
+     * Perform initialization of all fragments.
+     *
+     * @param savedInstanceState Bundle object of saved values
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,9 +67,6 @@ public class MainActivity extends BaseActivity
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         mNavigationView.setNavigationItemSelectedListener(this);
-
-        mDataManager = DataManager.getInstance();
-        mPreferenceManager = mDataManager.getPreferenceManager();
 
         mFragmentManager = getFragmentManager();
         setLang();
@@ -82,11 +81,12 @@ public class MainActivity extends BaseActivity
         mNavigationView.getHeaderView(0).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkedItemId=-1;
+                checkedItemId = -1;
                 checkItemOfNavigationView(R.id.item_tasks);
             }
         });
     }
+
 
     /**
      * Saves data in Bundle object
@@ -99,6 +99,9 @@ public class MainActivity extends BaseActivity
         super.onSaveInstanceState(outState);
     }
 
+    /**
+     * Closes app or drawer menu
+     */
     @Override
     public void onBackPressed() {
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -108,6 +111,12 @@ public class MainActivity extends BaseActivity
         }
     }
 
+    /**
+     * Action function of drawer menu
+     *
+     * @param item item of drawer menu which was selected
+     * @return boolean value of result
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -115,6 +124,11 @@ public class MainActivity extends BaseActivity
         return true;
     }
 
+    /**
+     * Updates fragments in main layout
+     *
+     * @param id id value of chosen item of drawer menu
+     */
     public void checkItemOfNavigationView(int id) {
         updateNavigationView();
         if (id != checkedItemId) {
@@ -130,6 +144,7 @@ public class MainActivity extends BaseActivity
                     mFragment = new StatisticFragment();
                     break;
                 case R.id.item_settings:
+                    mFragment = new SettingsFragment();
                     break;
                 case R.id.item_help:
                     break;
@@ -146,6 +161,9 @@ public class MainActivity extends BaseActivity
         mDrawerLayout.closeDrawer(GravityCompat.START);
     }
 
+    /**
+     * Performs text objects using language parameter
+     */
     public void setLang() {
         new LanguageManager() {
             @Override
@@ -191,12 +209,23 @@ public class MainActivity extends BaseActivity
                 mSubtitleForNavigationView = getString(R.string.nav_header_title_two_rus);
             }
         };
+        if (checkedItemId != 0) {
+            mToolbar.setTitle(mNavigationView.getMenu().findItem(checkedItemId).getTitle());
+        }
     }
 
+    /**
+     * Getter for context object of MainActivity
+     *
+     * @return Contect object
+     */
     public Context getContext() {
         return this;
     }
 
+    /**
+     * Updates text objects of NavigationView object
+     */
     public void updateNavigationView() {
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_MONTH), month = calendar.get(Calendar.MONTH) + 1,
@@ -208,7 +237,7 @@ public class MainActivity extends BaseActivity
 
         String tasksCount = mSubtitleForNavigationView +
                 DataManager.getInstance().getDatabaseManager()
-                        .getTasksUsingDate(day,month,year,ConstantsManager.STATE_FLAG_ACTIVE).size();
+                        .getTasksUsingDate(day, month, year, ConstantsManager.STATE_FLAG_ACTIVE).size();
         ((TextView) mNavigationView.getHeaderView(0).findViewById(R.id.nav_header_subtitle_tv))
                 .setText(tasksCount);
     }

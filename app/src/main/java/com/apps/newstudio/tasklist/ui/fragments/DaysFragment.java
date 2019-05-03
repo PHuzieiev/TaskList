@@ -88,10 +88,14 @@ public class DaysFragment extends Fragment {
 
     private int firstColor = R.color.colorPrimary, secondColor = R.color.grey_two, thirdColor = R.color.grey;
 
+    /**
+     * Creates Fragment object
+     *
+     * @param savedInstanceState Bundle object
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (savedInstanceState == null) {
             Calendar calendar = Calendar.getInstance();
             mChosenDay = calendar.get(Calendar.DAY_OF_MONTH);
@@ -106,6 +110,11 @@ public class DaysFragment extends Fragment {
         }
     }
 
+    /**
+     * Saves data in Bundle object
+     *
+     * @param outState Bundle object
+     */
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putInt(ConstantsManager.CHOSEN_DAY_KEY, mChosenDay);
@@ -115,6 +124,14 @@ public class DaysFragment extends Fragment {
         super.onSaveInstanceState(outState);
     }
 
+    /**
+     * Creates View object of fragment
+     *
+     * @param inflater           LayoutInflater object
+     * @param container          ViewGroup object
+     * @param savedInstanceState Bundle object
+     * @return inflated View object
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -129,6 +146,9 @@ public class DaysFragment extends Fragment {
         return mView;
     }
 
+    /**
+     * Action to open new Activity object for adding or editing main information of task
+     */
     @OnClick(R.id.fragment_fab_layout)
     public void onClickFab() {
         Intent intent = new Intent(getActivity(), TaskActivity.class);
@@ -139,9 +159,18 @@ public class DaysFragment extends Fragment {
         intent.putExtra(ConstantsManager.TASK_MONTH_FLAG, mChosenMonth);
         intent.putExtra(ConstantsManager.TASK_YEAR_FLAG, mChosenYear);
         intent.putExtra(ConstantsManager.ALARM_FLAG, ConstantsManager.ALARM_FLAG_ON);
+        intent.putExtra(ConstantsManager.ALARM_HOUR_FLAG,
+                DataManager.getInstance().getPreferenceManager()
+                        .loadInt(ConstantsManager.TOTAL_ALARM_HOUR_FLAG, ConstantsManager.TOTAL_ALARM_HOUR_DEFAULT));
+        intent.putExtra(ConstantsManager.ALARM_MINUTE_FLAG,
+                DataManager.getInstance().getPreferenceManager()
+                        .loadInt(ConstantsManager.TOTAL_ALARM_MINUTE_FLAG, ConstantsManager.TOTAL_ALARM_MINUTE_DEFAULT));
         startActivityForResult(intent, ConstantsManager.TASK_REQUEST_CODE);
     }
 
+    /**
+     * Action to show active or finished tasks
+     */
     private View.OnClickListener mOnClickListenerActiveDone = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -159,6 +188,11 @@ public class DaysFragment extends Fragment {
         }
     };
 
+    /**
+     * Changes components of fragment if state of shown tasks is changed
+     *
+     * @param state state of tasks
+     */
     private void updateState(int state) {
         switch (state) {
             case ConstantsManager.STATE_FLAG_ACTIVE:
@@ -186,6 +220,9 @@ public class DaysFragment extends Fragment {
         mUnbinder.unbind();
     }
 
+    /**
+     * Sets masks of time
+     */
     private void getToday() {
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -206,6 +243,9 @@ public class DaysFragment extends Fragment {
         changeHeader();
     }
 
+    /**
+     * Sets information and visual style of header components
+     */
     private void changeHeader() {
         int lengthOfMainWord = -1;
         String result = "";
@@ -252,6 +292,9 @@ public class DaysFragment extends Fragment {
 
     }
 
+    /**
+     * Prepares data for list of active tasks
+     */
     private void prepareDataForListActive() {
         mMainDataForListActive = mDatabaseManager
                 .getTasksUsingDate(mChosenDay, mChosenMonth, mChosenYear, ConstantsManager.STATE_FLAG_ACTIVE);
@@ -260,11 +303,19 @@ public class DaysFragment extends Fragment {
         }
     }
 
+    /**
+     * Prepares data for list of finished tasks
+     */
     private void prepareDataForListDone() {
         mMainDataForListDone = mDatabaseManager
                 .getTasksUsingDate(mChosenDay, mChosenMonth, mChosenYear, ConstantsManager.STATE_FLAG_DONE);
     }
 
+    /**
+     * Creates String object from day, month, year, hour and minute values using special mask
+     *
+     * @return String object of date
+     */
     private Long getTime() {
         Calendar calendar = GregorianCalendar.getInstance();
         return Long.parseLong(String.format(Locale.ENGLISH, "%04d%02d%02d%02d%02d", calendar.get(Calendar.YEAR),
@@ -272,6 +323,9 @@ public class DaysFragment extends Fragment {
                 , calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE)));
     }
 
+    /**
+     * Creates main list using
+     */
     private void createList() {
         prepareDataForListActive();
         prepareDataForListDone();
@@ -326,6 +380,11 @@ public class DaysFragment extends Fragment {
         });
     }
 
+    /**
+     * Removes item from main list
+     *
+     * @param position position of item which will be removed
+     */
     private void removeFromList(int position) {
         mRecyclerView.setLayoutFrozen(false);
         mMainData.get(mStateFlag).getAdapter().getData().remove(position);
@@ -335,12 +394,17 @@ public class DaysFragment extends Fragment {
         checkList();
     }
 
+    /**
+     * Remove some item from list and db
+     *
+     * @param position position of item which will be deleted
+     */
     private void removeFromListAndDb(int position) {
         mDatabaseManager.removeFromDB(mMainData.get(mStateFlag).getAdapter().getData().get(position).getId());
 
-        if(mMainData.get(mStateFlag).getAdapter().getData().size()!=1) {
+        if (mMainData.get(mStateFlag).getAdapter().getData().size() != 1) {
             removeFromList(position);
-        }else{
+        } else {
             mRecyclerView.setLayoutFrozen(false);
             updateListActive();
             updateListDone();
@@ -353,6 +417,9 @@ public class DaysFragment extends Fragment {
         ((MainActivity) getActivity()).updateNavigationView();
     }
 
+    /**
+     * Performs AdapterOfFragmentTasksList.OnItemClickListener object for deleting from db and list
+     */
     private AdapterOfFragmentTasksList.OnItemClickListener mOnItemClickListenerDelete
             = new AdapterOfFragmentTasksList.OnItemClickListener() {
         @Override
@@ -361,6 +428,9 @@ public class DaysFragment extends Fragment {
         }
     };
 
+    /**
+     * Performs AdapterOfFragmentTasksList.OnItemClickListener object for opening detail information of task
+     */
     private AdapterOfFragmentTasksList.OnItemClickListener mOnItemClickListenerOpen
             = new AdapterOfFragmentTasksList.OnItemClickListener() {
         @Override
@@ -386,7 +456,9 @@ public class DaysFragment extends Fragment {
         }
     };
 
-
+    /**
+     * Function for changing state of task from list
+     */
     public void changeStateOfTask() {
         mRecyclerView.setLayoutFrozen(false);
         String toastString = mDeleteDoneBackToastTitle[1];
@@ -405,18 +477,32 @@ public class DaysFragment extends Fragment {
         ((MainActivity) getActivity()).updateNavigationView();
     }
 
+    /**
+     * Updates data from list of active tasks
+     */
     public void updateListActive() {
         prepareDataForListActive();
         mMainData.get(0).getAdapter().setData(mMainDataForListActive);
         mMainData.get(0).getAdapter().notifyDataSetChanged();
     }
 
+    /**
+     * Updates data from list of finished tasks
+     */
     public void updateListDone() {
         prepareDataForListDone();
         mMainData.get(1).getAdapter().setData(mMainDataForListDone);
         mMainData.get(1).getAdapter().notifyDataSetChanged();
     }
 
+
+    /**
+     * Updates list after adding or changing information of tasks
+     *
+     * @param requestCode int value for request code
+     * @param resultCode  int value for result code
+     * @param data        Intent object which contains information from closed activity object
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == ConstantsManager.TASK_REQUEST_CODE) {
@@ -429,6 +515,9 @@ public class DaysFragment extends Fragment {
         }
     }
 
+    /**
+     * Changes category of shown tasks from list
+     */
     @OnClick(R.id.fragment_header_layout)
     public void changeDate() {
         mDialogCalendar = new DialogCalendar(((MainActivity) getActivity()).getContext(), new DialogCalendar.OnChooseDay() {
@@ -447,6 +536,9 @@ public class DaysFragment extends Fragment {
         }, mChosenYear, mChosenMonth, mChosenDay);
     }
 
+    /**
+     * Changes style of main layout if main list is empty
+     */
     private void checkList() {
         int fab_layout_id = R.layout.fab_one;
         String text = "";
@@ -483,6 +575,9 @@ public class DaysFragment extends Fragment {
         getToday();
     }
 
+    /**
+     * Performs text objects using language parameter
+     */
     private void setLang() {
         new LanguageManager() {
             @Override

@@ -12,6 +12,13 @@ import com.apps.newstudio.tasklist.R;
 
 public class BaseActivity extends AppCompatActivity {
 
+    /**
+     * Shows toast object message
+     * @param message String object of message
+     * @param ico image for message
+     * @param background background for toast object
+     * @param length duration for message
+     */
     public void showToast(String message, int ico, int background, int length) {
         int toastPadding = getResources().getDimensionPixelSize(R.dimen.spacing_smaller_8dp);
         Toast toast = Toast.makeText(this, message, length);

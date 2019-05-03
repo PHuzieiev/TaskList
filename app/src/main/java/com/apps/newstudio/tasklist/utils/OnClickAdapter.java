@@ -13,6 +13,11 @@ abstract public class OnClickAdapter implements View.OnClickListener {
     private int start_or_end;
     private int animation_number;
 
+    /**
+     * Action which does some task and is animating View object during this process
+     *
+     * @param view View object which make action
+     */
     @Override
     public void onClick(View view) {
         view_object=view;
@@ -59,11 +64,19 @@ abstract public class OnClickAdapter implements View.OnClickListener {
 
     }
 
+    /**
+     * Constructor for OnClickAdapter object
+     * @param animation_number number of animation type
+     * @param start_or_end value which shows when animation will be done
+     */
     protected OnClickAdapter(int animation_number, int start_or_end) {
         this.start_or_end=start_or_end;
         this.animation_number=animation_number;
-
     }
 
+    /**
+     * Some task which will be done
+     * @param view main View object
+     */
     public abstract void myFunc(View view);
 }

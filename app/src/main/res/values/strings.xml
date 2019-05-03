@@ -312,7 +312,7 @@
         <item>Date</item>
         <item>Time (Beginning)</item>
         <item>Time (End)</item>
-        <item>Alarm clock</item>
+        <item>Notification</item>
     </string-array>
 
     <string-array name="task_parameters_rus">
@@ -321,7 +321,7 @@
         <item>Дата</item>
         <item>Время (Начало)</item>
         <item>Время (Завершение)</item>
-        <item>Будильник</item>
+        <item>Уведомление</item>
     </string-array>
 
     <string-array name="task_parameters_ukr">
@@ -330,7 +330,7 @@
         <item>Дата</item>
         <item>Час (Початок)</item>
         <item>Час (Завершення)</item>
-        <item>Будильник</item>
+        <item>Сповіщення</item>
     </string-array>
 
     <string-array name="categories_eng">
@@ -452,7 +452,7 @@
     </string-array>
 
     <string-array name="list_empty_eng">
-        <item>Lets rest.!\n\nYou do not have active tasks for chosen day.
+        <item>Let\'s rest.!\n\nYou do not have active tasks for chosen day.
             You can add new task using button Add. </item>
         <item>This list is empty.\n\nPlease, check your list of active tasks.!</item>
     </string-array>
@@ -498,5 +498,54 @@
     <string name="choose_other_category_eng">Choose other category</string>
     <string name="choose_other_category_rus">Выбрать другую категорию</string>
     <string name="choose_other_category_ukr">Обрати іншу категорію</string>
+
+    <string-array name="total_active_done_tasks_eng">
+        <item>"Total count of tasks: "</item>
+        <item>"Count of active tasks: "</item>
+        <item>"Count of finished tasks: "</item>
+    </string-array>
+
+    <string-array name="total_active_done_tasks_rus">
+        <item>"Общее количество заданий: "</item>
+        <item>"Количество активных заданий: "</item>
+        <item>"Количество выполненых заданий: "</item>
+    </string-array>
+
+    <string-array name="total_active_done_tasks_ukr">
+        <item>"Загальна кількість завдань: "</item>
+        <item>"Кількість активних завдань: "</item>
+        <item>"Кількість виконаних завдань: "</item>
+    </string-array>
+
+    <string name="days_eng">Days</string>
+    <string name="days_rus">Дни</string>
+    <string name="days_ukr">Дні</string>
+
+    <string-array name="settings_titles_eng">
+        <item>Language</item>
+        <item>First day of week</item>
+        <item>Notifications</item>
+        <item>"Default time: "</item>
+        <item>Sunday</item>
+        <item>Monday</item>
+    </string-array>
+
+    <string-array name="settings_titles_rus">
+        <item>Язык</item>
+        <item>Первый день недели</item>
+        <item>Уведомления</item>
+        <item>"Время по умолчанию: "</item>
+        <item>Воскресенье</item>
+        <item>Понедельник</item>
+    </string-array>
+
+    <string-array name="settings_titles_ukr">
+        <item>Мова</item>
+        <item>Перший день тижня</item>
+        <item>Сповіщення</item>
+        <item>"Час за замовчуванням: "</item>
+        <item>Неділя</item>
+        <item>Понеділок</item>
+    </string-array>
 
 </resources>

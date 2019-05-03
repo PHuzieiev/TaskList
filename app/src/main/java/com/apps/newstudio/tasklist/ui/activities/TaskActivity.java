@@ -98,7 +98,11 @@ public class TaskActivity extends BaseActivity {
     private String[] mDialogDoneText;
     private String[] mDialogDoneButtonsTitle;
 
-
+    /**
+     * Perform initialization of all fragments.
+     *
+     * @param savedInstanceState Bundle object of saved values
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,6 +148,9 @@ public class TaskActivity extends BaseActivity {
         });
     }
 
+    /**
+     * Getter for all necessary parameters using Intent object
+     */
     private void getParameters() {
         mId = getIntent().getLongExtra(ConstantsManager.TASK_ID_FLAG, ConstantsManager.TASK_ID_NONE);
         mTitle = getIntent().getStringExtra(ConstantsManager.TASK_TITLE_FLAG);
@@ -161,6 +168,9 @@ public class TaskActivity extends BaseActivity {
         mAlarmMinute = getIntent().getIntExtra(ConstantsManager.ALARM_MINUTE_FLAG, 0);
     }
 
+    /**
+     * Getter for all necessary parameters using Bundle object
+     */
     private void getParametersUsingBundle(Bundle savedInstanceState) {
         mId = savedInstanceState.getLong(ConstantsManager.TASK_ID_FLAG, ConstantsManager.TASK_ID_NONE);
         mTitle = savedInstanceState.getString(ConstantsManager.TASK_TITLE_FLAG);
@@ -178,6 +188,11 @@ public class TaskActivity extends BaseActivity {
         mAlarmMinute = savedInstanceState.getInt(ConstantsManager.ALARM_MINUTE_FLAG, 0);
     }
 
+    /**
+     * Saves necessary values in Bundle object
+     *
+     * @param outState Bundle object
+     */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putLong(ConstantsManager.TASK_ID_FLAG, mId);
@@ -197,6 +212,11 @@ public class TaskActivity extends BaseActivity {
         super.onSaveInstanceState(outState);
     }
 
+    /**
+     * Changes value of task states
+     *
+     * @param v object which was clicked and uses the following function
+     */
     @OnClick({R.id.task_nav_done_text, R.id.task_nav_active_text})
     public void onClick(View v) {
         if (v.getId() == R.id.task_nav_done_text) {
@@ -207,6 +227,9 @@ public class TaskActivity extends BaseActivity {
         setState();
     }
 
+    /**
+     * Change components of layout using state of task
+     */
     private void setState() {
         if (mState == ConstantsManager.STATE_FLAG_ACTIVE) {
             stateActiveLine.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
@@ -223,6 +246,9 @@ public class TaskActivity extends BaseActivity {
         }
     }
 
+    /**
+     * Getter for all parameters of task
+     */
     private void setDataForParametersViews() {
         for (int i = 0; i < parametersAboutText.length; i++) {
             parametersAboutText[i].setText(mTaskParameters[i]);
@@ -249,6 +275,9 @@ public class TaskActivity extends BaseActivity {
         setTime(mAlarmHour, mAlarmMinute, 2, mAlarmState, R.drawable.ic_alarm_state, R.drawable.ic_alarm_state_grey);
     }
 
+    /**
+     * Changes state of EditText object
+     */
     @OnClick(R.id.parameter_title_action_image)
     public void changeModeForEditText() {
         if (!parameterTitleEditText.isEnabled()) {
@@ -262,6 +291,9 @@ public class TaskActivity extends BaseActivity {
         }
     }
 
+    /**
+     * Changes state of EditText object on enabled
+     */
     private void setEditTextEnable() {
         parameterTitleEditText.setEnabled(true);
         parameterTitleEditText.setFocusable(true);
@@ -272,6 +304,9 @@ public class TaskActivity extends BaseActivity {
         parametersActionImage[0].setImageResource(R.drawable.ic_done_circle);
     }
 
+    /**
+     * Sets category for task
+     */
     private void setCategory() {
         parametersMainText[0].setText(mCategories[mCategoryId]);
         Integer image = R.drawable.ic_none_category;
@@ -328,6 +363,9 @@ public class TaskActivity extends BaseActivity {
         parametersImage[0].setImageResource(image);
     }
 
+    /**
+     * Sets date of task
+     */
     private void setDate() {
         Calendar calendar = Calendar.getInstance();
         calendar.clear();
@@ -342,7 +380,16 @@ public class TaskActivity extends BaseActivity {
         parametersMainText[1].setText(date);
     }
 
-
+    /**
+     * Sets time of task
+     *
+     * @param hours      value of hour of day
+     * @param minutes    value of minute of hour
+     * @param position   position of layout components which will show time information
+     * @param isActive   state of components which will show time information
+     * @param image      image for enabled component
+     * @param image_grey image for disabled component
+     */
     private void setTime(int hours, int minutes, int position, Integer isActive, int image, int image_grey) {
         if (isActive == null) {
             if (hours != -1) {
@@ -365,6 +412,9 @@ public class TaskActivity extends BaseActivity {
         parametersMainTextTwo[position].setText(AuxiliaryFunctions.convertToTimeFormat(hours, minutes));
     }
 
+    /**
+     * Change state of time components
+     */
     private View.OnClickListener switchClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -399,6 +449,9 @@ public class TaskActivity extends BaseActivity {
         }
     };
 
+    /**
+     * Changes category of task
+     */
     @OnClick(R.id.parameter_category_main_layout)
     public void onClickCategory() {
         mDialogList = new DialogList(this, mTaskParameters[1], getDataForDialogList(),
@@ -410,9 +463,14 @@ public class TaskActivity extends BaseActivity {
                         setCategory();
                         mDialogList.getDialog().dismiss();
                     }
-                }, mCategoryId,null);
+                }, mCategoryId, null, ConstantsManager.DIALOG_LIST_TYPE_ONE);
     }
 
+    /**
+     * Performs data for DialogList object to change category id of task
+     *
+     * @return DataForDialogListItem list object
+     */
     private List<DataForDialogListItem> getDataForDialogList() {
         List<DataForDialogListItem> result = new ArrayList<>();
         for (int i = 0; i < mCategories.length; i++) {
@@ -425,6 +483,9 @@ public class TaskActivity extends BaseActivity {
         return result;
     }
 
+    /**
+     * Changes date of task
+     */
     @OnClick(R.id.parameter_date_main_layout)
     public void onClickDate() {
         mDialogCalendar = new DialogCalendar(this, new DialogCalendar.OnChooseDay() {
@@ -440,11 +501,17 @@ public class TaskActivity extends BaseActivity {
 
     }
 
+    /**
+     * Changes time of task beginning
+     */
     @OnClick(R.id.parameter_beginning_main_layout)
     public void onClickBeginning() {
         changeTimeBeginning();
     }
 
+    /**
+     * Perform DialogTime object to change time of beginning
+     */
     private void changeTimeBeginning() {
         mDialogTime = new DialogTime(this, mTaskParameters[3], mHourBeginning, mMinuteBeginning,
                 new DialogTime.OnChooseTime() {
@@ -471,11 +538,17 @@ public class TaskActivity extends BaseActivity {
                 });
     }
 
+    /**
+     * Changes time of task end
+     */
     @OnClick(R.id.parameter_end_main_layout)
     public void onClickEnd() {
         changeTimeEnd();
     }
 
+    /**
+     * Perform DialogTime object to change time of end
+     */
     private void changeTimeEnd() {
         if (mHourBeginning != -1) {
             int hours = mHourEnd, minutes = mMinuteEnd;
@@ -512,11 +585,17 @@ public class TaskActivity extends BaseActivity {
         }
     }
 
+    /**
+     * Changes time of alarm clock
+     */
     @OnClick(R.id.parameter_alarm_main_layout)
     public void onClickAlarm() {
         changeTimeAlarm();
     }
 
+    /**
+     * Perform DialogTime object to change time of alarm clock
+     */
     private void changeTimeAlarm() {
         mDialogTime = new DialogTime(this, mTaskParameters[5], mAlarmHour, mAlarmMinute,
                 new DialogTime.OnChooseTime() {
@@ -561,6 +640,10 @@ public class TaskActivity extends BaseActivity {
         });
     }
 
+    /**
+     * Creates new task or updates existed task using all parameters.
+     * Adds new or changes existed item from db.
+     */
     @OnClick(R.id.task_fab)
     public void clickFab() {
         DatabaseManager databaseManager = DataManager.getInstance().getDatabaseManager();
@@ -571,6 +654,9 @@ public class TaskActivity extends BaseActivity {
         finish();
     }
 
+    /**
+     * Performs text objects using language parameter
+     */
     private void setLang() {
         new LanguageManager() {
             @Override
@@ -621,6 +707,8 @@ public class TaskActivity extends BaseActivity {
                 mTitlesOfDays = getResources().getStringArray(R.array.day_titles_rus);
                 mTitlesOfMonths = getResources().getStringArray(R.array.month_titles_rus);
                 mEndTimeToast = getResources().getStringArray(R.array.toast_add_beginning_rus);
+                mDialogDoneText = getResources().getStringArray(R.array.save_question_rus);
+                mDialogDoneButtonsTitle = getResources().getStringArray(R.array.no_yes_rus);
             }
         };
     }

@@ -30,6 +30,15 @@ public class DialogTime {
 
     private String mTimeStyle = null;
 
+    /**
+     * Constructor of DialogTime object
+     *
+     * @param context      Context object
+     * @param title        title for Dialog object
+     * @param hours        number of hour in day
+     * @param minutes      number of minute in hour
+     * @param onChooseTime OnChooseTime object
+     */
     public DialogTime(Context context, String title, int hours, int minutes, OnChooseTime onChooseTime) {
         mContext = context;
         mTitle = title;
@@ -41,6 +50,9 @@ public class DialogTime {
         createDialog();
     }
 
+    /**
+     * Create Dialog object and sets all components for this object
+     */
     private void createDialog() {
         mDialog = new Dialog(mContext);
         mDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
@@ -104,6 +116,9 @@ public class DialogTime {
         mDialog.show();
     }
 
+    /**
+     * Convert time to one of existed styles of time
+     */
     private void calculateTimeStyle() {
         if (mHours < 12) {
             mTimeStyle = ConstantsManager.TIME_STYLE_AM;
@@ -118,7 +133,10 @@ public class DialogTime {
         mHoursMax = 11;
     }
 
-    private OnClickAdapter mOnClickAdapterUpDown= new OnClickAdapter(1, 1) {
+    /**
+     * Changes hour or minute value on previous or next value
+     */
+    private OnClickAdapter mOnClickAdapterUpDown = new OnClickAdapter(1, 1) {
         @Override
         public void myFunc(View v) {
             int index = 1;
@@ -148,6 +166,9 @@ public class DialogTime {
         }
     };
 
+    /**
+     * Action for changing type of time on AM or PM
+     */
     private View.OnClickListener mOnClickTimeStyle = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -168,22 +189,45 @@ public class DialogTime {
         }
     };
 
+    /**
+     * Getter for Dialog object
+     *
+     * @return Dialog object
+     */
     public Dialog getDialog() {
         return mDialog;
     }
 
+    /**
+     * Getter for number of hour in day
+     *
+     * @return value of hour
+     */
     public int getHours() {
         return mHours;
     }
 
+    /**
+     * Getter for number of minute in hour
+     *
+     * @return value of minute
+     */
     public int getMinutes() {
         return mMinutes;
     }
 
+    /**
+     * Getter for time format
+     *
+     * @return time format
+     */
     public String getTimeStyle() {
         return mTimeStyle;
     }
 
+    /**
+     * Interface to perform action for Button objects
+     */
     public interface OnChooseTime {
         void function();
     }

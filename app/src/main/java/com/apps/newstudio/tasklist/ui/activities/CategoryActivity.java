@@ -83,6 +83,11 @@ public class CategoryActivity extends BaseActivity {
     private DatabaseManager mDatabaseManager;
     private int firstColor = R.color.colorPrimary, secondColor = R.color.grey_two, thirdColor = R.color.grey;
 
+    /**
+     * Perform initialization of all fragments.
+     *
+     * @param savedInstanceState Bundle object of saved values
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,6 +104,9 @@ public class CategoryActivity extends BaseActivity {
         checkList();
     }
 
+    /**
+     * Perform Toolbar object
+     */
     private void setupToolbar() {
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -115,6 +123,11 @@ public class CategoryActivity extends BaseActivity {
         mToolbar.setTitle(mTitlesOfCategories[0]);
     }
 
+    /**
+     * Perform all needed objects
+     *
+     * @param savedInstanceState Bundle object
+     */
     private void initParameters(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             mCategoryId = getIntent().getIntExtra(ConstantsManager.TASK_CATEGORY_FLAG, 0);
@@ -128,6 +141,9 @@ public class CategoryActivity extends BaseActivity {
         mStateFlag = ConstantsManager.STATE_FLAG_ACTIVE;
     }
 
+    /**
+     * Initialize date values and masks
+     */
     private void getToday() {
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -147,12 +163,18 @@ public class CategoryActivity extends BaseActivity {
         changeHeader();
     }
 
+    /**
+     * Changes text parameter of header TextView Object
+     */
     private void changeHeader() {
         mHeaderText.setTextColor(getResources().getColor(firstColor));
         mHeaderText.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         mHeaderText.setText(mChooseTitle);
     }
 
+    /**
+     * Opens activity to add new task
+     */
     @OnClick(R.id.fragment_fab_layout)
     public void onClickFab() {
         Intent intent = new Intent(this, TaskActivity.class);
@@ -163,9 +185,18 @@ public class CategoryActivity extends BaseActivity {
         intent.putExtra(ConstantsManager.TASK_MONTH_FLAG, mChosenMonth);
         intent.putExtra(ConstantsManager.TASK_YEAR_FLAG, mChosenYear);
         intent.putExtra(ConstantsManager.ALARM_FLAG, ConstantsManager.ALARM_FLAG_ON);
+        intent.putExtra(ConstantsManager.ALARM_HOUR_FLAG,
+                DataManager.getInstance().getPreferenceManager()
+                        .loadInt(ConstantsManager.TOTAL_ALARM_HOUR_FLAG, ConstantsManager.TOTAL_ALARM_HOUR_DEFAULT));
+        intent.putExtra(ConstantsManager.ALARM_MINUTE_FLAG,
+                DataManager.getInstance().getPreferenceManager()
+                        .loadInt(ConstantsManager.TOTAL_ALARM_MINUTE_FLAG, ConstantsManager.TOTAL_ALARM_MINUTE_DEFAULT));
         startActivityForResult(intent, ConstantsManager.TASK_REQUEST_CODE);
     }
 
+    /**
+     * Changes value of task states
+     */
     private View.OnClickListener mOnClickListenerActiveDone = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -183,6 +214,11 @@ public class CategoryActivity extends BaseActivity {
         }
     };
 
+    /**
+     * Updates all components using state value
+     *
+     * @param state state of shown tasks
+     */
     private void updateState(int state) {
         switch (state) {
             case ConstantsManager.STATE_FLAG_ACTIVE:
@@ -201,7 +237,9 @@ public class CategoryActivity extends BaseActivity {
         findViewById(R.id.fragment_nav_other_line).setBackgroundColor(getResources().getColor(secondColor));
     }
 
-
+    /**
+     * Prepares data for list of active tasks
+     */
     private void prepareDataForListActive() {
         mMainDataForListActive = mDatabaseManager
                 .getTasksUsingCategory(mCategoryId, ConstantsManager.STATE_FLAG_ACTIVE);
@@ -210,17 +248,28 @@ public class CategoryActivity extends BaseActivity {
         }
     }
 
+    /**
+     * Prepares data for list of finished tasks
+     */
     private void prepareDataForListDone() {
         mMainDataForListDone = mDatabaseManager
                 .getTasksUsingCategory(mCategoryId, ConstantsManager.STATE_FLAG_DONE);
     }
 
+    /**
+     * Creates String object from day, month, year, hour and minute values using special mask
+     *
+     * @return String object of date
+     */
     private Long getTime() {
         Calendar calendar = GregorianCalendar.getInstance();
         return Long.parseLong(String.format(Locale.ENGLISH, "%04d%02d%02d%02d%02d",
                 mChosenYear, mChosenMonth, mChosenDay, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE)));
     }
 
+    /**
+     * Creates main list using
+     */
     private void createList() {
         prepareDataForListActive();
         prepareDataForListDone();
@@ -275,6 +324,11 @@ public class CategoryActivity extends BaseActivity {
         });
     }
 
+    /**
+     * Removes item from main list
+     *
+     * @param position position of item which will be removed
+     */
     private void removeFromList(int position) {
         mRecyclerView.setLayoutFrozen(false);
         mMainData.get(mStateFlag).getAdapter().getData().remove(position);
@@ -284,6 +338,11 @@ public class CategoryActivity extends BaseActivity {
         checkList();
     }
 
+    /**
+     * Remove some item from list and db
+     *
+     * @param position position of item which will be deleted
+     */
     private void removeFromListAndDb(int position) {
         mDatabaseManager.removeFromDB(mMainData.get(mStateFlag).getAdapter().getData().get(position).getId());
 
@@ -300,6 +359,9 @@ public class CategoryActivity extends BaseActivity {
                 R.drawable.rectangle_for_toast_red, Toast.LENGTH_SHORT);
     }
 
+    /**
+     * Performs AdapterOfFragmentTasksList.OnItemClickListener object for deleting from db and list
+     */
     private AdapterOfFragmentTasksList.OnItemClickListener mOnItemClickListenerDelete
             = new AdapterOfFragmentTasksList.OnItemClickListener() {
         @Override
@@ -308,6 +370,9 @@ public class CategoryActivity extends BaseActivity {
         }
     };
 
+    /**
+     * Performs AdapterOfFragmentTasksList.OnItemClickListener object for opening detail information of task
+     */
     private AdapterOfFragmentTasksList.OnItemClickListener mOnItemClickListenerOpen
             = new AdapterOfFragmentTasksList.OnItemClickListener() {
         @Override
@@ -333,6 +398,9 @@ public class CategoryActivity extends BaseActivity {
         }
     };
 
+    /**
+     * Function for changing state of task from list
+     */
     public void changeStateOfTask() {
         mRecyclerView.setLayoutFrozen(false);
         String toastString = mDeleteDoneBackToastTitle[1];
@@ -349,18 +417,31 @@ public class CategoryActivity extends BaseActivity {
         mRecyclerView.setLayoutFrozen(true);
     }
 
+    /**
+     * Updates data from list of active tasks
+     */
     public void updateListActive() {
         prepareDataForListActive();
         mMainData.get(0).getAdapter().setData(mMainDataForListActive);
         mMainData.get(0).getAdapter().notifyDataSetChanged();
     }
 
+    /**
+     * Updates data from list of finished tasks
+     */
     public void updateListDone() {
         prepareDataForListDone();
         mMainData.get(1).getAdapter().setData(mMainDataForListDone);
         mMainData.get(1).getAdapter().notifyDataSetChanged();
     }
 
+    /**
+     * Updates list after adding or changing information of tasks
+     *
+     * @param requestCode int value for request code
+     * @param resultCode  int value for result code
+     * @param data        Intent object which contains information from closed activity object
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == ConstantsManager.TASK_REQUEST_CODE) {
@@ -372,6 +453,9 @@ public class CategoryActivity extends BaseActivity {
         }
     }
 
+    /**
+     * Changes category of shown tasks from list
+     */
     @OnClick(R.id.fragment_header_layout)
     public void changeCategory() {
         mDialogList = new DialogList(this, mParameter, getDataForDialogList(),
@@ -387,9 +471,14 @@ public class CategoryActivity extends BaseActivity {
                         mDialogList.getDialog().dismiss();
                         checkList();
                     }
-                }, mCategoryId, null);
+                }, mCategoryId, null, ConstantsManager.DIALOG_LIST_TYPE_ONE);
     }
 
+    /**
+     * Performs data for DialogList object to show all categories
+     *
+     * @return DataForDialogListItem object
+     */
     private List<DataForDialogListItem> getDataForDialogList() {
         List<DataForDialogListItem> result = new ArrayList<>();
         for (int i = 0; i < mTitlesOfCategories.length; i++) {
@@ -402,6 +491,9 @@ public class CategoryActivity extends BaseActivity {
         return result;
     }
 
+    /**
+     * Changes style of main layout if main list is empty
+     */
     private void checkList() {
         int fab_layout_id = R.layout.fab_one;
         String text = "";
@@ -439,7 +531,11 @@ public class CategoryActivity extends BaseActivity {
         mToolbar.setTitle(mTitlesOfCategories[mCategoryId]);
     }
 
-
+    /**
+     * Saves category id value in Bundle object
+     *
+     * @param outState Bundle object
+     */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt(ConstantsManager.TASK_CATEGORY_FLAG, mCategoryId);
@@ -454,6 +550,9 @@ public class CategoryActivity extends BaseActivity {
         finish();
     }
 
+    /**
+     * Performs text objects using language parameter
+     */
     private void setLang() {
         new LanguageManager() {
             @Override

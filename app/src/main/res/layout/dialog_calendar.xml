@@ -23,7 +23,9 @@
             <View
                 android:layout_width="@dimen/spacing_smaller_8dp"
                 android:layout_height="@dimen/spacing_medium_32dp"
-                android:background="@color/colorPrimary" />
+                android:background="@color/colorPrimary"
+                android:layout_marginRight="@dimen/spacing_smaller_8dp"
+                android:layout_marginEnd="@dimen/spacing_smaller_8dp" />
 
             <ImageView
                 android:id="@+id/dialog_date_left"

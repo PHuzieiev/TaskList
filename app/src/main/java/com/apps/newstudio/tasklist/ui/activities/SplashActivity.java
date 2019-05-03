@@ -1,7 +1,11 @@
 package com.apps.newstudio.tasklist.ui.activities;
 
+import android.app.AlarmManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Bundle;
 import android.view.ViewGroup;
@@ -14,6 +18,8 @@ import com.apps.newstudio.tasklist.data.managers.DataManager;
 import com.apps.newstudio.tasklist.data.managers.LanguageManager;
 import com.apps.newstudio.tasklist.ui.dialogs.DialogList;
 import com.apps.newstudio.tasklist.utils.ConstantsManager;
+import com.apps.newstudio.tasklist.utils.MessageBroadcastReceiver;
+import com.apps.newstudio.tasklist.utils.TaskListApplication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +30,17 @@ public class SplashActivity extends BaseActivity {
     private DialogList mDialogList;
     private List<DataForDialogListItem> mDataForDialogList;
 
+    /**
+     * Perform initialization of all fragments.
+     *
+     * @param savedInstanceState Bundle object of saved values
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        setMessageManager();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -37,13 +50,16 @@ public class SplashActivity extends BaseActivity {
                     DataManager.getInstance().getPreferenceManager().
                             saveString(ConstantsManager.LANGUAGE_CHOSEN_KEY, ConstantsManager.LANGUAGE_CHOSEN);
                     setLang();
-                }else{
+                } else {
                     startNewActivity();
                 }
             }
         }, 1500);
     }
 
+    /**
+     * Opens special dialog to chose language
+     */
     private void setLang() {
         getDataForDialogList();
         mDialogList = new DialogList(this, mDialogListTitle, mDataForDialogList, new OnItemClickListener() {
@@ -64,19 +80,50 @@ public class SplashActivity extends BaseActivity {
                         break;
                 }
                 mDialogList.getDialog().dismiss();
-                startNewActivity();
             }
-        }, 0, new Integer[]{R.drawable.ic_radio_button_checked, R.drawable.ic_radio_button_unchecked});
+        }, 0, new Integer[]{R.drawable.ic_radio_button_checked, R.drawable.ic_radio_button_unchecked}
+                , ConstantsManager.DIALOG_LIST_TYPE_ONE);
         mDialogList.getDialog().findViewById(R.id.dialog_list_main_layout)
                 .setLayoutParams(new FrameLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.huge_size_300dp),
                         ViewGroup.LayoutParams.WRAP_CONTENT));
+        mDialogList.getDialog().setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                startNewActivity();
+            }
+        });
     }
 
+    /**
+     * Opens MainActivity
+     */
     private void startNewActivity() {
         startActivity(new Intent(SplashActivity.this, MainActivity.class));
         finish();
     }
 
+    /**
+     * Creates alarm manager object
+     */
+    public void setMessageManager() {
+        try {
+            Context context = TaskListApplication.getContext();
+            Intent alarm_intent = new Intent(context, MessageBroadcastReceiver.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarm_intent, 0);
+            AlarmManager alarmManager_not = (AlarmManager) context.getSystemService(ALARM_SERVICE);
+            alarmManager_not.cancel(pendingIntent);
+            alarmManager_not.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60000, pendingIntent);
+
+            NotificationManager notificationManager = (NotificationManager) TaskListApplication.getContext()
+                    .getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.cancelAll();
+        } catch (Exception ignored) {
+        }
+    }
+
+    /**
+     * Performs data forDialogList object where user will chose language
+     */
     private void getDataForDialogList() {
         mDataForDialogList = new ArrayList<>();
         for (int i = 0; i < 3; i++) {

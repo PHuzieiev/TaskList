@@ -31,6 +31,10 @@
         <activity
             android:name=".ui.activities.CategoryActivity"
             android:theme="@style/AppTheme" />
+
+        <receiver
+            android:name=".utils.MessageBroadcastReceiver"
+            android:enabled="true" />
     </application>
 
 </manifest>

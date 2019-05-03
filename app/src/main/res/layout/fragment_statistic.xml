@@ -1,38 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:fitsSystemWindows="true"
     tools:context=".ui.fragments.StatisticFragment">
 
-    <LinearLayout style="@style/MatchWrapHorizontalLayout">
+    <RelativeLayout
+        android:id="@+id/fragment_header"
+        style="@style/FragmentHeaderRelativeLayout">
 
         <LinearLayout
-            style="@style/MatchWrapVerticalLayout"
-            android:layout_margin="@dimen/spacing_smaller_8dp"
-            android:layout_weight="1"
-            android:gravity="center">
+            android:id="@+id/fragment_header_layout"
+            style="@style/HorizontalWrapLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="UseCompoundDrawables">
 
-            <com.apps.newstudio.tasklist.ui.views.CustomCircleDiagram
-                android:id="@+id/fragment_circle_diagram"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                app:dia_first_color="@color/colorPrimary"
-                app:dia_first_value="20"
-                app:dia_max_value="30"
-                app:dia_second_color="@color/colorPrimaryLight"
-                app:dia_second_value="10"
-                app:dia_stroke_width="@dimen/spacing_small_16dp"
-                app:dia_zero_color="@color/grey_three" />
+
+            <TextView
+                android:id="@+id/fragment_header_text"
+                style="@style/WrapTextView_14"
+                android:layout_height="match_parent"
+                android:gravity="center" />
         </LinearLayout>
 
         <LinearLayout
             style="@style/MatchWrapVerticalLayout"
-            android:layout_weight="1"
-            android:gravity="center" />
-    </LinearLayout>
+            android:layout_alignParentBottom="true">
 
-</FrameLayout>
+            <LinearLayout style="@style/MatchWrapHorizontalLayout">
+
+                <View
+                    style="@style/HorizontalHeaderLine"
+                    android:layout_weight="3" />
+
+                <TextView
+                    android:id="@+id/fragment_nav_active_text"
+                    style="@style/HeaderNavigationTextView" />
+
+                <TextView
+                    android:id="@+id/fragment_nav_done_text"
+                    style="@style/HeaderNavigationTextView"
+                    android:textColor="@color/grey" />
+
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/MatchWrapHorizontalLayout">
+
+                <View
+                    android:id="@+id/fragment_nav_other_line"
+                    style="@style/HorizontalHeaderLine"
+                    android:layout_weight="3"
+                    android:background="@color/grey_two" />
+
+                <View
+                    android:id="@+id/fragment_nav_active_line"
+                    style="@style/HorizontalHeaderLine"
+                    android:background="@color/colorPrimary" />
+
+                <View
+                    android:id="@+id/fragment_nav_done_line"
+                    style="@style/HorizontalHeaderLine"
+                    android:background="@color/grey_two" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/fragment_header"
+        android:scrollbars="none">
+
+        <LinearLayout style="@style/MatchWrapVerticalLayout">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <LinearLayout style="@style/MatchWrapVerticalLayout">
+
+                    <com.apps.newstudio.tasklist.ui.views.CustomLinearDiagram
+                        android:id="@+id/fragment_linear_diagram"
+                        android:layout_width="1920dp"
+                        android:layout_height="@dimen/big_size_270dp"
+                        android:background="@color/white"
+                        android:layout_margin="@dimen/spacing_small_16dp"/>
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+
+            <LinearLayout
+                style="@style/MatchWrapHorizontalLayout"
+                android:gravity="center_vertical"
+                tools:ignore="DisableBaselineAlignment">
+
+                <LinearLayout
+                    style="@style/MatchWrapVerticalLayout"
+                    android:layout_margin="@dimen/spacing_smaller_8dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <com.apps.newstudio.tasklist.ui.views.CustomCircleDiagram
+                        android:id="@+id/fragment_circle_diagram"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        app:dia_duration="800"
+                        app:dia_first_color="@color/colorPrimary"
+                        app:dia_second_color="@color/colorPrimaryLight"
+                        app:dia_stroke_width="@dimen/spacing_small_16dp"
+                        app:dia_zero_color="@color/grey_three" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/MatchWrapVerticalLayout"
+                    android:layout_margin="@dimen/spacing_small_16dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        style="@style/MatchWrapVerticalLayout"
+                        android:layout_width="wrap_content">
+
+                        <LinearLayout
+                            style="@style/MatchWrapHorizontalLayout"
+                            android:layout_width="wrap_content"
+                            android:gravity="center_vertical"
+                            tools:ignore="UseCompoundDrawables">
+
+                            <ImageView
+                                android:id="@+id/circle_diagram_total_count_image"
+                                style="@style/ImageView_16"
+                                android:src="@drawable/ic_circle_zero"
+                                tools:ignore="ContentDescription"
+                                android:padding="@dimen/spacing_smallest_2dp" />
+
+                            <TextView
+                                android:id="@+id/circle_diagram_total_count_text"
+                                style="@style/WrapTextView_14"
+                                android:layout_width="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_smaller_8dp"
+                                android:layout_marginLeft="@dimen/spacing_smaller_8dp"
+                                android:textSize="@dimen/text_size_smallest_12sp"
+                                android:gravity="center_vertical"
+                                android:textColor="@color/grey" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            style="@style/MatchWrapHorizontalLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_small_16dp"
+                            android:layout_marginBottom="@dimen/spacing_small_16dp"
+                            android:gravity="center_vertical"
+                            tools:ignore="UseCompoundDrawables">
+
+                            <ImageView
+                                android:id="@+id/circle_diagram_active_count_image"
+                                style="@style/ImageView_16"
+                                android:src="@drawable/ic_circle_one"
+                                tools:ignore="ContentDescription"
+                                android:padding="@dimen/spacing_smallest_2dp"/>
+
+                            <TextView
+                                android:id="@+id/circle_diagram_active_count_text"
+                                style="@style/WrapTextView_14"
+                                android:layout_width="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_smaller_8dp"
+                                android:layout_marginLeft="@dimen/spacing_smaller_8dp"
+                                android:textSize="@dimen/text_size_smallest_12sp"
+                                android:gravity="center_vertical"
+                                android:textColor="@color/grey" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            style="@style/MatchWrapHorizontalLayout"
+                            android:layout_width="wrap_content"
+                            android:gravity="center_vertical"
+                            tools:ignore="UseCompoundDrawables">
+
+                            <ImageView
+                                android:id="@+id/circle_diagram_done_count_image"
+                                style="@style/ImageView_16"
+                                android:src="@drawable/ic_circle_two"
+                                tools:ignore="ContentDescription"
+                                android:padding="@dimen/spacing_smallest_2dp"/>
+
+                            <TextView
+                                android:id="@+id/circle_diagram_done_count_text"
+                                style="@style/WrapTextView_14"
+                                android:layout_width="wrap_content"
+                                android:textSize="@dimen/text_size_smallest_12sp"
+                                android:layout_marginStart="@dimen/spacing_smaller_8dp"
+                                android:layout_marginLeft="@dimen/spacing_smaller_8dp"
+                                android:textColor="@color/grey" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

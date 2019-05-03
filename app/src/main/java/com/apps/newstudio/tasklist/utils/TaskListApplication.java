@@ -16,6 +16,9 @@ public class TaskListApplication extends Application {
     private static SharedPreferences sSharedPreferences;
     private static DaoSession sDaoSession;
 
+    /**
+     * Create TaskListApplication object
+     */
     @Override
     public void onCreate() {
         super.onCreate();
@@ -26,14 +29,29 @@ public class TaskListApplication extends Application {
         sDaoSession = new DaoMaster(database).newSession();
     }
 
+    /**
+     * Getter for Context object of application
+     *
+     * @return Context object
+     */
     public static Context getContext() {
         return sContext;
     }
 
+    /**
+     * Getter for main SharedPreferences object
+     *
+     * @return SharedPreferences object
+     */
     public static SharedPreferences getSharedPreferences() {
         return sSharedPreferences;
     }
 
+    /**
+     * Getter for main DaoSession object
+     *
+     * @return DaoSession object
+     */
     public static DaoSession getDaoSession() {
         return sDaoSession;
     }

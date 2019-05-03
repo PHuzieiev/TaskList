@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.fragments.SettingsFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout style="@style/MatchWrapVerticalLayout">
+
+            <LinearLayout
+                android:id="@+id/parameter_language_main_layout"
+                style="@style/MatchWrapHorizontalLayout"
+                android:background="@color/colorPrimary">
+
+                <LinearLayout style="@style/VerticalLayoutForTaskParameter">
+
+                    <LinearLayout
+                        style="@style/MatchWrapHorizontalLayout"
+                        android:gravity="center_vertical"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:id="@+id/parameter_language_image"
+                            style="@style/ImageView_24"
+                            android:src="@drawable/ic_language"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/parameter_language_main_text"
+                            style="@style/WrapTextView_14"
+                            android:layout_marginStart="@dimen/spacing_smallest_2dp"
+                            android:layout_marginLeft="@dimen/spacing_smallest_2dp"
+                            android:layout_marginTop="@dimen/spacing_start_1dp"
+                            android:layout_marginBottom="1dp"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/parameter_language_about_text"
+                        style="@style/TextViewForTaskParameter_12" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/parameter_first_day_main_layout"
+                style="@style/MatchWrapHorizontalLayout"
+                android:background="@color/colorPrimary">
+
+                <LinearLayout style="@style/VerticalLayoutForTaskParameter">
+
+                    <LinearLayout
+                        style="@style/MatchWrapHorizontalLayout"
+                        android:gravity="center_vertical"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:id="@+id/parameter_first_day_image"
+                            style="@style/ImageView_24"
+                            android:src="@drawable/ic_first_day"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/parameter_first_day_main_text"
+                            style="@style/WrapTextView_14"
+                            android:layout_marginStart="@dimen/spacing_smallest_2dp"
+                            android:layout_marginLeft="@dimen/spacing_smallest_2dp"
+                            android:layout_marginTop="@dimen/spacing_start_1dp"
+                            android:layout_marginBottom="1dp"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/parameter_first_day_about_text"
+                        style="@style/TextViewForTaskParameter_12" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/parameter_notification_main_layout"
+                style="@style/MatchWrapHorizontalLayout"
+                android:background="@color/colorPrimary"
+                android:layout_marginBottom="@dimen/spacing_big_88dp">
+
+                <LinearLayout style="@style/HorizontalLayoutForTaskParameter">
+
+                    <LinearLayout
+                        style="@style/MatchWrapVerticalLayout"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:paddingTop="@dimen/small_size_24dp">
+
+                        <LinearLayout
+                            style="@style/MatchWrapHorizontalLayout"
+                            android:gravity="center_vertical"
+                            tools:ignore="UseCompoundDrawables">
+
+                            <ImageView
+                                android:id="@+id/parameter_notification_image"
+                                style="@style/ImageView_24"
+                                android:src="@drawable/ic_notifications"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:id="@+id/parameter_notification_main_text"
+                                style="@style/WrapTextView_14"
+                                android:layout_marginStart="@dimen/spacing_smallest_2dp"
+                                android:layout_marginLeft="@dimen/spacing_smallest_2dp"
+                                android:layout_marginTop="@dimen/spacing_start_1dp"
+                                android:layout_marginBottom="1dp"
+                                android:textColor="@color/colorPrimary"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/parameter_notification_about_text"
+                            style="@style/TextViewForTaskParameter_12" />
+
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/parameter_notification_action_image"
+                        style="@style/ImageViewForTaskParameter_36"
+                        android:src="@drawable/ic_remove_circle"
+                        tools:ignore="ContentDescription" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

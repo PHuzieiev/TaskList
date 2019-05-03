@@ -1,5 +1,7 @@
 package com.apps.newstudio.tasklist.ui.views;
 
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -7,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 
 import com.apps.newstudio.tasklist.R;
 import com.apps.newstudio.tasklist.utils.TaskListApplication;
@@ -15,12 +18,19 @@ public class CustomCircleDiagram extends View {
 
     private int mMaxValue;
     private int mFirstValue, mSecondValue;
+    private int mPlusDegreesZero, mPlusDegreesFirst, mPlusDegreesSecond;
     private int mStrokeWidth;
     private int mZeroColor, mFirstColor, mSecondColor;
+    private int mDuration;
 
     private Double mIndex;
 
-
+    /**
+     * Constructor for CustomCircleDiagram object, gets all needed values
+     *
+     * @param context      Context object
+     * @param attributeSet AttributeSet object which contains all needed parameters for CustomCircleDiagram object
+     */
     public CustomCircleDiagram(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         TypedArray typedArray = getContext().obtainStyledAttributes(attributeSet, R.styleable.CustomCircleDiagram);
@@ -34,8 +44,12 @@ public class CustomCircleDiagram extends View {
                 TaskListApplication.getContext().getResources().getColor(R.color.tr));
         mSecondColor = typedArray.getColor(R.styleable.CustomCircleDiagram_dia_second_color,
                 TaskListApplication.getContext().getResources().getColor(R.color.tr));
+        mDuration = typedArray.getInt(R.styleable.CustomCircleDiagram_dia_duration, 0);
         typedArray.recycle();
         calculateIndex();
+        mPlusDegreesZero = getPlusDegrees(mMaxValue);
+        mPlusDegreesFirst = getPlusDegrees(mFirstValue);
+        mPlusDegreesSecond = mPlusDegreesFirst + getPlusDegrees(mSecondValue);
     }
 
     @Override
@@ -43,6 +57,12 @@ public class CustomCircleDiagram extends View {
         super.onAttachedToWindow();
     }
 
+    /**
+     * Sets measure of main View object
+     *
+     * @param widthMeasureSpec value for width value of View object
+     * @param heightMeasureSpec value for height value of View object
+     */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         if (getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec) >
@@ -55,6 +75,11 @@ public class CustomCircleDiagram extends View {
         }
     }
 
+    /**
+     * Draws main View object
+     *
+     * @param canvas Canvas object of main View
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -64,35 +89,87 @@ public class CustomCircleDiagram extends View {
         paint.setAntiAlias(true);
 
         int Rx = getWidth() / 2;
-        int Radius = getWidth() / 2 - mStrokeWidth;
+        int radius = getWidth() / 2 - mStrokeWidth;
 
         paint.setColor(mZeroColor);
-        RectF oval = new RectF((float) (Rx - Radius), (float) (Rx - Radius), (float) (Rx + Radius), (float) (Rx + Radius));
-        canvas.drawOval(oval, paint);
+        RectF oval = new RectF((float) (Rx - radius), (float) (Rx - radius), (float) (Rx + radius), (float) (Rx + radius));
+        canvas.drawArc(oval, -180, mPlusDegreesZero, false, paint);
 
-        Radius = getWidth() / 2 - 2 * mStrokeWidth -
+        radius = getWidth() / 2 - 2 * mStrokeWidth -
                 TaskListApplication.getContext().getResources().getDimensionPixelSize(R.dimen.spacing_smaller_4dp);
-        oval = new RectF((float) (Rx - Radius), (float) (Rx - Radius), (float) (Rx + Radius), (float) (Rx + Radius));
+        oval = new RectF((float) (Rx - radius), (float) (Rx - radius), (float) (Rx + radius), (float) (Rx + radius));
 
         int startAngle = -180;
-        int plusDegrees = (int) (mFirstValue / mIndex);
         paint.setColor(mFirstColor);
-        canvas.drawArc(oval, startAngle, plusDegrees, false, paint);
-        startAngle = startAngle + plusDegrees;
-        plusDegrees = (int) (mSecondValue / mIndex);
+        canvas.drawArc(oval, startAngle, mPlusDegreesFirst, false, paint);
+        startAngle = startAngle + mPlusDegreesFirst;
         paint.setColor(mSecondColor);
-        canvas.drawArc(oval, startAngle, plusDegrees, false, paint);
+        canvas.drawArc(oval, startAngle, mPlusDegreesSecond, false, paint);
     }
 
+    /**
+     * Calculate index to draw circle components
+     */
     public void calculateIndex() {
         mIndex = (double) mMaxValue / 360;
     }
 
-    public void setValues(int maxValue, int firstValue,int secondValue ) {
+    /**
+     * Getter for calculated value to draw circle components
+     *
+     * @param value input value
+     * @return plus degrees value
+     */
+    public int getPlusDegrees(int value) {
+        return (int) (value / mIndex);
+    }
+
+    /**
+     * Setter for mMaxValue,  mFirstValue, mSecondValue objects.
+     * Does all new calculations and redraws main View object.
+     * Starts all animation effects
+     *
+     * @param maxValue    value of max value
+     * @param firstValue  value of first value
+     * @param secondValue value of second value
+     */
+    public void setValues(int maxValue, int firstValue, int secondValue) {
         mMaxValue = maxValue;
         mFirstValue = firstValue;
         mSecondValue = secondValue;
         calculateIndex();
-        invalidate();
+        mPlusDegreesZero = getPlusDegrees(mMaxValue);
+        mPlusDegreesFirst = getPlusDegrees(mFirstValue);
+        mPlusDegreesSecond = mPlusDegreesFirst + getPlusDegrees(mSecondValue);
+
+        ValueAnimator animator = ValueAnimator.ofInt(0, mPlusDegreesZero);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mPlusDegreesZero = (int) animation.getAnimatedValue();
+                invalidate();
+            }
+        });
+
+        ValueAnimator animator2 = ValueAnimator.ofInt(0, mPlusDegreesFirst);
+        animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mPlusDegreesFirst = (int) animation.getAnimatedValue();
+                invalidate();
+            }
+        });
+
+        ValueAnimator animator3 = ValueAnimator.ofInt(mPlusDegreesSecond);
+        animator3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mPlusDegreesSecond = (int) animation.getAnimatedValue();
+                invalidate();
+            }
+        });
+
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.setDuration(mDuration);
+        animatorSet.setInterpolator(new DecelerateInterpolator());
+        animatorSet.playTogether(animator, animator2, animator3);
+        animatorSet.start();
     }
 }

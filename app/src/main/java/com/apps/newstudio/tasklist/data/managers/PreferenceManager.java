@@ -37,6 +37,27 @@ public class PreferenceManager {
 
 
     /**
+     * Saves int value using String object key
+     * @param key String object
+     * @param value value which will be saved
+     */
+    public void saveInt(String key, int value){
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putInt(key, value);
+        editor.apply();
+    }
+
+    /**
+     * Loads int value using String object key
+     * @param key String object
+     * @param defaultValue value which will be used like default
+     * @return int value
+     */
+    public int loadInt(String key, int defaultValue){
+        return mSharedPreferences.getInt(key, defaultValue);
+    }
+
+    /**
      * Loads String value which is used to define App Language
      *
      * @return String object

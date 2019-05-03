@@ -31,6 +31,15 @@ public class DialogCalendar {
     private String calendarFirstDayParameter;
     private int mYear, mMonth, mYearNow, mMonthNow, mDayNow, mYearChosen, mMonthChosen, mDayChosen;
 
+    /**
+     * Costructor of DialogCalendar object
+     *
+     * @param context     OnChooseDay object
+     * @param onChooseDay number of day in month
+     * @param year        number of year
+     * @param month       number of month in year
+     * @param day         number of day in month
+     */
     public DialogCalendar(Context context, OnChooseDay onChooseDay, int year, int month, int day) {
         mContext = context;
         mOnChooseDay = onChooseDay;
@@ -42,6 +51,9 @@ public class DialogCalendar {
         createDialog();
     }
 
+    /**
+     * Create dialog for choosing day of calendar
+     */
     private void createDialog() {
         mDialog = new Dialog(mContext);
         mDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
@@ -53,7 +65,7 @@ public class DialogCalendar {
         calculateOrder();
         updateViewsData();
 
-        mDialog.getWindow().findViewById(R.id.dialog_date_left).setOnClickListener(new OnClickAdapter(1,1) {
+        mDialog.getWindow().findViewById(R.id.dialog_date_left).setOnClickListener(new OnClickAdapter(1, 1) {
             @Override
             public void myFunc(View view) {
                 showOtherMonth(-1);
@@ -61,7 +73,7 @@ public class DialogCalendar {
             }
         });
 
-        mDialog.getWindow().findViewById(R.id.dialog_date_right).setOnClickListener(new OnClickAdapter(1,1) {
+        mDialog.getWindow().findViewById(R.id.dialog_date_right).setOnClickListener(new OnClickAdapter(1, 1) {
             @Override
             public void myFunc(View view) {
                 showOtherMonth(1);
@@ -72,20 +84,28 @@ public class DialogCalendar {
         mDialog.show();
     }
 
-    private void showOtherMonth(int direction){
-        mMonth=mMonth+direction;
-        if(mMonth==0){
-            mYear=mYear-1;
-            mMonth=12;
+    /**
+     * Changes number of month in year and year
+     *
+     * @param direction previous or next (-1 or 1) number number of month in year
+     */
+    private void showOtherMonth(int direction) {
+        mMonth = mMonth + direction;
+        if (mMonth == 0) {
+            mYear = mYear - 1;
+            mMonth = 12;
         }
-        if(mMonth==13){
-            mYear=mYear+1;
-            mMonth=1;
+        if (mMonth == 13) {
+            mYear = mYear + 1;
+            mMonth = 1;
         }
         calculateOrder();
         updateViewsData();
     }
 
+    /**
+     * Calculates order of days for dialog layout
+     */
     private void calculateOrder() {
         Calendar calendar = GregorianCalendar.getInstance();
         calendar.clear();
@@ -122,8 +142,11 @@ public class DialogCalendar {
         mDayNow = calendar.get(Calendar.DAY_OF_MONTH);
     }
 
+    /**
+     * Updates views of dialog using order of days and performed data
+     */
     private void updateViewsData() {
-        ((TextView) mDialog.findViewById(R.id.dialog_date_title)).setText(mMonthsTitles[mMonth - 1].concat(", "+mYear));
+        ((TextView) mDialog.findViewById(R.id.dialog_date_title)).setText(mMonthsTitles[mMonth - 1].concat(", " + mYear));
         for (TextView weekdayView : mWeekdaysViews) {
             if (weekdayView.getId() != R.id.dialog_date_day_title_7) {
                 weekdayView.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
@@ -158,7 +181,7 @@ public class DialogCalendar {
         }
         for (int i = 0; i < mDaysTitles.length; i++) {
             mDaysViews.get(i).setText(mDaysTitles[i]);
-            if (mDaysTitles[i].equals(mDayNow + "") && mMonthNow+1 == mMonth && mYearNow == mYear) {
+            if (mDaysTitles[i].equals(mDayNow + "") && mMonthNow + 1 == mMonth && mYearNow == mYear) {
                 mDaysViews.get(i).setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
             }
             if (mDaysTitles[i].equals(mDayChosen + "") && mMonthChosen == mMonth && mYearChosen == mYear) {
@@ -183,6 +206,10 @@ public class DialogCalendar {
         }
     }
 
+
+    /**
+     * Performs text objects using language parameter
+     */
     private void setLang() {
         calendarFirstDayParameter = DataManager.getInstance().getPreferenceManager().getFirstDay();
         new LanguageManager() {
@@ -220,6 +247,9 @@ public class DialogCalendar {
 
     }
 
+    /**
+     * Performs TextView objects in lists for main convenience in using
+     */
     private void initMainViews() {
         mWeekdaysViews = new ArrayList<>();
         mWeekdaysViews.add((TextView) mDialog.getWindow().findViewById(R.id.dialog_date_day_title_1));
@@ -275,22 +305,45 @@ public class DialogCalendar {
         mDaysViews.add((TextView) mDialog.getWindow().findViewById(R.id.dialog_date_day_42));
     }
 
+    /**
+     * Getter for number of year
+     *
+     * @return number of year
+     */
     public int getYearChosen() {
         return mYearChosen;
     }
 
+    /**
+     * Getter for number of month in year
+     *
+     * @return number of month in year
+     */
     public int getMonthChosen() {
         return mMonthChosen;
     }
 
+    /**
+     * Getter for number of day in month
+     *
+     * @return number of day in month
+     */
     public int getDayChosen() {
         return mDayChosen;
     }
 
+    /**
+     * Interface to perform action for TextView objects of calendar days
+     */
     public interface OnChooseDay {
         void function();
     }
 
+    /**
+     * Getter for Dialog object
+     *
+     * @return Main Dialog object
+     */
     public Dialog getDialog() {
         return mDialog;
     }
