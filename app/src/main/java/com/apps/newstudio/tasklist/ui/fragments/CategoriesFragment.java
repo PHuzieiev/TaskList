@@ -41,7 +41,6 @@ public class CategoriesFragment extends Fragment {
     private String[] mCategoriesTitle;
     private AdapterOfFragmentCategoriesList mAdapter;
 
-
     /**
      * Creates View object of fragment
      *

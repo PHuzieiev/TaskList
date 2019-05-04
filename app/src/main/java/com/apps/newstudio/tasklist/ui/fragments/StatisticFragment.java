@@ -173,6 +173,7 @@ public class StatisticFragment extends Fragment {
             }
             updateState(mStateFlag);
             setLinearDiagram();
+            setCircleDiagram();
         }
     };
 
@@ -248,6 +249,7 @@ public class StatisticFragment extends Fragment {
 
     /**
      * Getter for DataForDialogListItem list object
+     *
      * @return DataForDialogListItem list object
      */
     private List<DataForDialogListItem> getDataForDialogList() {

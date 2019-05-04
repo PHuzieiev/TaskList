@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_parent_layout"
+    style="@style/MatchWrapHorizontalLayout"
+    android:background="@color/colorPrimary">
+
+    <LinearLayout
+        android:id="@+id/item_main_layout"
+        style="@style/MatchWrapHorizontalLayout"
+        android:layout_marginStart="@dimen/spacing_smaller_6dp"
+        android:layout_marginLeft="@dimen/spacing_smaller_6dp"
+        android:background="@color/white"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/spacing_smaller_10dp"
+        android:paddingLeft="@dimen/spacing_smaller_10dp"
+        tools:ignore="RtlSymmetry">
+
+        <LinearLayout
+            style="@style/MatchWrapHorizontalLayout"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingTop="@dimen/small_size_24dp"
+            android:paddingBottom="@dimen/small_size_24dp"
+            tools:ignore="UseCompoundDrawables">
+
+            <TextView
+                android:id="@+id/item_title_number"
+                android:layout_width="@dimen/small_size_24dp"
+                android:layout_height="@dimen/small_size_24dp"
+                android:background="@drawable/ic_circle_stroke"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_smallest_12sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/item_title_text"
+                style="@style/WrapTextView_14"
+                android:layout_marginStart="@dimen/spacing_smaller_4dp"
+                android:layout_marginLeft="@dimen/spacing_smaller_4dp"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/item_drop_down_image"
+            style="@style/ImageView_36"
+            android:layout_marginStart="@dimen/spacing_smaller_10dp"
+            android:layout_marginLeft="@dimen/spacing_smaller_10dp"
+            android:layout_marginEnd="@dimen/spacing_smaller_10dp"
+            android:layout_marginRight="@dimen/spacing_smaller_10dp"
+            android:src="@drawable/ic_down"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+
+
+</LinearLayout>

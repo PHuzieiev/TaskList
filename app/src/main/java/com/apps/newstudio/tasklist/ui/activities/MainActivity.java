@@ -20,8 +20,10 @@ import android.widget.TextView;
 import com.apps.newstudio.tasklist.R;
 import com.apps.newstudio.tasklist.data.managers.DataManager;
 import com.apps.newstudio.tasklist.data.managers.LanguageManager;
+import com.apps.newstudio.tasklist.ui.fragments.AboutFragment;
 import com.apps.newstudio.tasklist.ui.fragments.CategoriesFragment;
 import com.apps.newstudio.tasklist.ui.fragments.DaysFragment;
+import com.apps.newstudio.tasklist.ui.fragments.InfoFragment;
 import com.apps.newstudio.tasklist.ui.fragments.SettingsFragment;
 import com.apps.newstudio.tasklist.ui.fragments.StatisticFragment;
 import com.apps.newstudio.tasklist.utils.ConstantsManager;
@@ -147,8 +149,10 @@ public class MainActivity extends BaseActivity
                     mFragment = new SettingsFragment();
                     break;
                 case R.id.item_help:
+                    mFragment = new InfoFragment();
                     break;
                 case R.id.item_about:
+                    mFragment = new AboutFragment();
                     break;
             }
 

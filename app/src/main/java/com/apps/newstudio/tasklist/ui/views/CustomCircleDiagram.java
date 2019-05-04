@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -24,6 +26,7 @@ public class CustomCircleDiagram extends View {
     private int mDuration;
 
     private Double mIndex;
+    private int mTextSize;
 
     /**
      * Constructor for CustomCircleDiagram object, gets all needed values
@@ -60,7 +63,7 @@ public class CustomCircleDiagram extends View {
     /**
      * Sets measure of main View object
      *
-     * @param widthMeasureSpec value for width value of View object
+     * @param widthMeasureSpec  value for width value of View object
      * @param heightMeasureSpec value for height value of View object
      */
     @Override
@@ -105,6 +108,20 @@ public class CustomCircleDiagram extends View {
         startAngle = startAngle + mPlusDegreesFirst;
         paint.setColor(mSecondColor);
         canvas.drawArc(oval, startAngle, mPlusDegreesSecond, false, paint);
+
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(mZeroColor);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setTextAlign(Paint.Align.CENTER);
+        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        paint.setTextSize(mTextSize);
+        Rect textBounds = new Rect();
+        paint.getTextBounds("99", 0, "99".length(), textBounds);
+        if(mMaxValue==mFirstValue+mSecondValue) {
+            canvas.drawText("" + mMaxValue, Rx, Rx - textBounds.exactCenterY(), paint);
+        }else{
+            canvas.drawText("0", Rx, Rx - textBounds.exactCenterY(), paint);
+        }
     }
 
     /**
@@ -158,7 +175,7 @@ public class CustomCircleDiagram extends View {
             }
         });
 
-        ValueAnimator animator3 = ValueAnimator.ofInt(mPlusDegreesSecond);
+        ValueAnimator animator3 = ValueAnimator.ofInt(0, mPlusDegreesSecond);
         animator3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
                 mPlusDegreesSecond = (int) animation.getAnimatedValue();
@@ -166,10 +183,19 @@ public class CustomCircleDiagram extends View {
             }
         });
 
+        ValueAnimator animator4 = ValueAnimator.ofInt(0, TaskListApplication.getContext().getResources()
+                .getDimensionPixelOffset(R.dimen.spacing_small_16dp));
+        animator4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mTextSize = (int) animation.getAnimatedValue();
+                invalidate();
+            }
+        });
+
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(mDuration);
         animatorSet.setInterpolator(new DecelerateInterpolator());
-        animatorSet.playTogether(animator, animator2, animator3);
+        animatorSet.playTogether(animator, animator2, animator3, animator4);
         animatorSet.start();
     }
 }
