@@ -71,7 +71,7 @@ public class AdapterOfInfoList extends RecyclerView.Adapter<AdapterOfInfoList.Vi
             holder.title.setTextColor(TaskListApplication.getContext()
                     .getResources().getColor(R.color.colorPrimary));
             holder.number.setBackgroundResource(R.drawable.ic_circle_stroke);
-            holder.number.setText("" + data.getParentId());
+            holder.number.setText(String.valueOf(data.getParentId()));
             holder.mainLayout.setBackgroundColor(TaskListApplication.getContext()
                     .getResources().getColor(R.color.white));
             if (data.isOpen()) {
