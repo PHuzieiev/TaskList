@@ -16,14 +16,24 @@
         <LinearLayout
             android:id="@+id/fragment_header_layout"
             style="@style/HorizontalWrapLayout"
-            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
             tools:ignore="UseCompoundDrawables">
 
+            <ImageView
+                android:id="@+id/fragment_header_ico"
+                style="@style/ImageView_24"
+                android:layout_marginEnd="@dimen/spacing_smaller_6dp"
+                android:layout_marginRight="@dimen/spacing_smaller_6dp"
+                android:src="@drawable/ic_events_white"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/fragment_header_text"
                 style="@style/WrapTextView_14"
-                android:layout_width="wrap_content" />
+                android:layout_width="wrap_content"
+                android:gravity="center" />
         </LinearLayout>
 
         <LinearLayout

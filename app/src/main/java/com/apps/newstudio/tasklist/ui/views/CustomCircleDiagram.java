@@ -110,10 +110,10 @@ public class CustomCircleDiagram extends View {
         canvas.drawArc(oval, startAngle, mPlusDegreesSecond, false, paint);
 
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(mZeroColor);
+        paint.setColor(TaskListApplication.getContext().getResources().getColor(R.color.grey));
         paint.setStyle(Paint.Style.STROKE);
         paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        paint.setTypeface(Typeface.DEFAULT);
         paint.setTextSize(mTextSize);
         Rect textBounds = new Rect();
         paint.getTextBounds("99", 0, "99".length(), textBounds);

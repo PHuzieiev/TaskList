@@ -87,6 +87,7 @@ public class DaysFragment extends Fragment {
     private DialogCalendar mDialogCalendar;
 
     private int firstColor = R.color.colorPrimary, secondColor = R.color.grey_two, thirdColor = R.color.grey;
+    private int headerIco = R.drawable.ic_events;
 
     /**
      * Creates Fragment object
@@ -289,7 +290,7 @@ public class DaysFragment extends Fragment {
                 0, lengthOfMainWord, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableStringBuilder.setSpan(new StyleSpan(Typeface.BOLD), 0, lengthOfMainWord, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         mHeaderText.setText(spannableStringBuilder);
-
+        ((ImageView)mView.findViewById(R.id.fragment_header_ico)).setImageResource(headerIco);
     }
 
     /**
@@ -547,6 +548,7 @@ public class DaysFragment extends Fragment {
                 firstColor = R.color.white;
                 secondColor = R.color.white_two;
                 thirdColor = R.color.white_three;
+                headerIco = R.drawable.ic_events_white;
                 mView.findViewById(R.id.fragment_main_layout)
                         .setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 fab_layout_id = R.layout.fab_two;
@@ -561,6 +563,7 @@ public class DaysFragment extends Fragment {
                 firstColor = R.color.colorPrimary;
                 secondColor = R.color.grey_two;
                 thirdColor = R.color.grey;
+                headerIco = R.drawable.ic_events;
                 mView.findViewById(R.id.fragment_main_layout)
                         .setBackgroundColor(getResources().getColor(R.color.white));
                 ((ImageView) mView.findViewById(R.id.fragment_empty_iv)).setImageResource(R.drawable.ic_tr);

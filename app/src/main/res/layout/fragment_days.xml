@@ -18,14 +18,22 @@
             style="@style/HorizontalWrapLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             tools:ignore="UseCompoundDrawables">
 
+            <ImageView
+                android:id="@+id/fragment_header_ico"
+                style="@style/ImageView_24"
+                android:layout_marginEnd="@dimen/spacing_smaller_6dp"
+                android:layout_marginRight="@dimen/spacing_smaller_6dp"
+                android:src="@drawable/ic_events_white"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/fragment_header_text"
                 style="@style/WrapTextView_14"
-                android:layout_height="match_parent"
-                android:gravity="center"/>
+                android:layout_width="wrap_content"
+                android:gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -88,27 +96,28 @@
         android:layout_below="@+id/fragment_header"
         android:gravity="center_horizontal"
         android:orientation="vertical">
+
         <ImageView
             android:id="@+id/fragment_empty_iv"
             android:layout_width="180dp"
             android:layout_height="180dp"
+            android:layout_marginTop="@dimen/spacing_big_88dp"
             android:src="@drawable/ico_empty_main"
-            tools:ignore="ContentDescription"
-            android:layout_marginTop="@dimen/spacing_big_88dp"/>
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/fragment_empty_tv"
             android:layout_width="@dimen/big_size_240dp"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_small_14sp"
-            android:gravity="center"/>
+            android:textSize="@dimen/text_size_small_14sp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/fragment_fab_layout"
-        android:orientation="horizontal"
-        style="@style/Fab"/>
+        style="@style/Fab"
+        android:orientation="horizontal" />
 </RelativeLayout>

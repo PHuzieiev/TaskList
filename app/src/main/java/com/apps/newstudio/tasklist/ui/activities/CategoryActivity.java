@@ -74,7 +74,7 @@ public class CategoryActivity extends BaseActivity {
 
     private int mChosenDay, mChosenMonth, mChosenYear, mStateFlag;
 
-    private String mDayOrMonthFormat = "%02d", mChooseTitle, mParameter;
+    private String mDayOrMonthFormat = "%02d", mParameter;
     private String[] mYesterdayTodayTomorrowMask = new String[3];
     private String[] mYesterdayTodayTomorrowTitles, mTitlesOfCategories, mDeleteDoneBackToastTitle;
     private String[] mEmptyListTitle;
@@ -82,6 +82,8 @@ public class CategoryActivity extends BaseActivity {
     private DialogList mDialogList;
     private DatabaseManager mDatabaseManager;
     private int firstColor = R.color.colorPrimary, secondColor = R.color.grey_two, thirdColor = R.color.grey;
+    private int headerIco = R.drawable.ic_events;
+
 
     /**
      * Perform initialization of all fragments.
@@ -120,7 +122,6 @@ public class CategoryActivity extends BaseActivity {
                 onBackPressed();
             }
         });
-        mToolbar.setTitle(mTitlesOfCategories[0]);
     }
 
     /**
@@ -131,14 +132,15 @@ public class CategoryActivity extends BaseActivity {
     private void initParameters(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             mCategoryId = getIntent().getIntExtra(ConstantsManager.TASK_CATEGORY_FLAG, 0);
+            mStateFlag = ConstantsManager.STATE_FLAG_ACTIVE;
         } else {
-            savedInstanceState.getInt(ConstantsManager.TASK_CATEGORY_FLAG);
+            mCategoryId = savedInstanceState.getInt(ConstantsManager.TASK_CATEGORY_FLAG);
+            mStateFlag = savedInstanceState.getInt(ConstantsManager.TASK_STATE_FLAG);
         }
         Calendar calendar = Calendar.getInstance();
         mChosenDay = calendar.get(Calendar.DAY_OF_MONTH);
         mChosenMonth = calendar.get(Calendar.MONTH) + 1;
         mChosenYear = calendar.get(Calendar.YEAR);
-        mStateFlag = ConstantsManager.STATE_FLAG_ACTIVE;
     }
 
     /**
@@ -169,7 +171,10 @@ public class CategoryActivity extends BaseActivity {
     private void changeHeader() {
         mHeaderText.setTextColor(getResources().getColor(firstColor));
         mHeaderText.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-        mHeaderText.setText(mChooseTitle);
+        ((ImageView) findViewById(R.id.fragment_header_ico)).setImageResource(headerIco);
+        mHeaderText.setText(mTitlesOfCategories[mCategoryId]);
+
+
     }
 
     /**
@@ -502,6 +507,7 @@ public class CategoryActivity extends BaseActivity {
                 firstColor = R.color.white;
                 secondColor = R.color.white_two;
                 thirdColor = R.color.white_three;
+                headerIco = R.drawable.ic_categories_white;
                 findViewById(R.id.fragment_main_layout)
                         .setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 fab_layout_id = R.layout.fab_two;
@@ -516,6 +522,7 @@ public class CategoryActivity extends BaseActivity {
                 firstColor = R.color.colorPrimary;
                 secondColor = R.color.grey_two;
                 thirdColor = R.color.grey;
+                headerIco = R.drawable.ic_categories;
                 findViewById(R.id.fragment_main_layout)
                         .setBackgroundColor(getResources().getColor(R.color.white));
                 ((ImageView) findViewById(R.id.fragment_empty_iv)).setImageResource(R.drawable.ic_tr);
@@ -528,7 +535,6 @@ public class CategoryActivity extends BaseActivity {
 
         updateState(mStateFlag);
         changeHeader();
-        mToolbar.setTitle(mTitlesOfCategories[mCategoryId]);
     }
 
     /**
@@ -539,6 +545,7 @@ public class CategoryActivity extends BaseActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt(ConstantsManager.TASK_CATEGORY_FLAG, mCategoryId);
+        outState.putInt(ConstantsManager.TASK_STATE_FLAG, mStateFlag);
         super.onSaveInstanceState(outState);
     }
 
@@ -565,7 +572,7 @@ public class CategoryActivity extends BaseActivity {
                 mDeleteDoneBackToastTitle = getResources().getStringArray(R.array.delete_done_back_eng);
                 mEmptyListTitle = getResources().getStringArray(R.array.list_empty_two_eng);
                 mParameter = getResources().getStringArray(R.array.task_parameters_eng)[1];
-                mChooseTitle = getString(R.string.choose_other_category_eng);
+                mToolbar.setTitle(getResources().getStringArray(R.array.drawer_menu_items_eng)[0]);
             }
 
             @Override
@@ -577,7 +584,7 @@ public class CategoryActivity extends BaseActivity {
                 mDeleteDoneBackToastTitle = getResources().getStringArray(R.array.delete_done_back_ukr);
                 mEmptyListTitle = getResources().getStringArray(R.array.list_empty_two_ukr);
                 mParameter = getResources().getStringArray(R.array.task_parameters_ukr)[1];
-                mChooseTitle = getString(R.string.choose_other_category_ukr);
+                mToolbar.setTitle(getResources().getStringArray(R.array.drawer_menu_items_ukr)[0]);
             }
 
             @Override
@@ -589,7 +596,7 @@ public class CategoryActivity extends BaseActivity {
                 mDeleteDoneBackToastTitle = getResources().getStringArray(R.array.delete_done_back_rus);
                 mEmptyListTitle = getResources().getStringArray(R.array.list_empty_two_rus);
                 mParameter = getResources().getStringArray(R.array.task_parameters_rus)[1];
-                mChooseTitle = getString(R.string.choose_other_category_rus);
+                mToolbar.setTitle(getResources().getStringArray(R.array.drawer_menu_items_rus)[0]);
             }
         };
     }
