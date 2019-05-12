@@ -71,6 +71,7 @@ public class TaskListWidget extends AppWidgetProvider {
         setOnClickList(context, views, appWidgetId);
         setHeader(views, getDate(appWidgetId), appWidgetId);
         setOnClickAddNewTask(context, views, appWidgetId);
+        setOnClickUpdate(context, views, appWidgetId);
         appWidgetManager.updateAppWidget(appWidgetId, views);
         appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId,
                 R.id.widget_list);
@@ -145,6 +146,13 @@ public class TaskListWidget extends AppWidgetProvider {
         } else {
             views.setOnClickPendingIntent(R.id.widget_header_right, pendingIntent);
         }
+    }
+
+    private void setOnClickUpdate(Context context, RemoteViews views, int appWidgetId) {
+        Intent intent = new Intent(context, TaskListWidget.class);
+        intent.setAction(ConstantsManager.UPDATE_ALL_WIDGETS_TWO);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, appWidgetId, intent, 0);
+        views.setOnClickPendingIntent(R.id.widget_update_widget, pendingIntent);
     }
 
     private DateStateObject getDate(int appWidgetId) {
@@ -379,7 +387,8 @@ public class TaskListWidget extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-        if (intent.getAction().equalsIgnoreCase(ConstantsManager.UPDATE_ALL_WIDGETS)) {
+        if (intent.getAction().equalsIgnoreCase(ConstantsManager.UPDATE_ALL_WIDGETS) ||
+                intent.getAction().equalsIgnoreCase(ConstantsManager.UPDATE_ALL_WIDGETS_TWO)) {
             updateAllWidgets(context, intent);
         }
 
