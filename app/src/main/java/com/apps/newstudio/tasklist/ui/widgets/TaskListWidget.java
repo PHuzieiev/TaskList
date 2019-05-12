@@ -15,7 +15,6 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,23 +24,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.apps.newstudio.tasklist.R;
-import com.apps.newstudio.tasklist.data.adapters.DataForTasksListItem;
 import com.apps.newstudio.tasklist.data.adapters.DateStateObject;
 import com.apps.newstudio.tasklist.data.managers.DataManager;
 import com.apps.newstudio.tasklist.data.managers.LanguageManager;
 import com.apps.newstudio.tasklist.data.managers.PreferenceManager;
 import com.apps.newstudio.tasklist.data.storage.models.TaskEntity;
-import com.apps.newstudio.tasklist.ui.activities.MainActivity;
-import com.apps.newstudio.tasklist.ui.activities.SplashActivity;
 import com.apps.newstudio.tasklist.ui.activities.TaskActivity;
-import com.apps.newstudio.tasklist.utils.AuxiliaryFunctions;
 import com.apps.newstudio.tasklist.utils.ConstantsManager;
 import com.apps.newstudio.tasklist.utils.TaskListApplication;
 import com.apps.newstudio.tasklist.utils.WidgetService;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 
 /**
