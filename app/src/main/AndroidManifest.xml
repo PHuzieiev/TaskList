@@ -35,6 +35,19 @@
         <receiver
             android:name=".utils.MessageBroadcastReceiver"
             android:enabled="true" />
+        <receiver android:name=".ui.widgets.TaskListWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/list_app_widget_info" />
+        </receiver>
+        <service
+            android:name=".utils.WidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS">
+        </service>
     </application>
 
 </manifest>

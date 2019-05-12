@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_parent_layout"
+    style="@style/MatchWrapHorizontalLayout"
+    android:paddingLeft="@dimen/spacing_small_16dp"
+    android:paddingRight="@dimen/spacing_small_16dp"
+    android:gravity="center">
+
+    <LinearLayout
+        style="@style/MatchWrapVerticalLayout"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:paddingTop="@dimen/small_size_24dp"
+        tools:ignore="RtlSymmetry">
+
+        <LinearLayout
+            style="@style/MatchWrapHorizontalLayout"
+            android:gravity="center_vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/item_title_ico"
+                style="@style/ImageView_24"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/item_title_text"
+                style="@style/WrapTextView_14"
+                android:layout_marginStart="@dimen/spacing_smallest_2dp"
+                android:layout_marginLeft="@dimen/spacing_smallest_2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:singleLine="true"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/MatchWrapHorizontalLayout"
+            android:layout_marginBottom="@dimen/spacing_smaller_8dp"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/spacing_smaller_4dp"
+            android:paddingLeft="@dimen/spacing_smaller_4dp"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/item_alarm_image"
+                style="@style/ImageView_16"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/item_time_period_text"
+                style="@style/MatchWrapTextView_12"
+                android:layout_marginStart="@dimen/spacing_smaller_6dp"
+                android:layout_marginLeft="@dimen/spacing_smaller_6dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/item_change_state_image"
+        style="@style/ImageView_24"
+        android:padding="5dp"
+        tools:ignore="ContentDescription"
+        android:layout_marginLeft="@dimen/spacing_smallest_3dp"
+        android:layout_marginStart="@dimen/spacing_smallest_3dp" />
+
+
+
+</LinearLayout>

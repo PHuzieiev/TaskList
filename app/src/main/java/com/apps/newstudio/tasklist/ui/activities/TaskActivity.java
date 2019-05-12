@@ -1,5 +1,7 @@
 package com.apps.newstudio.tasklist.ui.activities;
 
+import android.appwidget.AppWidgetManager;
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -23,6 +25,7 @@ import com.apps.newstudio.tasklist.ui.dialogs.DialogCalendar;
 import com.apps.newstudio.tasklist.ui.dialogs.DialogList;
 import com.apps.newstudio.tasklist.ui.dialogs.DialogTime;
 import com.apps.newstudio.tasklist.ui.dialogs.DialogTwoButtons;
+import com.apps.newstudio.tasklist.ui.widgets.TaskListWidget;
 import com.apps.newstudio.tasklist.utils.AuxiliaryFunctions;
 import com.apps.newstudio.tasklist.utils.ConstantsManager;
 
@@ -651,7 +654,15 @@ public class TaskActivity extends BaseActivity {
                 new TaskEntity(databaseManager.getTaskNewId(mId), mTitle, mState, mCategoryId, mDay, mMonth, mYear,
                         mHourBeginning, mMinuteBeginning, mHourEnd, mMinuteEnd,
                         mAlarmState, mAlarmHour, mAlarmMinute));
-        finish();
+
+        if (AppWidgetManager.INVALID_APPWIDGET_ID != getIntent().getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
+                AppWidgetManager.INVALID_APPWIDGET_ID)){
+            Intent updateWidgetIntent=new Intent(this, TaskListWidget.class);
+            updateWidgetIntent.setAction(ConstantsManager.UPDATE_ALL_WIDGETS);
+            sendBroadcast(updateWidgetIntent);
+
+        }
+            finish();
     }
 
     /**

@@ -548,34 +548,111 @@
         <item>Понеділок</item>
     </string-array>
 
-    <string name="about_app_eng">
-        "   If you cannot memorize all your daily tasks and fear to forget something important, this application is special for you. You do not need to keep everything in your head. You can use this app to create your own task list. You are able to view lists using calendar order or categories. Add new tasks, change their status on finished by one swipe.  In addition, notification system will never forget to remind you of active tasks.
-\n   Features:
-   - simple user interface,
-   - applying categories or calendar order,
-   - notification system,
-   - convenient widget,
-   - statistic of active and finished  tasks."
-    </string>
+    <string-array name="about_app_titles_eng">
+        <item>Description</item>
+        <item>Features</item>
+    </string-array>
 
-    <string name="about_app_rus">
-        "   Приложение Task List предназначено для записи заданий и ведения соответствующих списков на каждый день. Нет необходимости держать все в голове, ведь программа поможет вам организовать все задания в удобной форме. Для большей наглядности каждое задание относиться к определенной категории. Просматривайте задачи по категориям или в календарном порядке, отмечайте выполненные задачи свайпом, создавайте новые. Благодаря системе уведомлений вы не забудете выполнить задание вовремя.
-\n   Особенности:
-   - простой пользовательский интерфейс,
-   - ведение списков по дням и по категориям,
-   - система уведомлений,
-   - удобный виджет,
-   - статистика выполненных и активных заданий."
-    </string>
+    <string-array name="about_app_text_eng">
+        <item>If you cannot memorize all your daily tasks and fear to forget something important, this application is special for you. You do not need to keep everything in your head. You can use this app to create your own task list. You are able to view lists using calendar order or categories. Add new tasks, change their status on finished by one swipe.  In addition, notification system will never forget to remind you of active tasks.</item>
+        <item>- simple user interface,\n
+            - applying categories or calendar order,\n
+            - notification system,\n
+            - convenient widget,\n
+            - statistic of active and finished  tasks.</item>
+    </string-array>
 
-    <string name="about_app_ukr">
-        "   Додаток Task List призначений для запису завдань і ведення відповідних списків на кожен день. Немає необхідності тримати все в голові, адже програма допоможе вам організувати всі завдання в зручній формі. Для більшої наочності кожне завдання відноситься до певної категорії. Переглядайте завдання за категоріями або в календарному порядку, помічайте виконані завдання свайпом, створюйте нові. Завдяки системі сповіщень ви не забудете виконати завдання вчасно.
-\n   Особливості:
-   - простий користувальницький інтерфейс,
-   - ведення списків по дням і за категоріями,
-   - система сповіщень,
-   - зручний віджет,
-   - статистика виконаних і активних завдань."
-    </string>
+    <string-array name="about_app_titles_rus">
+        <item>Описание</item>
+        <item>Особенности</item>
+    </string-array>
 
+    <string-array name="about_app_text_rus">
+        <item>Приложение Task List предназначено для записи заданий и ведения соответствующих списков на каждый день. Нет необходимости держать все в голове, ведь программа поможет вам организовать все задания в удобной форме. Для большей наглядности каждое задание относиться к определенной категории. Просматривайте задачи по категориям или в календарном порядке, отмечайте выполненные задачи свайпом, создавайте новые. Благодаря системе уведомлений вы не забудете выполнить задание вовремя.</item>
+        <item>- простой пользовательский интерфейс,\n
+            - ведение списков по дням и по категориям,\n
+            - система уведомлений,\n
+            - удобный виджет,\n
+            - статистика выполненных и активных заданий.</item>
+    </string-array>
+
+    <string-array name="about_app_titles_ukr">
+        <item>Опис</item>
+        <item>Особливості</item>
+    </string-array>
+
+    <string-array name="about_app_text_ukr">
+        <item>Додаток Task List призначений для запису завдань і ведення відповідних списків на кожен день. Немає необхідності тримати все в голові, адже програма допоможе вам організувати всі завдання в зручній формі. Для більшої наочності кожне завдання відноситься до певної категорії. Переглядайте завдання за категоріями або в календарному порядку, помічайте виконані завдання свайпом, створюйте нові. Завдяки системі сповіщень ви не забудете виконати завдання вчасно.</item>
+        <item>- простий користувальницький інтерфейс,\n
+            - ведення списків по дням і за категоріями,\n
+            - система сповіщень,\n
+            - зручний віджет,\n
+            - статистика виконаних і активних завдань.</item>
+    </string-array>
+
+    <string-array name="info_title_eng">
+        <item>Menu item Tasks</item>
+        <item>Menu item Categories</item>
+        <item>How can you add new task.?</item>
+        <item>How can you view detail information about task.?</item>
+        <item>How can you view either active or finished tasks.?</item>
+        <item>How can you change a status of task.?</item>
+        <item>How can you delete a task.?</item>
+        <item>Main application settings</item>
+    </string-array>
+
+    <string-array name="info_title_rus">
+        <item>Пункт меню Задания</item>
+        <item>Пункт меню Категории</item>
+        <item>Как можно добавить новое задание?</item>
+        <item>Как просмотреть детальную информацию о задании.?</item>
+        <item>Как просмотреть активные или завершенные задания.?</item>
+        <item>Как  изменить статус задания .?</item>
+        <item>Как удалить задание.?</item>
+        <item>Основные настройки приложения</item>
+    </string-array>
+
+    <string-array name="info_title_ukr">
+        <item>Пункт меню Завдання</item>
+        <item>Пункт меню Категорії</item>
+        <item>Як можна додати нове завдання?</item>
+        <item>Як переглянути детальну інформацію про завдання.?</item>
+        <item>Як переглянути активні або завершені завдання.?</item>
+        <item>Як змінити статус завдання.?</item>
+        <item>Як видалити завдання.?</item>
+        <item>Основні налаштування додатку</item>
+    </string-array>
+
+    <string-array name="info_text_eng">
+        <item>Menu item Tasks gives you ability to view tasks which are grouped by date. You can change date, view either active or finished tasks, add, delete and edit tasks, change task status in this window.</item>
+        <item>Menu item Categories gives you ability to view tasks which are grouped by date. You need to choose category from list to view tasks of this category. You can change date, view either active or finished tasks, add, delete and edit tasks, change task status in this window.</item>
+        <item>You need to open the Task or Category menu item. And if you open a list of tasks, you will see the Add button at the bottom of the window. Use this button to open window which is used to add new task. In this window, you can specify main parameters of new task (title, category, date, time of beginning, time of end, time of task notification).</item>
+        <item>If you choose some item from task list, you will be able to view detailed information of chosen task. In this window, you can also edit parameters of the selected task.</item>
+        <item>To view active or finished tasks in list, you can use a special switch which locates on top of list.</item>
+        <item>If you swipe right through the task list item, you can change the status of the task. In addition, you can do this action using window of detail task information. Also, you can change other task parameters there.</item>
+        <item>To make this action, you can use special button on the list item or swipe left.</item>
+        <item>You can change application settings in menu item Settings. In this window you are able to change application language, the first day of week, default time of notifications or disable all notifications.</item>
+    </string-array>
+
+    <string-array name="info_text_rus">
+        <item>Пункт меню Задания отображает список задания на определенную дату. В этом окне вы можете выбрать дату, просмотреть активные или выполненные задания, добавить, удалить или изменить статус задания. </item>
+        <item>В пункте меню Категории собраны списки заданий по категориям. Для просмотра списка заданий выберите любую категорию.  В этом окне вы можете выбрать другую категорию, просмотреть активные или выполненные задания, добавить, удалить или изменить статус задания.</item>
+        <item>Чтобы добавить новое задание откройте пункт меню Задания или Категории. Внизу окна, где отображены задания по дате или категории, вы найдете кнопку Добавить. После нажатия этой кнопки откроется специальное окно, в котором вы сможете указать основные параметры нового задания (название, категория, дата, время начала, время окончания, время уведомления о задании).</item>
+        <item>После нажатия на любой пункт списка заданий, вам откроется окно с детальной информацией о выбранном задании. В этом окне вы также сможете отредактировать задание.</item>
+        <item>Для отображения списка активных или выполненных заданий на определенную дату или по конкретной категории, используйте специальные переключатели над списком.</item>
+        <item>Вы можете изменить статус задания выполнив свайп вправо по пункту в списке заданий. Статус задания, как и остальные параметры задания, можно менять в окне детальной информации о задании.</item>
+        <item>Вы можете удалить задание нажатием специальной кнопки на пункте списка, или использовать свайт влево. </item>
+        <item>В пункте меню Настройки вам доступны основные настройки приложения. В этом окне вы можете изменить язык приложения, указать первый день недели,  изменить время уведомлений по умолчанию, или отключить уведомления. </item>
+    </string-array>
+
+    <string-array name="info_text_ukr">
+        <item>Пункт меню Завдання відображає список завдання на певну дату. У цьому вікні ви можете вибрати дату, переглянути активні або виконані завдання, додати, видалити або змінити статус завдання.</item>
+        <item>У пункті меню Категорії зібрані списки завдань за категоріями. Для перегляду списку завдань виберіть будь-яку категорію. У цьому вікні ви можете вибрати іншу категорію, переглянути активні або виконані завдання, додати, видалити або змінити статус завдання.</item>
+        <item>Щоб додати нове завдання відкрийте пункт меню Завдання або Категорії. Внизу вікна, де відображені завдання за датою або категорією, ви знайдете кнопку Додати. Після натискання цієї кнопки відкриється спеціальне вікно, в якому ви зможете вказати основні параметри нового завдання (назва, категорія, дата, час початку, час закінчення, час сповіщення про завдання).</item>
+        <item>Після натискання на будь-який пункт списку завдань, вам відкриється вікно з детальною інформацією про обране завдання. У цьому вікні ви також зможете відредагувати завдання.</item>
+        <item>Для відображення списку активних або виконаних завдань на певну дату або категорію, використовуйте спеціальні перемикачі над списком.</item>
+        <item>Ви можете змінити статус завдання виконавши свайп вправо по пункту в списку завдань. Статус завдання, як і інші параметри завдання, можна змінювати у вікні детальної інформації про завдання.</item>
+        <item>Ви можете видалити завдання натисненням спеціальної кнопки на пункті списку, або використати свайт вліво.</item>
+        <item>У пункті меню Налаштування вам доступні основні налаштування програми. У цьому вікні ви можете змінити мову додатка, вказати перший день тижня, змінити час сповіщення за замовчуванням, або відключити сповіщення.</item>
+    </string-array>
 </resources>

@@ -6,44 +6,9 @@
     android:background="@color/white"
     tools:context=".ui.fragments.AboutFragment">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/grey_two">
-
-        <LinearLayout
-            android:id="@+id/item_main_layout"
-            style="@style/MatchWrapHorizontalLayout"
-            android:layout_marginStart="@dimen/spacing_smaller_6dp"
-            android:layout_marginLeft="@dimen/spacing_smaller_6dp"
-            android:background="@color/white"
-            android:baselineAligned="false"
-            android:gravity="center_vertical"
-            android:paddingStart="@dimen/spacing_smaller_10dp"
-            android:paddingLeft="@dimen/spacing_smaller_10dp"
-            android:paddingEnd="@dimen/spacing_small_16dp"
-            android:paddingRight="@dimen/spacing_small_16dp"
-            tools:ignore="RtlSymmetry">
-
-            <LinearLayout
-                style="@style/MatchWrapHorizontalLayout"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:paddingTop="@dimen/small_size_24dp"
-                android:paddingBottom="@dimen/small_size_24dp"
-                tools:ignore="UseCompoundDrawables">
-
-                <TextView
-                    android:id="@+id/about_text"
-                    style="@style/WrapTextView_14"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </ScrollView>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_list"
+        style="@style/RecyclerViewStyle"
+        android:background="@color/white" />
 
 </LinearLayout>

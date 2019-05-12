@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.apps.newstudio.tasklist.R;
 import com.apps.newstudio.tasklist.data.adapters.AdapterOfInfoList;
 import com.apps.newstudio.tasklist.data.adapters.DataForInfoListItem;
+import com.apps.newstudio.tasklist.data.managers.LanguageManager;
 import com.apps.newstudio.tasklist.utils.TaskListApplication;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class InfoFragment extends Fragment {
     private AdapterOfInfoList mAdapter;
     private Unbinder mUnbinder;
 
+    private String[] mTitles, mText;
 
     /**
      * Creates View object of fragment
@@ -43,7 +45,7 @@ public class InfoFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_info, container, false);
         mUnbinder = ButterKnife.bind(this, view);
-
+        setLang();
         createList();
         return view;
     }
@@ -55,13 +57,10 @@ public class InfoFragment extends Fragment {
      */
     private List<DataForInfoListItem> getDataForList() {
         List<DataForInfoListItem> data = new ArrayList<>();
-        data.add(new DataForInfoListItem(1, "Title 1", null));
-        data.add(new DataForInfoListItem(2, "Title 2", null));
-        data.add(new DataForInfoListItem(3, "Title 3", null));
-
-        for (int i = 0; i < data.size(); i++) {
+        for (int i = 0; i < mTitles.length; i++) {
+            data.add(new DataForInfoListItem(i + 1, mTitles[i], null));
             List<DataForInfoListItem> dataChild = new ArrayList<>();
-            dataChild.add(new DataForInfoListItem(0, "Child " + (i + 1), null));
+            dataChild.add(new DataForInfoListItem(0, mText[i], null));
             data.get(i).setChildList(dataChild);
         }
         return data;
@@ -90,6 +89,7 @@ public class InfoFragment extends Fragment {
                                 data.addAll(position + 1, childData);
                                 mAdapter.notifyItemRangeInserted(position + 1, childData.size());
                                 mAdapter.notifyItemChanged(position);
+                                mRecyclerView.scrollToPosition(position + 1);
                             }
                         }
                     }
@@ -109,4 +109,28 @@ public class InfoFragment extends Fragment {
         mUnbinder.unbind();
     }
 
+    /**
+     * Performs text objects using language parameter
+     */
+    private void setLang() {
+        new LanguageManager() {
+            @Override
+            public void engLanguage() {
+                mTitles = getResources().getStringArray(R.array.info_title_eng);
+                mText = getResources().getStringArray(R.array.info_text_eng);
+            }
+
+            @Override
+            public void ukrLanguage() {
+                mTitles = getResources().getStringArray(R.array.info_title_ukr);
+                mText = getResources().getStringArray(R.array.info_text_ukr);
+            }
+
+            @Override
+            public void rusLanguage() {
+                mTitles = getResources().getStringArray(R.array.info_title_rus);
+                mText = getResources().getStringArray(R.array.info_text_rus);
+            }
+        };
+    }
 }

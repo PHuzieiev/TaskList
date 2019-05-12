@@ -92,4 +92,20 @@ public class PreferenceManager {
     public void setFirstDay(String parameter){
         saveString(ConstantsManager.FIRST_DAY_KEY,parameter);
     }
+
+    /**
+     * Removes all widget parameters
+     * @param appWidgetId widget id value
+     */
+    public void removeAllWidgetParameters(int appWidgetId){
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.remove(ConstantsManager.WIDGET_TODAY_DAY_FLAG + "_" + appWidgetId);
+        editor.remove(ConstantsManager.WIDGET_TODAY_MONTH_FLAG + "_" + appWidgetId);
+        editor.remove(ConstantsManager.WIDGET_TODAY_YEAR_FLAG + "_" + appWidgetId);
+        editor.remove(ConstantsManager.WIDGET_CHOSEN_DAY_FLAG + "_" + appWidgetId);
+        editor.remove(ConstantsManager.WIDGET_CHOSEN_MONTH_FLAG + "_" + appWidgetId);
+        editor.remove(ConstantsManager.WIDGET_CHOSEN_YEAR_FLAG + "_" + appWidgetId);
+        editor.remove(ConstantsManager.WIDGET_CHOSEN_STATE_FLAG + "_" + appWidgetId);
+        editor.apply();
+    }
 }
