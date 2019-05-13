@@ -47,7 +47,15 @@ public class TaskListWidget extends AppWidgetProvider {
     private String[] mYesterdayTodayTomorrowMask = new String[3];
     private String[] mYesterdayTodayTomorrowTitles, mTitlesOfDays, mTitlesOfMonths, mActiveDoneText, mDeleteDoneBackToastTitle;
     private String[] mEmptyListTitle;
+    private Context mContext;
 
+    /**
+     * Updates all widgets
+     *
+     * @param context          Context object
+     * @param appWidgetManager AppWidgetManager object
+     * @param appWidgetIds     array with widgets ids
+     */
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
@@ -56,28 +64,43 @@ public class TaskListWidget extends AppWidgetProvider {
         }
     }
 
+    /**
+     * Updates widget with special id
+     *
+     * @param context          Context object
+     * @param appWidgetManager AppWidgetManager object
+     * @param appWidgetId      id value of widget which will be updated
+     * @param createListFlag   flag for list object
+     */
     public void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId, int createListFlag) {
-        RemoteViews views = new RemoteViews(context.getPackageName(),
+        mContext = context;
+        RemoteViews views = new RemoteViews(mContext.getPackageName(),
                 R.layout.task_list_widget);
         setLang();
         if (createListFlag == 1) {
-            setList(views, context, appWidgetId);
+            setList(views, appWidgetId);
         }
-        setOnClickState(context, views, appWidgetId, ConstantsManager.WIDGET_ON_CLICK_STATE_ACTIVE);
-        setOnClickState(context, views, appWidgetId, ConstantsManager.WIDGET_ON_CLICK_STATE_DONE);
-        setOnClickLeftRight(context, views, appWidgetId, ConstantsManager.WIDGET_ON_CLICK_LEFT);
-        setOnClickLeftRight(context, views, appWidgetId, ConstantsManager.WIDGET_ON_CLICK_RIGHT);
-        setOnClickList(context, views, appWidgetId);
+        setOnClickState(views, appWidgetId, ConstantsManager.WIDGET_ON_CLICK_STATE_ACTIVE);
+        setOnClickState(views, appWidgetId, ConstantsManager.WIDGET_ON_CLICK_STATE_DONE);
+        setOnClickLeftRight(views, appWidgetId, ConstantsManager.WIDGET_ON_CLICK_LEFT);
+        setOnClickLeftRight(views, appWidgetId, ConstantsManager.WIDGET_ON_CLICK_RIGHT);
+        setOnClickList(views, appWidgetId);
         setHeader(views, getDate(appWidgetId), appWidgetId);
-        setOnClickAddNewTask(context, views, appWidgetId);
-        setOnClickUpdate(context, views, appWidgetId);
+        setOnClickAddNewTask(views, appWidgetId);
+        setOnClickUpdate(views, appWidgetId);
         appWidgetManager.updateAppWidget(appWidgetId, views);
         appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId,
                 R.id.widget_list);
     }
 
-    private void setOnClickAddNewTask(Context context, RemoteViews views, int appWidgetId) {
+    /**
+     * Setter for action which starts new task creation process
+     *
+     * @param views       RemoteViews object
+     * @param appWidgetId id value of widget
+     */
+    private void setOnClickAddNewTask(RemoteViews views, int appWidgetId) {
         Calendar calendar = Calendar.getInstance();
         int todayDay = calendar.get(Calendar.DAY_OF_MONTH);
         int todayMonth = calendar.get(Calendar.MONTH) + 1;
@@ -90,7 +113,7 @@ public class TaskListWidget extends AppWidgetProvider {
         int state = preferenceManager.loadInt(ConstantsManager.WIDGET_CHOSEN_STATE_FLAG + "_" + appWidgetId,
                 ConstantsManager.STATE_FLAG_ACTIVE);
 
-        Intent intent = new Intent(context, TaskActivity.class);
+        Intent intent = new Intent(mContext, TaskActivity.class);
         intent.putExtra(ConstantsManager.TASK_ID_FLAG, ConstantsManager.TASK_ID_NONE);
         intent.putExtra(ConstantsManager.TASK_STATE_FLAG, state);
         intent.putExtra(ConstantsManager.TASK_CATEGORY_FLAG, ConstantsManager.CATEGORIES_NONE);
@@ -104,27 +127,39 @@ public class TaskListWidget extends AppWidgetProvider {
         intent.putExtra(ConstantsManager.ALARM_MINUTE_FLAG,
                 DataManager.getInstance().getPreferenceManager()
                         .loadInt(ConstantsManager.TOTAL_ALARM_MINUTE_FLAG, ConstantsManager.TOTAL_ALARM_MINUTE_DEFAULT));
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         Uri data = Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME));
         intent.setData(data);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, appWidgetId, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(mContext, appWidgetId, intent, 0);
         views.setOnClickPendingIntent(R.id.widget_add_task, pendingIntent);
     }
 
-    private void setOnClickList(Context context, RemoteViews views, int appWidgetId) {
-        Intent intent = new Intent(context, TaskListWidget.class);
+    /**
+     * Setter for selection list item
+     *
+     * @param views       RemoteViews object
+     * @param appWidgetId id value of widget
+     */
+    private void setOnClickList(RemoteViews views, int appWidgetId) {
+        Intent intent = new Intent(mContext, TaskListWidget.class);
         intent.setAction(ConstantsManager.WIDGET_ON_CLICK_LIST);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, appWidgetId, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, appWidgetId, intent, 0);
         views.setPendingIntentTemplate(R.id.widget_list, pendingIntent);
     }
 
-    private void setOnClickState(Context context, RemoteViews views, int appWidgetId, String action) {
-        Intent stateIntent = new Intent(context, TaskListWidget.class);
+    /**
+     * Setter for action which shows tasks with another state value
+     *
+     * @param views       RemoteViews object
+     * @param appWidgetId widget id value
+     * @param action      state of action - active tasks was chosen or finished
+     */
+    private void setOnClickState(RemoteViews views, int appWidgetId, String action) {
+        Intent stateIntent = new Intent(mContext, TaskListWidget.class);
         stateIntent.setAction(action);
         stateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, appWidgetId, stateIntent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, appWidgetId, stateIntent, 0);
         if (action.equals(ConstantsManager.WIDGET_ON_CLICK_STATE_ACTIVE)) {
             views.setOnClickPendingIntent(R.id.widget_nav_active_text, pendingIntent);
         } else {
@@ -132,15 +167,22 @@ public class TaskListWidget extends AppWidgetProvider {
         }
     }
 
-    private void setOnClickLeftRight(Context context, RemoteViews views, int appWidgetId, String flag) {
-        Intent stateIntent = new Intent(context, TaskListWidget.class);
+    /**
+     * Setter for action which changes date
+     *
+     * @param views       RemoteViews object
+     * @param appWidgetId widget id value
+     * @param flag        flag for type of action - move left or move right
+     */
+    private void setOnClickLeftRight(RemoteViews views, int appWidgetId, String flag) {
+        Intent stateIntent = new Intent(mContext, TaskListWidget.class);
         if (flag.equals(ConstantsManager.WIDGET_ON_CLICK_LEFT)) {
             stateIntent.setAction(ConstantsManager.WIDGET_ON_CLICK_LEFT);
         } else {
             stateIntent.setAction(ConstantsManager.WIDGET_ON_CLICK_RIGHT);
         }
         stateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, appWidgetId, stateIntent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, appWidgetId, stateIntent, 0);
         if (flag.equals(ConstantsManager.WIDGET_ON_CLICK_LEFT)) {
             views.setOnClickPendingIntent(R.id.widget_header_left, pendingIntent);
         } else {
@@ -148,13 +190,25 @@ public class TaskListWidget extends AppWidgetProvider {
         }
     }
 
-    private void setOnClickUpdate(Context context, RemoteViews views, int appWidgetId) {
-        Intent intent = new Intent(context, TaskListWidget.class);
+    /**
+     * Setter for action which updates special widget
+     *
+     * @param views       RemoteViews object
+     * @param appWidgetId widget id value
+     */
+    private void setOnClickUpdate(RemoteViews views, int appWidgetId) {
+        Intent intent = new Intent(mContext, TaskListWidget.class);
         intent.setAction(ConstantsManager.UPDATE_ALL_WIDGETS_TWO);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, appWidgetId, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, appWidgetId, intent, 0);
         views.setOnClickPendingIntent(R.id.widget_update_widget, pendingIntent);
     }
 
+    /**
+     * Getter for DateStateObject object
+     *
+     * @param appWidgetId widget id value
+     * @return DateStateObject object
+     */
     private DateStateObject getDate(int appWidgetId) {
         Calendar calendar = Calendar.getInstance();
         int todayDay = calendar.get(Calendar.DAY_OF_MONTH);
@@ -200,7 +254,14 @@ public class TaskListWidget extends AppWidgetProvider {
         }
     }
 
-    private void setHeader(RemoteViews rv, DateStateObject data, int appWidgetId) {
+    /**
+     * Setter for widget header style and data
+     *
+     * @param views       RemoteViews object
+     * @param data        DateStateObject object
+     * @param appWidgetId widget id value
+     */
+    private void setHeader(RemoteViews views, DateStateObject data, int appWidgetId) {
         Resources resources = TaskListApplication.getContext().getResources();
 
         int mChosenDay = data.getDay(), mChosenMonth = data.getMonth(), mChosenYear = data.getYear();
@@ -240,27 +301,27 @@ public class TaskListWidget extends AppWidgetProvider {
                 new ForegroundColorSpan(resources.getColor(R.color.colorPrimary)),
                 0, lengthOfMainWord, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableStringBuilder.setSpan(new StyleSpan(Typeface.BOLD), 0, lengthOfMainWord, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        rv.setTextViewText(R.id.widget_header_text, spannableStringBuilder);
-        rv.setImageViewResource(R.id.widget_header_ico, R.drawable.ic_events);
-        rv.setTextViewText(R.id.widget_header_text, spannableStringBuilder);
-        rv.setTextViewText(R.id.widget_nav_active_text, mActiveDoneText[0]);
-        rv.setTextViewText(R.id.widget_nav_done_text, mActiveDoneText[1]);
+        views.setTextViewText(R.id.widget_header_text, spannableStringBuilder);
+        views.setImageViewResource(R.id.widget_header_ico, R.drawable.ic_events);
+        views.setTextViewText(R.id.widget_header_text, spannableStringBuilder);
+        views.setTextViewText(R.id.widget_nav_active_text, mActiveDoneText[0]);
+        views.setTextViewText(R.id.widget_nav_done_text, mActiveDoneText[1]);
         int listDataSize = 0;
         switch (data.getState()) {
             case ConstantsManager.STATE_FLAG_ACTIVE:
-                rv.setTextColor(R.id.widget_nav_active_text, resources.getColor(R.color.colorPrimary));
-                rv.setTextColor(R.id.widget_nav_done_text, resources.getColor(R.color.white));
-                rv.setInt(R.id.widget_nav_active_line, "setBackgroundColor", resources.getColor(R.color.colorPrimary));
-                rv.setInt(R.id.widget_nav_done_line, "setBackgroundColor", resources.getColor(R.color.white));
+                views.setTextColor(R.id.widget_nav_active_text, resources.getColor(R.color.colorPrimary));
+                views.setTextColor(R.id.widget_nav_done_text, resources.getColor(R.color.white));
+                views.setInt(R.id.widget_nav_active_line, "setBackgroundColor", resources.getColor(R.color.colorPrimary));
+                views.setInt(R.id.widget_nav_done_line, "setBackgroundColor", resources.getColor(R.color.white));
                 listDataSize = DataManager.getInstance().getDatabaseManager()
                         .getTasksUsingDate(data.getDay(), data.getMonth(), data.getYear(),
                                 ConstantsManager.STATE_FLAG_ACTIVE).size();
                 break;
             case ConstantsManager.STATE_FLAG_DONE:
-                rv.setTextColor(R.id.widget_nav_active_text, resources.getColor(R.color.white));
-                rv.setTextColor(R.id.widget_nav_done_text, resources.getColor(R.color.colorPrimary));
-                rv.setInt(R.id.widget_nav_active_line, "setBackgroundColor", resources.getColor(R.color.white));
-                rv.setInt(R.id.widget_nav_done_line, "setBackgroundColor", resources.getColor(R.color.colorPrimary));
+                views.setTextColor(R.id.widget_nav_active_text, resources.getColor(R.color.white));
+                views.setTextColor(R.id.widget_nav_done_text, resources.getColor(R.color.colorPrimary));
+                views.setInt(R.id.widget_nav_active_line, "setBackgroundColor", resources.getColor(R.color.white));
+                views.setInt(R.id.widget_nav_done_line, "setBackgroundColor", resources.getColor(R.color.colorPrimary));
                 listDataSize = DataManager.getInstance().getDatabaseManager()
                         .getTasksUsingDate(data.getDay(), data.getMonth(), data.getYear(),
                                 ConstantsManager.STATE_FLAG_DONE).size();
@@ -273,19 +334,25 @@ public class TaskListWidget extends AppWidgetProvider {
                         .loadInt(ConstantsManager.WIDGET_CHOSEN_STATE_FLAG + "_" + appWidgetId,
                                 ConstantsManager.STATE_FLAG_ACTIVE);
                 if (state == ConstantsManager.STATE_FLAG_ACTIVE) {
-                    rv.setTextViewText(R.id.widget_empty_tv, mEmptyListTitle[0]);
+                    views.setTextViewText(R.id.widget_empty_tv, mEmptyListTitle[0]);
                 } else {
-                    rv.setTextViewText(R.id.widget_empty_tv, mEmptyListTitle[1]);
+                    views.setTextViewText(R.id.widget_empty_tv, mEmptyListTitle[1]);
                 }
                 break;
             default:
-                rv.setTextViewText(R.id.widget_empty_tv, "");
+                views.setTextViewText(R.id.widget_empty_tv, "");
                 break;
         }
     }
 
-    private void setList(RemoteViews rv, Context context, int appWidgetId) {
-        Intent intent = new Intent(context, WidgetService.class);
+    /**
+     * Setter for widget list
+     *
+     * @param rv          RemoteViews object which will contain list
+     * @param appWidgetId widget id value
+     */
+    private void setList(RemoteViews rv, int appWidgetId) {
+        Intent intent = new Intent(mContext, WidgetService.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         Uri data = Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME));
         intent.setData(data);
@@ -341,14 +408,25 @@ public class TaskListWidget extends AppWidgetProvider {
         };
     }
 
+    /**
+     * If widgets are deleted, all saved widgets parameters will be cleared
+     *
+     * @param context      Context object
+     * @param appWidgetIds ids of deleted widgets
+     */
     @Override
     public void onDeleted(Context context, int[] appWidgetIds) {
         super.onDeleted(context, appWidgetIds);
-        for (int i = 0; i < appWidgetIds.length; i++) {
-            DataManager.getInstance().getPreferenceManager().removeAllWidgetParameters(appWidgetIds[i]);
+        for (int appWidgetId : appWidgetIds) {
+            DataManager.getInstance().getPreferenceManager().removeAllWidgetParameters(appWidgetId);
         }
     }
 
+    /**
+     * Starts AlarmManager object for updating process
+     *
+     * @param context Context object
+     */
     @Override
     public void onEnabled(Context context) {
         super.onEnabled(context);
@@ -361,6 +439,11 @@ public class TaskListWidget extends AppWidgetProvider {
                 60000, pIntent);
     }
 
+    /**
+     * Cancels AlarmManager object
+     *
+     * @param context Context object
+     */
     @Override
     public void onDisabled(Context context) {
         super.onDisabled(context);
@@ -372,7 +455,12 @@ public class TaskListWidget extends AppWidgetProvider {
         alarmManager.cancel(pIntent);
     }
 
-    private void updateAllWidgets(Context context, Intent intent) {
+    /**
+     * Updates all widgets
+     *
+     * @param context Context object
+     */
+    private void updateAllWidgets(Context context) {
         ComponentName thisAppWidget = new ComponentName(
                 context.getPackageName(), getClass().getName());
         AppWidgetManager appWidgetManager = AppWidgetManager
@@ -384,12 +472,18 @@ public class TaskListWidget extends AppWidgetProvider {
 
     }
 
+    /**
+     * Processes all created widget actions
+     *
+     * @param context Context object
+     * @param intent  Intent object
+     */
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
         if (intent.getAction().equalsIgnoreCase(ConstantsManager.UPDATE_ALL_WIDGETS) ||
                 intent.getAction().equalsIgnoreCase(ConstantsManager.UPDATE_ALL_WIDGETS_TWO)) {
-            updateAllWidgets(context, intent);
+            updateAllWidgets(context);
         }
 
         if (intent.getAction().equalsIgnoreCase(ConstantsManager.WIDGET_ON_CLICK_STATE_ACTIVE)) {
@@ -413,6 +507,12 @@ public class TaskListWidget extends AppWidgetProvider {
         }
     }
 
+    /**
+     * Getter for widget id value
+     *
+     * @param intent Intent object which contains widget if
+     * @return widget id value
+     */
     private int getWidgetId(Intent intent) {
         Bundle extras = intent.getExtras();
         if (extras != null) {
@@ -424,6 +524,12 @@ public class TaskListWidget extends AppWidgetProvider {
         }
     }
 
+    /**
+     * Processes widget list item click
+     *
+     * @param context Context object
+     * @param intent  Intent object
+     */
     private void onClickListItem(Context context, Intent intent) {
         int widgetId = getWidgetId(intent);
         if (widgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
@@ -432,7 +538,7 @@ public class TaskListWidget extends AppWidgetProvider {
                 if (intent.getStringExtra(ConstantsManager.WIDGET_ON_CLICK_LIST_ACTION_TAG)
                         .equals(ConstantsManager.WIDGET_ON_CLICK_LIST_ACTION_CHANGE)) {
                     DataManager.getInstance().getDatabaseManager().changeStateInBD(id);
-                    updateAllWidgets(context, intent);
+                    updateAllWidgets(context);
                     String toastString = mDeleteDoneBackToastTitle[1];
                     int toastImage = R.drawable.ic_done;
                     if (DataManager.getInstance().getPreferenceManager()
@@ -462,13 +568,19 @@ public class TaskListWidget extends AppWidgetProvider {
                     activityIntent.putExtra(ConstantsManager.ALARM_FLAG, task.getAlarmState());
                     activityIntent.putExtra(ConstantsManager.ALARM_HOUR_FLAG, task.getAlarmHour());
                     activityIntent.putExtra(ConstantsManager.ALARM_MINUTE_FLAG, task.getAlarmMinute());
-                    activityIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId);
                     TaskListApplication.getContext().startActivity(activityIntent);
                 }
             }
         }
     }
 
+    /**
+     * Processes action of changing state of list tasks
+     *
+     * @param context Context object
+     * @param intent  Intent object
+     * @param state   new state of tasks in list
+     */
     private void onClickState(Context context, Intent intent, int state) {
         int widgetId = getWidgetId(intent);
         if (widgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
@@ -476,11 +588,18 @@ public class TaskListWidget extends AppWidgetProvider {
             if (preferenceManager.loadInt(ConstantsManager.WIDGET_CHOSEN_STATE_FLAG + "_" + widgetId,
                     ConstantsManager.STATE_FLAG_ACTIVE) != state) {
                 preferenceManager.saveInt(ConstantsManager.WIDGET_CHOSEN_STATE_FLAG + "_" + widgetId, state);
-                updateAllWidgets(context, intent);
+                updateAllWidgets(context);
             }
         }
     }
 
+    /**
+     * Changes date
+     *
+     * @param context   Context object
+     * @param intent    Intent object
+     * @param direction direction of changing
+     */
     private void onClickLeftRight(Context context, Intent intent, int direction) {
         int widgetId = getWidgetId(intent);
         if (widgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
@@ -501,7 +620,7 @@ public class TaskListWidget extends AppWidgetProvider {
             preferenceManager.saveInt(ConstantsManager.WIDGET_CHOSEN_MONTH_FLAG + "_" + widgetId, calendar.get(Calendar.MONTH) + 1);
             preferenceManager.saveInt(ConstantsManager.WIDGET_CHOSEN_YEAR_FLAG + "_" + widgetId, calendar.get(Calendar.YEAR));
         }
-        updateAllWidgets(context, intent);
+        updateAllWidgets(context);
     }
 
     /**

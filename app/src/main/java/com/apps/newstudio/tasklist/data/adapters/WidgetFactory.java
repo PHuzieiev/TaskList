@@ -28,33 +28,64 @@ public class WidgetFactory implements RemoteViewsService.RemoteViewsFactory {
     private String mDayOrMonthFormat = "%02d";
     private String[] yesterdayTodayTomorrowTitles, yesterdayTodayTomorrowMask;
 
+    /**
+     * Constructor for WidgetFactory object
+     *
+     * @param context Context object
+     * @param intent  Intent object which contains widget id value
+     */
     public WidgetFactory(Context context, Intent intent) {
         mContext = context;
         mWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
                 AppWidgetManager.INVALID_APPWIDGET_ID);
     }
 
+    /**
+     * Creates ArrayList object for data
+     */
     @Override
     public void onCreate() {
         mData = new ArrayList<>();
     }
 
 
+    /**
+     * Getter for count of items
+     *
+     * @return count of items
+     */
     @Override
     public int getCount() {
         return mData.size();
     }
 
+    /**
+     * Getter of item position
+     *
+     * @param position position of item
+     * @return position of item
+     */
     @Override
     public long getItemId(int position) {
         return position;
     }
 
+    /**
+     * Getter for RemoteViews object which will be shown while list is loading
+     *
+     * @return RemoteViews object for loading process
+     */
     @Override
     public RemoteViews getLoadingView() {
-        return null;
+        return new RemoteViews(mContext.getPackageName(), R.layout.item_widget_list);
     }
 
+    /**
+     * Updates style of item and sets all data
+     *
+     * @param position position of item
+     * @return updated RemoteViews object
+     */
     @Override
     public RemoteViews getViewAt(int position) {
         if (position < getCount()) {
@@ -179,6 +210,11 @@ public class WidgetFactory implements RemoteViewsService.RemoteViewsFactory {
         }
     }
 
+    /**
+     * Getter for the number of types of Views that will be returned by this factory.
+     *
+     * @return The number of types of Views that will be returned by this factory.
+     */
     @Override
     public int getViewTypeCount() {
         return 1;
@@ -189,7 +225,9 @@ public class WidgetFactory implements RemoteViewsService.RemoteViewsFactory {
         return true;
     }
 
-
+    /**
+     * Updates all necessary data for item
+     */
     @Override
     public void onDataSetChanged() {
         setLang();
@@ -245,6 +283,9 @@ public class WidgetFactory implements RemoteViewsService.RemoteViewsFactory {
         }
     }
 
+    /**
+     * Performs text objects using language parameter
+     */
     private void setLang() {
         new LanguageManager() {
             @Override

@@ -2,4 +2,5 @@
     android:shape="oval">
 
     <solid android:color="@color/colorPrimary"/>
+    <stroke android:width="@dimen/spacing_start_1dp" android:color="@color/white"/>
 </shape>

@@ -5,6 +5,7 @@ import com.apps.newstudio.tasklist.data.adapters.DataForTasksListItem;
 import com.apps.newstudio.tasklist.data.storage.models.DaoSession;
 import com.apps.newstudio.tasklist.data.storage.models.TaskEntity;
 import com.apps.newstudio.tasklist.data.storage.models.TaskEntityDao;
+import com.apps.newstudio.tasklist.utils.AuxiliaryFunctions;
 import com.apps.newstudio.tasklist.utils.ConstantsManager;
 import com.apps.newstudio.tasklist.utils.TaskListApplication;
 
@@ -56,6 +57,7 @@ public class DatabaseManager {
      */
     public void updateOrAddTask(TaskEntity task) {
         mTaskEntityDao.insertOrReplace(task);
+        AuxiliaryFunctions.updateAllWidgets();
     }
 
     /**
@@ -199,6 +201,7 @@ public class DatabaseManager {
      */
     public void removeFromDB(Long id) {
         mTaskEntityDao.deleteByKey(id);
+        AuxiliaryFunctions.updateAllWidgets();
     }
 
     /**
@@ -242,5 +245,6 @@ public class DatabaseManager {
      */
     public void deleteTasksByCategory(int category) {
         mTaskEntityDao.deleteInTx(getCountByCategoryId(category));
+        AuxiliaryFunctions.updateAllWidgets();
     }
 }

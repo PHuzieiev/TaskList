@@ -654,14 +654,6 @@ public class TaskActivity extends BaseActivity {
                 new TaskEntity(databaseManager.getTaskNewId(mId), mTitle, mState, mCategoryId, mDay, mMonth, mYear,
                         mHourBeginning, mMinuteBeginning, mHourEnd, mMinuteEnd,
                         mAlarmState, mAlarmHour, mAlarmMinute));
-
-        if (AppWidgetManager.INVALID_APPWIDGET_ID != getIntent().getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
-                AppWidgetManager.INVALID_APPWIDGET_ID)){
-            Intent updateWidgetIntent=new Intent(this, TaskListWidget.class);
-            updateWidgetIntent.setAction(ConstantsManager.UPDATE_ALL_WIDGETS);
-            sendBroadcast(updateWidgetIntent);
-
-        }
             finish();
     }
 

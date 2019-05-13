@@ -1,7 +1,12 @@
 package com.apps.newstudio.tasklist.utils;
 
+import android.appwidget.AppWidgetManager;
+import android.content.Context;
+import android.content.Intent;
+
 import com.apps.newstudio.tasklist.data.adapters.DataForTasksListItem;
 import com.apps.newstudio.tasklist.data.managers.DataManager;
+import com.apps.newstudio.tasklist.ui.widgets.TaskListWidget;
 
 import java.util.Locale;
 
@@ -172,6 +177,16 @@ public class AuxiliaryFunctions {
         } else {
             return true;
         }
+    }
+
+
+    /**
+     * Updates all existed widgets
+     */
+    public static void updateAllWidgets() {
+        Intent updateWidgetIntent = new Intent(TaskListApplication.getContext(), TaskListWidget.class);
+        updateWidgetIntent.setAction(ConstantsManager.UPDATE_ALL_WIDGETS);
+        TaskListApplication.getContext().sendBroadcast(updateWidgetIntent);
     }
 
 

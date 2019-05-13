@@ -2,6 +2,7 @@ package com.apps.newstudio.tasklist.data.managers;
 
 import android.content.SharedPreferences;
 
+import com.apps.newstudio.tasklist.utils.AuxiliaryFunctions;
 import com.apps.newstudio.tasklist.utils.ConstantsManager;
 import com.apps.newstudio.tasklist.utils.TaskListApplication;
 
@@ -73,6 +74,7 @@ public class PreferenceManager {
      */
     public void setLanguage(String parameter){
         saveString(ConstantsManager.LANGUAGE_KEY,parameter);
+        AuxiliaryFunctions.updateAllWidgets();
     }
 
     /**
