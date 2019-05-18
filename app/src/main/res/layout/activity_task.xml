@@ -28,38 +28,43 @@
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/appbar"
         android:background="@color/white"
         android:orientation="vertical">
 
         <RelativeLayout
             android:id="@+id/task_header"
-            style="@style/FragmentHeaderRelativeLayout">
+            style="@style/FragmentHeaderRelativeLayout"
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:id="@+id/task_header_layout"
                 style="@style/HorizontalWrapLayout"
-                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/spacing_small_16dp"
+                android:layout_marginBottom="@dimen/spacing_small_16dp"
                 tools:ignore="UseCompoundDrawables">
 
                 <TextView
                     android:id="@+id/task_header_text"
-                    android:layout_width="wrap_content"
                     style="@style/WrapTextView_14"
+                    android:gravity="center_horizontal"
                     android:textColor="@color/colorPrimary"
+                    android:layout_marginLeft="@dimen/spacing_small_16dp"
+                    android:layout_marginRight="@dimen/spacing_small_16dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 style="@style/MatchWrapVerticalLayout"
-                android:layout_alignParentBottom="true">
+                android:layout_below="@+id/task_header_layout">
 
                 <LinearLayout style="@style/MatchWrapHorizontalLayout">
 
                     <View
                         style="@style/HorizontalHeaderLine"
-                        android:layout_weight="3" />
+                        android:layout_weight="1" />
 
                     <TextView
                         android:id="@+id/task_nav_active_text"
@@ -77,7 +82,7 @@
 
                     <View
                         style="@style/HorizontalHeaderLine"
-                        android:layout_weight="3"
+                        android:layout_weight="1"
                         android:background="@color/grey_two" />
 
                     <View
@@ -134,14 +139,15 @@
                                     <EditText
                                         android:id="@+id/parameter_title_main_text"
                                         style="@style/WrapTextView_14"
+                                        android:layout_marginStart="@dimen/spacing_smallest_2dp"
+                                        android:layout_marginLeft="@dimen/spacing_smallest_2dp"
                                         android:background="@color/white"
                                         android:enabled="false"
                                         android:focusable="true"
                                         android:inputType="textVisiblePassword"
                                         android:textColor="@color/colorPrimary"
                                         android:textStyle="bold"
-                                        android:layout_marginLeft="@dimen/spacing_smallest_2dp"
-                                        android:layout_marginStart="@dimen/spacing_smallest_2dp" />
+                                        tools:ignore="Autofill,LabelFor,TooDeepLayout" />
 
                                     <View
                                         android:id="@+id/parameter_title_line"
@@ -153,7 +159,7 @@
 
                             <TextView
                                 android:id="@+id/parameter_title_about_text"
-                                style="@style/TextViewForTaskParameter_12"/>
+                                style="@style/TextViewForTaskParameter_12" />
 
 
                         </LinearLayout>
@@ -189,11 +195,11 @@
                             <TextView
                                 android:id="@+id/parameter_category_main_text"
                                 style="@style/WrapTextView_14"
+                                android:layout_marginStart="@dimen/spacing_smallest_2dp"
+                                android:layout_marginLeft="@dimen/spacing_smallest_2dp"
                                 android:layout_marginTop="@dimen/spacing_start_1dp"
                                 android:layout_marginBottom="1dp"
                                 android:textColor="@color/colorPrimary"
-                                android:layout_marginLeft="@dimen/spacing_smallest_2dp"
-                                android:layout_marginStart="@dimen/spacing_smallest_2dp"
                                 android:textStyle="bold" />
 
 
@@ -228,11 +234,11 @@
                             <TextView
                                 android:id="@+id/parameter_date_main_text"
                                 style="@style/WrapTextView_14"
+                                android:layout_marginStart="@dimen/spacing_smallest_2dp"
+                                android:layout_marginLeft="@dimen/spacing_smallest_2dp"
                                 android:layout_marginTop="@dimen/spacing_start_1dp"
                                 android:layout_marginBottom="1dp"
                                 android:textColor="@color/colorPrimary"
-                                android:layout_marginLeft="@dimen/spacing_smallest_2dp"
-                                android:layout_marginStart="@dimen/spacing_smallest_2dp"
                                 android:textStyle="bold" />
 
 
@@ -274,11 +280,11 @@
                                 <TextView
                                     android:id="@+id/parameter_beginning_main_text"
                                     style="@style/WrapTextView_14"
+                                    android:layout_marginStart="@dimen/spacing_smallest_2dp"
+                                    android:layout_marginLeft="@dimen/spacing_smallest_2dp"
                                     android:layout_marginTop="@dimen/spacing_start_1dp"
                                     android:layout_marginBottom="1dp"
                                     android:textColor="@color/grey"
-                                    android:layout_marginLeft="@dimen/spacing_smallest_2dp"
-                                    android:layout_marginStart="@dimen/spacing_smallest_2dp"
                                     android:textStyle="bold" />
 
                             </LinearLayout>
@@ -327,11 +333,11 @@
                                 <TextView
                                     android:id="@+id/parameter_end_main_text"
                                     style="@style/WrapTextView_14"
+                                    android:layout_marginStart="@dimen/spacing_smallest_2dp"
+                                    android:layout_marginLeft="@dimen/spacing_smallest_2dp"
                                     android:layout_marginTop="@dimen/spacing_start_1dp"
                                     android:layout_marginBottom="1dp"
                                     android:textColor="@color/grey"
-                                    android:layout_marginLeft="@dimen/spacing_smallest_2dp"
-                                    android:layout_marginStart="@dimen/spacing_smallest_2dp"
                                     android:textStyle="bold" />
 
                             </LinearLayout>
@@ -355,8 +361,8 @@
                 <LinearLayout
                     android:id="@+id/parameter_alarm_main_layout"
                     style="@style/MatchWrapHorizontalLayout"
-                    android:background="@color/colorPrimary"
-                    android:layout_marginBottom="@dimen/spacing_big_88dp">
+                    android:layout_marginBottom="@dimen/spacing_big_88dp"
+                    android:background="@color/colorPrimary">
 
                     <LinearLayout style="@style/HorizontalLayoutForTaskParameter">
 
@@ -380,18 +386,18 @@
                                 <TextView
                                     android:id="@+id/parameter_alarm_main_text"
                                     style="@style/WrapTextView_14"
+                                    android:layout_marginStart="@dimen/spacing_smallest_2dp"
+                                    android:layout_marginLeft="@dimen/spacing_smallest_2dp"
                                     android:layout_marginTop="@dimen/spacing_start_1dp"
                                     android:layout_marginBottom="1dp"
                                     android:textColor="@color/colorPrimary"
-                                    android:layout_marginLeft="@dimen/spacing_smallest_2dp"
-                                    android:layout_marginStart="@dimen/spacing_smallest_2dp"
                                     android:textStyle="bold" />
 
                             </LinearLayout>
 
                             <TextView
                                 android:id="@+id/parameter_alarm_about_text"
-                                style="@style/TextViewForTaskParameter_12"/>
+                                style="@style/TextViewForTaskParameter_12" />
 
 
                         </LinearLayout>
@@ -404,7 +410,6 @@
 
                     </LinearLayout>
                 </LinearLayout>
-
 
 
             </LinearLayout>

@@ -10,15 +10,18 @@
 
     <RelativeLayout
         android:id="@+id/fragment_header"
-        style="@style/FragmentHeaderRelativeLayout">
+        style="@style/FragmentHeaderRelativeLayout"
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/fragment_header_layout"
             style="@style/HorizontalWrapLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            tools:ignore="UseCompoundDrawables">
+            tools:ignore="UseCompoundDrawables"
+            android:layout_marginTop="@dimen/spacing_small_16dp"
+            android:layout_marginBottom="@dimen/spacing_small_16dp">
 
             <ImageView
                 android:id="@+id/fragment_header_ico"
@@ -37,13 +40,13 @@
 
         <LinearLayout
             style="@style/MatchWrapVerticalLayout"
-            android:layout_alignParentBottom="true">
+            android:layout_below="@+id/fragment_header_layout">
 
             <LinearLayout style="@style/MatchWrapHorizontalLayout">
 
                 <View
                     style="@style/HorizontalHeaderLine"
-                    android:layout_weight="3" />
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/fragment_nav_active_text"
@@ -62,7 +65,7 @@
                 <View
                     android:id="@+id/fragment_nav_other_line"
                     style="@style/HorizontalHeaderLine"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:background="@color/grey_two" />
 
                 <View
@@ -89,7 +92,8 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/fragment_header"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="DisableBaselineAlignment">
 
         <HorizontalScrollView
             android:layout_width="0dp"

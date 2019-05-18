@@ -10,13 +10,16 @@
 
     <RelativeLayout
         android:id="@+id/fragment_header"
-        style="@style/FragmentHeaderRelativeLayout">
+        style="@style/FragmentHeaderRelativeLayout"
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/fragment_header_layout"
             style="@style/HorizontalWrapLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small_16dp"
+            android:layout_marginBottom="@dimen/spacing_small_16dp"
             android:gravity="center"
             tools:ignore="UseCompoundDrawables">
 
@@ -37,13 +40,13 @@
 
         <LinearLayout
             style="@style/MatchWrapVerticalLayout"
-            android:layout_alignParentBottom="true">
+            android:layout_below="@+id/fragment_header_layout">
 
             <LinearLayout style="@style/MatchWrapHorizontalLayout">
 
                 <View
                     style="@style/HorizontalHeaderLine"
-                    android:layout_weight="3" />
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/fragment_nav_active_text"
@@ -62,7 +65,7 @@
                 <View
                     android:id="@+id/fragment_nav_other_line"
                     style="@style/HorizontalHeaderLine"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:background="@color/grey_two" />
 
                 <View
@@ -83,143 +86,144 @@
 
     </RelativeLayout>
 
-    <ScrollView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/fragment_header"
-        android:scrollbars="none">
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        tools:ignore="DisableBaselineAlignment">
 
-        <LinearLayout style="@style/MatchWrapVerticalLayout">
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="none">
-
-                <LinearLayout style="@style/MatchWrapVerticalLayout">
-
-                    <com.apps.newstudio.tasklist.ui.views.CustomLinearDiagram
-                        android:id="@+id/fragment_linear_diagram"
-                        android:layout_width="1920dp"
-                        android:layout_height="@dimen/big_size_270dp"
-                        android:background="@color/white"
-                        android:layout_margin="@dimen/spacing_small_16dp"/>
-                </LinearLayout>
-
-            </HorizontalScrollView>
-
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="none">
 
             <LinearLayout
-                style="@style/MatchWrapHorizontalLayout"
-                android:gravity="center_vertical"
-                tools:ignore="DisableBaselineAlignment">
+                style="@style/MatchWrapVerticalLayout"
+                android:layout_height="match_parent">
 
-                <LinearLayout
-                    style="@style/MatchWrapVerticalLayout"
-                    android:layout_margin="@dimen/spacing_smaller_8dp"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-                    <com.apps.newstudio.tasklist.ui.views.CustomCircleDiagram
-                        android:id="@+id/fragment_circle_diagram"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        app:dia_duration="800"
-                        app:dia_first_color="@color/colorPrimary"
-                        app:dia_second_color="@color/colorPrimaryLight"
-                        app:dia_stroke_width="@dimen/spacing_small_16dp"
-                        app:dia_zero_color="@color/grey_three" />
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/MatchWrapVerticalLayout"
+                <com.apps.newstudio.tasklist.ui.views.CustomLinearDiagram
+                    android:id="@+id/fragment_linear_diagram"
+                    android:layout_width="1920dp"
+                    android:layout_height="match_parent"
                     android:layout_margin="@dimen/spacing_small_16dp"
-                    android:layout_weight="1"
-                    android:gravity="center">
+                    android:background="@color/white" />
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <LinearLayout
+            style="@style/MatchWrapHorizontalLayout"
+            android:gravity="center_vertical"
+            tools:ignore="DisableBaselineAlignment">
+
+            <LinearLayout
+                style="@style/MatchWrapVerticalLayout"
+                android:layout_margin="@dimen/spacing_smaller_8dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <com.apps.newstudio.tasklist.ui.views.CustomCircleDiagram
+                    android:id="@+id/fragment_circle_diagram"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:dia_duration="800"
+                    app:dia_first_color="@color/colorPrimary"
+                    app:dia_second_color="@color/colorPrimaryLight"
+                    app:dia_stroke_width="@dimen/spacing_small_16dp"
+                    app:dia_zero_color="@color/grey_three" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/MatchWrapVerticalLayout"
+                android:layout_margin="@dimen/spacing_small_16dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <LinearLayout
+                    style="@style/MatchWrapVerticalLayout"
+                    android:layout_width="wrap_content">
 
                     <LinearLayout
-                        style="@style/MatchWrapVerticalLayout"
-                        android:layout_width="wrap_content">
+                        style="@style/MatchWrapHorizontalLayout"
+                        android:layout_width="wrap_content"
+                        android:gravity="center_vertical"
+                        tools:ignore="UseCompoundDrawables">
 
-                        <LinearLayout
-                            style="@style/MatchWrapHorizontalLayout"
+                        <ImageView
+                            android:id="@+id/circle_diagram_total_count_image"
+                            style="@style/ImageView_16"
+                            android:padding="@dimen/spacing_smallest_2dp"
+                            android:src="@drawable/ic_circle_zero"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/circle_diagram_total_count_text"
+                            style="@style/WrapTextView_14"
                             android:layout_width="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_smaller_8dp"
+                            android:layout_marginLeft="@dimen/spacing_smaller_8dp"
                             android:gravity="center_vertical"
-                            tools:ignore="UseCompoundDrawables">
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_size_smallest_12sp" />
+                    </LinearLayout>
 
-                            <ImageView
-                                android:id="@+id/circle_diagram_total_count_image"
-                                style="@style/ImageView_16"
-                                android:src="@drawable/ic_circle_zero"
-                                tools:ignore="ContentDescription"
-                                android:padding="@dimen/spacing_smallest_2dp" />
+                    <LinearLayout
+                        style="@style/MatchWrapHorizontalLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small_16dp"
+                        android:layout_marginBottom="@dimen/spacing_small_16dp"
+                        android:gravity="center_vertical"
+                        tools:ignore="UseCompoundDrawables">
 
-                            <TextView
-                                android:id="@+id/circle_diagram_total_count_text"
-                                style="@style/WrapTextView_14"
-                                android:layout_width="wrap_content"
-                                android:layout_marginStart="@dimen/spacing_smaller_8dp"
-                                android:layout_marginLeft="@dimen/spacing_smaller_8dp"
-                                android:textSize="@dimen/text_size_smallest_12sp"
-                                android:gravity="center_vertical"
-                                android:textColor="@color/grey" />
-                        </LinearLayout>
+                        <ImageView
+                            android:id="@+id/circle_diagram_active_count_image"
+                            style="@style/ImageView_16"
+                            android:padding="@dimen/spacing_smallest_2dp"
+                            android:src="@drawable/ic_circle_one"
+                            tools:ignore="ContentDescription" />
 
-                        <LinearLayout
-                            style="@style/MatchWrapHorizontalLayout"
+                        <TextView
+                            android:id="@+id/circle_diagram_active_count_text"
+                            style="@style/WrapTextView_14"
                             android:layout_width="wrap_content"
-                            android:layout_marginTop="@dimen/spacing_small_16dp"
-                            android:layout_marginBottom="@dimen/spacing_small_16dp"
+                            android:layout_marginStart="@dimen/spacing_smaller_8dp"
+                            android:layout_marginLeft="@dimen/spacing_smaller_8dp"
                             android:gravity="center_vertical"
-                            tools:ignore="UseCompoundDrawables">
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_size_smallest_12sp" />
+                    </LinearLayout>
 
-                            <ImageView
-                                android:id="@+id/circle_diagram_active_count_image"
-                                style="@style/ImageView_16"
-                                android:src="@drawable/ic_circle_one"
-                                tools:ignore="ContentDescription"
-                                android:padding="@dimen/spacing_smallest_2dp"/>
+                    <LinearLayout
+                        style="@style/MatchWrapHorizontalLayout"
+                        android:layout_width="wrap_content"
+                        android:gravity="center_vertical"
+                        tools:ignore="UseCompoundDrawables">
 
-                            <TextView
-                                android:id="@+id/circle_diagram_active_count_text"
-                                style="@style/WrapTextView_14"
-                                android:layout_width="wrap_content"
-                                android:layout_marginStart="@dimen/spacing_smaller_8dp"
-                                android:layout_marginLeft="@dimen/spacing_smaller_8dp"
-                                android:textSize="@dimen/text_size_smallest_12sp"
-                                android:gravity="center_vertical"
-                                android:textColor="@color/grey" />
-                        </LinearLayout>
+                        <ImageView
+                            android:id="@+id/circle_diagram_done_count_image"
+                            style="@style/ImageView_16"
+                            android:padding="@dimen/spacing_smallest_2dp"
+                            android:src="@drawable/ic_circle_two"
+                            tools:ignore="ContentDescription" />
 
-                        <LinearLayout
-                            style="@style/MatchWrapHorizontalLayout"
+                        <TextView
+                            android:id="@+id/circle_diagram_done_count_text"
+                            style="@style/WrapTextView_14"
                             android:layout_width="wrap_content"
-                            android:gravity="center_vertical"
-                            tools:ignore="UseCompoundDrawables">
-
-                            <ImageView
-                                android:id="@+id/circle_diagram_done_count_image"
-                                style="@style/ImageView_16"
-                                android:src="@drawable/ic_circle_two"
-                                tools:ignore="ContentDescription"
-                                android:padding="@dimen/spacing_smallest_2dp"/>
-
-                            <TextView
-                                android:id="@+id/circle_diagram_done_count_text"
-                                style="@style/WrapTextView_14"
-                                android:layout_width="wrap_content"
-                                android:textSize="@dimen/text_size_smallest_12sp"
-                                android:layout_marginStart="@dimen/spacing_smaller_8dp"
-                                android:layout_marginLeft="@dimen/spacing_smaller_8dp"
-                                android:textColor="@color/grey" />
-                        </LinearLayout>
+                            android:layout_marginStart="@dimen/spacing_smaller_8dp"
+                            android:layout_marginLeft="@dimen/spacing_smaller_8dp"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_size_smallest_12sp" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
 
-    </ScrollView>
+    </LinearLayout>
 
 </RelativeLayout>

@@ -128,7 +128,7 @@
 
 
     <style name="TextViewForTaskParameter_12" parent="MatchWrapTextView_12">
-        <item name="android:layout_height">@dimen/spacing_small_16dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">@dimen/spacing_normal_26dp</item>
         <item name="android:layout_marginStart">@dimen/spacing_normal_26dp</item>
         <item name="android:layout_marginBottom">@dimen/spacing_smaller_8dp</item>

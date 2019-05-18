@@ -7,6 +7,7 @@
 
     <RelativeLayout
         android:id="@+id/widget_header"
+        android:layout_height="wrap_content"
         style="@style/FragmentHeaderRelativeLayout">
 
 
@@ -14,8 +15,8 @@
             android:id="@+id/widget_header_layout"
             style="@style/HorizontalWrapLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+            android:layout_marginBottom="@dimen/spacing_small_16dp"
+            android:layout_marginTop="@dimen/spacing_small_16dp">
 
             <ImageView
                 android:id="@+id/widget_header_left"
@@ -64,13 +65,9 @@
 
         <LinearLayout
             style="@style/MatchWrapVerticalLayout"
-            android:layout_alignParentBottom="true">
+            android:layout_below="@+id/widget_header_layout">
 
             <LinearLayout style="@style/MatchWrapHorizontalLayout">
-
-                <TextView
-                    style="@style/HorizontalHeaderLine"
-                    android:layout_weight="2" />
 
                 <TextView
                     android:id="@+id/widget_nav_active_text"
@@ -97,12 +94,6 @@
                 android:paddingLeft="1dp"
                 android:paddingEnd="@dimen/spacing_start_1dp"
                 android:paddingRight="@dimen/spacing_start_1dp">
-
-                <TextView
-                    android:id="@+id/widget_nav_other_line"
-                    style="@style/HorizontalHeaderLine"
-                    android:layout_weight="2"
-                    android:background="@color/white" />
 
                 <TextView
                     android:id="@+id/widget_nav_active_line"
@@ -133,9 +124,10 @@
 
     <TextView
         android:id="@+id/widget_empty_tv"
-        android:layout_width="160dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/widget_header"
+        android:layout_above="@+id/widget_buttons"
         android:layout_centerInParent="true"
         android:layout_margin="@dimen/spacing_small_16dp"
         android:fontFamily="sans-serif"
@@ -146,10 +138,11 @@
         android:shadowRadius="2"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_size_small_14sp" />
+        android:textSize="@dimen/text_size_small_14sp"/>
 
 
     <LinearLayout
+        android:id="@+id/widget_buttons"
         style="@style/MatchWrapHorizontalLayout"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"

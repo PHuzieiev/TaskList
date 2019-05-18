@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_main_layout"
     android:layout_width="match_parent"
@@ -11,15 +10,18 @@
 
     <RelativeLayout
         android:id="@+id/fragment_header"
-        style="@style/FragmentHeaderRelativeLayout">
+        style="@style/FragmentHeaderRelativeLayout"
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/fragment_header_layout"
             style="@style/HorizontalWrapLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            tools:ignore="UseCompoundDrawables">
+            tools:ignore="UseCompoundDrawables"
+            android:layout_marginBottom="@dimen/spacing_small_16dp"
+            android:layout_marginTop="@dimen/spacing_small_16dp">
 
             <ImageView
                 android:id="@+id/fragment_header_ico"
@@ -33,18 +35,18 @@
                 android:id="@+id/fragment_header_text"
                 style="@style/WrapTextView_14"
                 android:layout_width="wrap_content"
-                android:gravity="center" />
+                android:gravity="center"/>
         </LinearLayout>
 
         <LinearLayout
             style="@style/MatchWrapVerticalLayout"
-            android:layout_alignParentBottom="true">
+            android:layout_below="@+id/fragment_header_layout">
 
             <LinearLayout style="@style/MatchWrapHorizontalLayout">
 
                 <View
                     style="@style/HorizontalHeaderLine"
-                    android:layout_weight="3" />
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/fragment_nav_active_text"
@@ -63,7 +65,7 @@
                 <View
                     android:id="@+id/fragment_nav_other_line"
                     style="@style/HorizontalHeaderLine"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:background="@color/grey_two" />
 
                 <View
@@ -93,27 +95,34 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/fragment_fab_layout"
         android:layout_below="@+id/fragment_header"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="UseCompoundDrawables">
 
         <ImageView
             android:id="@+id/fragment_empty_iv"
             android:layout_width="180dp"
             android:layout_height="180dp"
-            android:layout_marginTop="@dimen/spacing_big_88dp"
             android:src="@drawable/ico_empty_main"
             tools:ignore="ContentDescription" />
 
-        <TextView
-            android:id="@+id/fragment_empty_tv"
-            android:layout_width="@dimen/big_size_240dp"
+        <ScrollView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_small_14sp" />
+            android:scrollbars="none">
+
+            <TextView
+                android:id="@+id/fragment_empty_tv"
+                android:layout_width="@dimen/big_size_240dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_small_14sp" />
+        </ScrollView>
     </LinearLayout>
 
     <LinearLayout
