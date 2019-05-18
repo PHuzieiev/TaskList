@@ -28,6 +28,7 @@ import com.apps.newstudio.tasklist.ui.dialogs.DialogTwoButtons;
 import com.apps.newstudio.tasklist.ui.widgets.TaskListWidget;
 import com.apps.newstudio.tasklist.utils.AuxiliaryFunctions;
 import com.apps.newstudio.tasklist.utils.ConstantsManager;
+import com.apps.newstudio.tasklist.utils.OnClickAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -131,6 +132,8 @@ public class TaskActivity extends BaseActivity {
         parametersActionImage[1].setOnClickListener(switchClick);
         parametersActionImage[2].setOnClickListener(switchClick);
         parametersActionImage[3].setOnClickListener(switchClick);
+        stateActiveText.setOnClickListener(mOnClickListenerActiveDone);
+        stateDoneText.setOnClickListener(mOnClickListenerActiveDone);
     }
 
     /**
@@ -217,18 +220,18 @@ public class TaskActivity extends BaseActivity {
 
     /**
      * Changes value of task states
-     *
-     * @param v object which was clicked and uses the following function
      */
-    @OnClick({R.id.task_nav_done_text, R.id.task_nav_active_text})
-    public void onClick(View v) {
-        if (v.getId() == R.id.task_nav_done_text) {
-            mState = ConstantsManager.STATE_FLAG_DONE;
-        } else if (v.getId() == R.id.task_nav_active_text) {
-            mState = ConstantsManager.STATE_FLAG_ACTIVE;
+    private View.OnClickListener mOnClickListenerActiveDone = new OnClickAdapter(1, 1) {
+        @Override
+        public void myFunc(View view) {
+            if (view.getId() == R.id.task_nav_done_text) {
+                mState = ConstantsManager.STATE_FLAG_DONE;
+            } else if (view.getId() == R.id.task_nav_active_text) {
+                mState = ConstantsManager.STATE_FLAG_ACTIVE;
+            }
+            setState();
         }
-        setState();
-    }
+    };
 
     /**
      * Change components of layout using state of task
@@ -654,7 +657,7 @@ public class TaskActivity extends BaseActivity {
                 new TaskEntity(databaseManager.getTaskNewId(mId), mTitle, mState, mCategoryId, mDay, mMonth, mYear,
                         mHourBeginning, mMinuteBeginning, mHourEnd, mMinuteEnd,
                         mAlarmState, mAlarmHour, mAlarmMinute));
-            finish();
+        finish();
     }
 
     /**

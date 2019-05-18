@@ -24,6 +24,7 @@ import com.apps.newstudio.tasklist.ui.dialogs.DialogList;
 import com.apps.newstudio.tasklist.ui.views.CustomCircleDiagram;
 import com.apps.newstudio.tasklist.ui.views.CustomLinearDiagram;
 import com.apps.newstudio.tasklist.utils.ConstantsManager;
+import com.apps.newstudio.tasklist.utils.OnClickAdapter;
 import com.apps.newstudio.tasklist.utils.TaskListApplication;
 
 import java.util.ArrayList;
@@ -163,12 +164,12 @@ public class StatisticFragment extends Fragment {
     /**
      * Action which changes chosen state of tasks
      */
-    private View.OnClickListener mOnClickListenerActiveDone = new View.OnClickListener() {
+    private View.OnClickListener mOnClickListenerActiveDone =new OnClickAdapter(1,1) {
         @Override
-        public void onClick(View v) {
-            if (mStateFlag == ConstantsManager.STATE_FLAG_ACTIVE && v.getId() == R.id.fragment_nav_done_text) {
+        public void myFunc(View view) {
+            if (mStateFlag == ConstantsManager.STATE_FLAG_ACTIVE && view.getId() == R.id.fragment_nav_done_text) {
                 mStateFlag = ConstantsManager.STATE_FLAG_DONE;
-            } else if (mStateFlag == ConstantsManager.STATE_FLAG_DONE && v.getId() == R.id.fragment_nav_active_text) {
+            } else if (mStateFlag == ConstantsManager.STATE_FLAG_DONE && view.getId() == R.id.fragment_nav_active_text) {
                 mStateFlag = ConstantsManager.STATE_FLAG_ACTIVE;
             }
             updateState(mStateFlag);

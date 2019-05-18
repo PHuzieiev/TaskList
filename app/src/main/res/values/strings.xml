@@ -212,7 +212,7 @@
 
     <string-array name="task_list_header_navigation_titles_eng">
         <item>Active</item>
-        <item>Done</item>
+        <item>Finished</item>
     </string-array>
 
     <string-array name="task_list_header_navigation_titles_rus">
@@ -555,11 +555,12 @@
 
     <string-array name="about_app_text_eng">
         <item>If you cannot memorize all your daily tasks and fear to forget something important, this application is special for you. You do not need to keep everything in your head. You can use this app to create your own task list. You are able to view lists using calendar order or categories. Add new tasks, change their status on finished by one swipe.  In addition, notification system will never forget to remind you of active tasks.</item>
-        <item>- simple user interface,\n
-            - applying categories or calendar order,\n
-            - notification system,\n
-            - convenient widget,\n
-            - statistic of active and finished  tasks.</item>
+        <item>
+"- simple user interface,
+- applying categories or calendar order,
+- notification system,
+- convenient widget,
+- statistic of active and finished  tasks"</item>
     </string-array>
 
     <string-array name="about_app_titles_rus">
@@ -569,11 +570,12 @@
 
     <string-array name="about_app_text_rus">
         <item>Приложение Task List предназначено для записи заданий и ведения соответствующих списков на каждый день. Нет необходимости держать все в голове, ведь программа поможет вам организовать все задания в удобной форме. Для большей наглядности каждое задание относиться к определенной категории. Просматривайте задачи по категориям или в календарном порядке, отмечайте выполненные задачи свайпом, создавайте новые. Благодаря системе уведомлений вы не забудете выполнить задание вовремя.</item>
-        <item>- простой пользовательский интерфейс,\n
-            - ведение списков по дням и по категориям,\n
-            - система уведомлений,\n
-            - удобный виджет,\n
-            - статистика выполненных и активных заданий.</item>
+        <item>
+"- простой пользовательский интерфейс,
+- ведение списков по дням и по категориям,
+- система уведомлений,
+- удобный виджет,
+- статистика выполненных и активных заданий"</item>
     </string-array>
 
     <string-array name="about_app_titles_ukr">
@@ -583,11 +585,12 @@
 
     <string-array name="about_app_text_ukr">
         <item>Додаток Task List призначений для запису завдань і ведення відповідних списків на кожен день. Немає необхідності тримати все в голові, адже програма допоможе вам організувати всі завдання в зручній формі. Для більшої наочності кожне завдання відноситься до певної категорії. Переглядайте завдання за категоріями або в календарному порядку, помічайте виконані завдання свайпом, створюйте нові. Завдяки системі сповіщень ви не забудете виконати завдання вчасно.</item>
-        <item>- простий користувальницький інтерфейс,\n
-            - ведення списків по дням і за категоріями,\n
-            - система сповіщень,\n
-            - зручний віджет,\n
-            - статистика виконаних і активних завдань.</item>
+        <item>
+"- простий користувальницький інтерфейс,
+- ведення списків по дням і за категоріями,
+- система сповіщень,
+- зручний віджет,
+- статистика виконаних і активних завдань"</item>
     </string-array>
 
     <string-array name="info_title_eng">
