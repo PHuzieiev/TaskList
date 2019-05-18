@@ -302,7 +302,6 @@ public class TaskListWidget extends AppWidgetProvider {
                 0, lengthOfMainWord, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableStringBuilder.setSpan(new StyleSpan(Typeface.BOLD), 0, lengthOfMainWord, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         views.setTextViewText(R.id.widget_header_text, spannableStringBuilder);
-        views.setImageViewResource(R.id.widget_header_ico, R.drawable.ic_events);
         views.setTextViewText(R.id.widget_header_text, spannableStringBuilder);
         views.setTextViewText(R.id.widget_nav_active_text, mActiveDoneText[0]);
         views.setTextViewText(R.id.widget_nav_done_text, mActiveDoneText[1]);

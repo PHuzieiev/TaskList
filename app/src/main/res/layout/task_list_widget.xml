@@ -7,15 +7,14 @@
 
     <RelativeLayout
         android:id="@+id/widget_header"
-        android:layout_height="wrap_content"
-        style="@style/FragmentHeaderRelativeLayout">
+        style="@style/FragmentHeaderRelativeLayout"
+        android:layout_height="wrap_content">
 
 
         <LinearLayout
             android:id="@+id/widget_header_layout"
             style="@style/HorizontalWrapLayout"
             android:layout_width="match_parent"
-            android:layout_marginBottom="@dimen/spacing_small_16dp"
             android:layout_marginTop="@dimen/spacing_small_16dp">
 
             <ImageView
@@ -26,32 +25,18 @@
                 android:src="@drawable/ic_left"
                 tools:ignore="ContentDescription" />
 
-            <LinearLayout
-                style="@style/MatchWrapHorizontalLayout"
+            <TextView
+                android:id="@+id/widget_header_text"
+                style="@style/WrapTextView_14"
+                android:layout_marginLeft="@dimen/spacing_smaller_6dp"
+                android:layout_marginRight="@dimen/spacing_smaller_6dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                tools:ignore="InefficientWeight,UseCompoundDrawables">
-
-                <ImageView
-                    android:id="@+id/widget_header_ico"
-                    style="@style/ImageView_24"
-                    android:layout_marginEnd="@dimen/spacing_smaller_6dp"
-                    android:layout_marginRight="@dimen/spacing_smaller_6dp"
-                    android:src="@drawable/ic_events_white"
-                    tools:ignore="ContentDescription" />
-
-                <TextView
-                    android:id="@+id/widget_header_text"
-                    style="@style/WrapTextView_14"
-                    android:layout_width="wrap_content"
-                    android:gravity="center"
-                    android:shadowColor="@color/black"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="2"
-                    android:textColor="@color/white" />
-
-            </LinearLayout>
+                android:shadowColor="@color/black"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:textColor="@color/white" />
 
             <ImageView
                 android:id="@+id/widget_header_right"
@@ -126,8 +111,8 @@
         android:id="@+id/widget_empty_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/widget_header"
         android:layout_above="@+id/widget_buttons"
+        android:layout_below="@+id/widget_header"
         android:layout_centerInParent="true"
         android:layout_margin="@dimen/spacing_small_16dp"
         android:fontFamily="sans-serif"
@@ -138,7 +123,7 @@
         android:shadowRadius="2"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_size_small_14sp"/>
+        android:textSize="@dimen/text_size_small_14sp" />
 
 
     <LinearLayout
