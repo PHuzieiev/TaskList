@@ -36,7 +36,8 @@
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="2"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:layout_width="0dp" />
 
             <ImageView
                 android:id="@+id/widget_header_right"
