@@ -16,6 +16,7 @@ import com.apps.newstudio.tasklist.R;
 import com.apps.newstudio.tasklist.data.adapters.AdapterOfDialogList;
 import com.apps.newstudio.tasklist.data.adapters.DataForDialogListItem;
 import com.apps.newstudio.tasklist.utils.ConstantsManager;
+import com.apps.newstudio.tasklist.utils.OnClickAdapter;
 import com.apps.newstudio.tasklist.utils.TaskListApplication;
 
 import java.util.List;
@@ -88,10 +89,10 @@ public class DialogList {
     /**
      * Sets previous or next year if type of DialogList object is ConstantsManager.DIALOG_LIST_TYPE_ONE
      */
-    private View.OnClickListener mOnClickListenerLeftRight = new View.OnClickListener() {
+    private OnClickAdapter mOnClickListenerLeftRight = new OnClickAdapter(1,1) {
         @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
+        public void myFunc(View view) {
+            switch (view.getId()) {
                 case R.id.dialog_list_left:
                     mTitle = "" + (Integer.parseInt(mTitle) - 1);
                     break;
