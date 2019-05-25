@@ -22,13 +22,12 @@ import java.util.List;
 public class CustomLinearDiagram extends View {
 
     private List<DataForLinearDiagram> mData = null;
-    private int mHorizontalLineY, mHorizontalLineEndX;
+    private int mHorizontalLineY;
     private int mMaxDiagramWidth, mMaxDiagramHeight;
     private int mR, mState = ConstantsManager.STATE_FLAG_ACTIVE, mColor = R.color.colorPrimary;
     private Resources mResources;
     private int mTextSize, mK;
     private String mDaysTitle;
-
 
 
     /**
@@ -81,7 +80,7 @@ public class CustomLinearDiagram extends View {
             paint.setStrokeWidth(mResources.getDimensionPixelOffset(R.dimen.spacing_start_1dp));
             paint.setColor(mResources.getColor(R.color.grey_two));
             paint.setAntiAlias(true);
-            canvas.drawLine(0, mHorizontalLineY, mHorizontalLineEndX, mHorizontalLineY, paint);
+            canvas.drawLine(0, mHorizontalLineY, getWidth(), mHorizontalLineY, paint);
 
             drawCustomText(canvas, mDaysTitle, 0,
                     mHorizontalLineY + mResources.getDimensionPixelSize(R.dimen.spacing_small_12dp),
@@ -167,7 +166,7 @@ public class CustomLinearDiagram extends View {
      * @param x      x coordinate
      * @param y      y coordinate
      * @param color  color of text
-     * @param type  type of text
+     * @param type   type of text
      */
     private void drawCustomText(Canvas canvas, String number, float x, float y, int color, int type) {
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -203,15 +202,6 @@ public class CustomLinearDiagram extends View {
             mColor = R.color.colorPrimaryLightTwo;
         }
 
-        ValueAnimator animator = ValueAnimator.ofInt(0, getWidth());
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            public void onAnimationUpdate(ValueAnimator animation) {
-                mHorizontalLineEndX = (int) animation.getAnimatedValue();
-                invalidate();
-            }
-        });
-        animator.setDuration(4000);
-
         ValueAnimator animator1 = ValueAnimator.ofInt(0, mResources.getDimensionPixelOffset(R.dimen.spacing_smallest_3dp));
         animator1.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -240,7 +230,7 @@ public class CustomLinearDiagram extends View {
         animator3.setDuration(300);
 
         AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(animator, animator1, animator2, animator3);
+        animatorSet.playTogether(animator1, animator2, animator3);
         animatorSet.setInterpolator(new DecelerateInterpolator());
         animatorSet.start();
     }
