@@ -388,7 +388,7 @@ public class TaskListWidget extends AppWidgetProvider {
                         .getStringArray(R.array.task_list_header_navigation_titles_ukr);
                 mEmptyListTitle = TaskListApplication.getContext().getResources().getStringArray(R.array.list_empty_ukr);
                 mDeleteDoneBackToastTitle = TaskListApplication.getContext()
-                        .getResources().getStringArray(R.array.delete_done_back_eng);
+                        .getResources().getStringArray(R.array.delete_done_back_ukr);
             }
 
             @Override
@@ -402,7 +402,7 @@ public class TaskListWidget extends AppWidgetProvider {
                         .getStringArray(R.array.task_list_header_navigation_titles_rus);
                 mEmptyListTitle = TaskListApplication.getContext().getResources().getStringArray(R.array.list_empty_rus);
                 mDeleteDoneBackToastTitle = TaskListApplication.getContext()
-                        .getResources().getStringArray(R.array.delete_done_back_eng);
+                        .getResources().getStringArray(R.array.delete_done_back_rus);
             }
         };
     }

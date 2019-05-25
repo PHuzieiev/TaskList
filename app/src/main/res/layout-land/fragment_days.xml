@@ -18,10 +18,10 @@
             style="@style/HorizontalWrapLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            tools:ignore="UseCompoundDrawables"
+            android:layout_marginTop="@dimen/spacing_small_16dp"
             android:layout_marginBottom="@dimen/spacing_small_16dp"
-            android:layout_marginTop="@dimen/spacing_small_16dp">
+            android:gravity="center"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:id="@+id/fragment_header_ico"
@@ -96,36 +96,47 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/fragment_header"
-        android:layout_above="@+id/fragment_fab_layout"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_alignEnd="@+id/fragment_fab_layout"
+        android:layout_alignRight="@+id/fragment_fab_layout"
+        android:gravity="center">
+
         <ImageView
             android:id="@+id/fragment_empty_iv"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:src="@drawable/ico_empty_main"
-            tools:ignore="ContentDescription"
-            android:layout_marginRight="@dimen/spacing_big_88dp"
-            android:layout_marginEnd="@dimen/spacing_big_88dp" />
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/fragment_header"
+        android:layout_alignStart="@+id/fragment_fab_layout"
+        android:layout_alignLeft="@+id/fragment_fab_layout"
+        android:gravity="center">
 
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scrollbars="none">
-        <TextView
-            android:id="@+id/fragment_empty_tv"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_small_14sp"
-            android:gravity="center"/>
+            android:scrollbars="none"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/fragment_empty_tv"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_small_14sp" />
         </ScrollView>
+
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/fragment_fab_layout"
-        android:orientation="horizontal"
-        style="@style/Fab"/>
+        style="@style/Fab"
+        android:orientation="horizontal" />
 </RelativeLayout>
