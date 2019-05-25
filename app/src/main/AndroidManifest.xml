@@ -44,10 +44,15 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/list_app_widget_info" />
         </receiver>
+
         <service
             android:name=".utils.WidgetService"
-            android:permission="android.permission.BIND_REMOTEVIEWS">
-        </service>
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <activity
+            android:name=".ui.activities.TaskListActivity"
+            android:label="@string/title_activity_task_list"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

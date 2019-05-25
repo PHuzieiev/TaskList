@@ -2,6 +2,7 @@ package com.apps.newstudio.tasklist.ui.views;
 
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -9,6 +10,8 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
@@ -127,6 +130,8 @@ public class CustomLinearDiagram extends View {
                     drawCustomCircle(canvas, endX, endY, paint);
                 }
 
+                mData.get(i).setX(startX);
+                mData.get(i).setY(startY);
                 drawCustomCircle(canvas, startX, startY, paint);
                 drawCustomText(canvas, "" + (i + 1), startX,
                         mHorizontalLineY + mResources.getDimensionPixelSize(R.dimen.spacing_small_12dp),

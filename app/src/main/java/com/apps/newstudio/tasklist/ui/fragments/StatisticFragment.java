@@ -1,6 +1,8 @@
 package com.apps.newstudio.tasklist.ui.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -9,6 +11,7 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -20,6 +23,7 @@ import com.apps.newstudio.tasklist.data.adapters.DataForLinearDiagram;
 import com.apps.newstudio.tasklist.data.managers.DataManager;
 import com.apps.newstudio.tasklist.data.managers.LanguageManager;
 import com.apps.newstudio.tasklist.ui.activities.MainActivity;
+import com.apps.newstudio.tasklist.ui.activities.TaskListActivity;
 import com.apps.newstudio.tasklist.ui.dialogs.DialogList;
 import com.apps.newstudio.tasklist.ui.views.CustomCircleDiagram;
 import com.apps.newstudio.tasklist.ui.views.CustomLinearDiagram;
@@ -141,11 +145,37 @@ public class StatisticFragment extends Fragment {
     }
 
     /**
-     * Updates linear diagram
+     * Updates linear diagram and sets OnTouchListener
      */
     private void setLinearDiagram() {
         ((CustomLinearDiagram) mView.findViewById(R.id.fragment_linear_diagram))
                 .setData(mDataForLinearDiagram, mStateFlag, mDaysTitle);
+        mView.findViewById(R.id.fragment_linear_diagram).setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    float x = event.getX();
+                    float y = event.getY();
+                    float padding = getResources().getDimension(R.dimen.spacing_small_16dp);
+
+                    for (DataForLinearDiagram data : mDataForLinearDiagram) {
+                        float dataX = data.getX(), dataY = data.getY();
+
+                        if (dataX - padding < x && dataX + padding > x && dataY - padding < y && dataY + padding > y) {
+                            Intent intent = new Intent(((MainActivity) getActivity()).getContext(), TaskListActivity.class);
+                            intent.putExtra(ConstantsManager.CHOSEN_DAY_KEY, data.getDay());
+                            intent.putExtra(ConstantsManager.CHOSEN_MONTH_KEY, mChosenMonth);
+                            intent.putExtra(ConstantsManager.CHOSEN_YEAR_KEY, mChosenYear);
+                            intent.putExtra(ConstantsManager.TASK_STATE_FLAG, mStateFlag);
+                            startActivityForResult(intent, ConstantsManager.TASK_REQUEST_CODE);
+                            break;
+                        }
+                    }
+                }
+                return true;
+            }
+        });
     }
 
     /**
@@ -164,7 +194,7 @@ public class StatisticFragment extends Fragment {
     /**
      * Action which changes chosen state of tasks
      */
-    private View.OnClickListener mOnClickListenerActiveDone =new OnClickAdapter(1,1) {
+    private View.OnClickListener mOnClickListenerActiveDone = new OnClickAdapter(1, 1) {
         @Override
         public void myFunc(View view) {
             if (mStateFlag == ConstantsManager.STATE_FLAG_ACTIVE && view.getId() == R.id.fragment_nav_done_text) {
@@ -266,6 +296,25 @@ public class StatisticFragment extends Fragment {
     }
 
     /**
+     * Updates statistic after adding or changing information of tasks
+     *
+     * @param requestCode int value for request code
+     * @param resultCode  int value for result code
+     * @param data        Intent object which contains information from closed activity object
+     */
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        ((MainActivity) getActivity()).updateNavigationView();
+        mStateFlag = data.getIntExtra(ConstantsManager.TASK_STATE_FLAG, mStateFlag);
+        mChosenMonth = data.getIntExtra(ConstantsManager.CHOSEN_MONTH_KEY, mChosenMonth);
+        mChosenYear = data.getIntExtra(ConstantsManager.CHOSEN_YEAR_KEY, mChosenYear);
+        changeHeader();
+        updateState(mStateFlag);
+        updateData();
+    }
+
+    /**
      * Performs text objects using language parameter
      */
     private void setLang() {
@@ -298,6 +347,4 @@ public class StatisticFragment extends Fragment {
             }
         };
     }
-
-
 }
