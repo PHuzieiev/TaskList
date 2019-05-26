@@ -157,12 +157,14 @@ public class StatisticFragment extends Fragment {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
                     float x = event.getX();
                     float y = event.getY();
-                    float padding = getResources().getDimension(R.dimen.spacing_small_16dp);
+                    float dataY2 = v.getHeight() - getResources().getDimension(R.dimen.small_size_24dp);
+                    float padding = getResources().getDimension(R.dimen.small_size_24dp);
 
                     for (DataForLinearDiagram data : mDataForLinearDiagram) {
                         float dataX = data.getX(), dataY = data.getY();
 
-                        if (dataX - padding < x && dataX + padding > x && dataY - padding < y && dataY + padding > y) {
+                        if ((dataX - padding < x && dataX + padding > x && dataY - padding < y && dataY + padding > y) ||
+                                (dataX - padding < x && dataX + padding > x && dataY2 - padding < y && dataY2 + padding > y)) {
                             Intent intent = new Intent(((MainActivity) getActivity()).getContext(), TaskListActivity.class);
                             intent.putExtra(ConstantsManager.CHOSEN_DAY_KEY, data.getDay());
                             intent.putExtra(ConstantsManager.CHOSEN_MONTH_KEY, mChosenMonth);
