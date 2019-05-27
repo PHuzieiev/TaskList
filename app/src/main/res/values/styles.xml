@@ -27,6 +27,14 @@
         <item name="android:layout_marginLeft">0dp</item>
     </style>
 
+    <style name="FabTwo" parent="Fab">
+        <item name="android:layout_alignParentBottom">false</item>
+        <item name="android:layout_centerInParent">false</item>
+        <item name="android:layout_marginRight">@dimen/fab_margin_bottom</item>
+        <item name="android:layout_marginLeft">@dimen/fab_margin_bottom</item>
+        <item name="android:layout_marginBottom">@dimen/fab_margin_bottom</item>
+    </style>
+
     <style name="RecyclerViewStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>

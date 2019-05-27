@@ -144,7 +144,9 @@
                                         android:background="@color/white"
                                         android:enabled="false"
                                         android:focusable="true"
-                                        android:inputType="textVisiblePassword"
+                                        android:inputType="text"
+                                        android:maxLines="1"
+                                        android:lines="1"
                                         android:textColor="@color/colorPrimary"
                                         android:textStyle="bold"
                                         tools:ignore="Autofill,LabelFor,TooDeepLayout" />
